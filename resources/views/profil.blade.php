@@ -1,103 +1,33 @@
+{{--
+    File: profil.blade.php
+    Ini adalah halaman profil yang memuat header dan footer dari direktori 'partials'.
+    Pastikan file _header.blade.php dan _footer.blade.php berada di resources/views/partials.
+--}}
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil BSILHK</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* CSS untuk dropdown desktop */
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-        .dropdown-item:hover .dropdown-menu {
-            display: block;
-        }
-        /* Styling untuk sub-dropdown, memastikan berada di sebelah kanan */
-        .dropdown-item .dropdown-menu {
-            top: 0;
-            left: 100%;
-        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 flex flex-col min-h-screen">
 
-    <!-- Header Lengkap -->
-    <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-            <!-- Logo -->
-            <a href="#" class="flex items-center space-x-2">
-                <img src="https://placehold.co/40x40/94a3b8/ffffff?text=LOGO" alt="Logo BSILHK" class="h-10">
-                <span class="text-xl font-bold text-green-700 hidden sm:block">BSILHK</span>
-            </a>
-
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="#" class="text-gray-600 hover:text-green-700 font-medium transition duration-300">Beranda</a>
-                
-                <!-- Dropdown Tentang BSILHK -->
-                <div class="relative dropdown">
-                    <button class="text-gray-600 hover:text-green-700 font-medium transition duration-300 flex items-center">
-                        Tentang BSILHK
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <ul class="dropdown-menu absolute hidden bg-white shadow-lg py-2 rounded-lg mt-2 w-48">
-                        <li><a href="profil-bsilhk.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profil BSILHK</a></li>
-                        <li><a href="dasar-hukum.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dasar Hukum</a></li>
-                        <li><a href="tugas-fungsi.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tugas dan Fungsi</a></li>
-                        <li><a href="struktur-organisasi.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Struktur Organisasi</a></li>
-                    </ul>
-                </div>
-
-                <a href="#" class="text-gray-600 hover:text-green-700 font-medium transition duration-300">Layanan</a>
-                <a href="#" class="text-gray-600 hover:text-green-700 font-medium transition duration-300">Publikasi</a>
-                <a href="#" class="text-gray-600 hover:text-green-700 font-medium transition duration-300">Inovasi</a>
-                <a href="#" class="text-gray-600 hover:text-green-700 font-medium transition duration-300">Peta</a>
-                <a href="#" class="text-gray-600 hover:text-green-700 font-medium transition duration-300">Kontak</a>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-green-700 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Beranda</a>
-                <button class="mobile-dropdown-toggle w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">
-                    Tentang BSILHK
-                    <svg class="w-4 h-4 mobile-dropdown-icon transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="hidden mobile-dropdown-content pl-5 space-y-1">
-                    <a href="profil-bsilhk.html" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">Profil BSILHK</a>
-                    <a href="dasar-hukum.html" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">Dasar Hukum</a>
-                    <a href="tugas-fungsi.html" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">Tugas dan Fungsi</a>
-                    <a href="struktur-organisasi.html" class="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">Struktur Organisasi</a>
-                </div>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Layanan</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Publikasi</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Inovasi</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Peta</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Kontak</a>
-            </div>
-        </div>
-    </nav>
-    <!-- End Header -->
+    <!-- 
+        Memanggil header dari folder 'partials'.
+        Jalur ini menunjuk ke 'resources/views/partials/_header.blade.php'.
+    -->
+    @include('partials._header')
 
     <!-- Hero Section / Banner -->
-    <div class="relative h-64 bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('https://placehold.co/1920x400/1e40af/ffffff?text=Background+Image');">
+    <div class="relative h-64 bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('https://placehold.co/1920x400/1e40af/ffffff?text=Latar+Belakang+Hutan');">
         <!-- Overlay untuk membuat teks lebih mudah dibaca -->
         <div class="absolute inset-0 bg-black opacity-50"></div>
         
@@ -113,11 +43,11 @@
     </div>
 
     <!-- Main Content Section -->
-    <main class="container mx-auto max-w-7xl px-4 py-12">
+    <main class="flex-grow container mx-auto max-w-7xl px-4 py-12">
         <div class="flex flex-col md:flex-row gap-8">
             <!-- Image & Sub-title -->
             <div class="w-full md:w-1/3">
-                <img src="https://placehold.co/600x400/94a3b8/ffffff?text=Image+Profil" alt="Gambar Profil" class="w-full rounded-lg shadow-lg">
+                <img src="https://placehold.co/600x400/94a3b8/ffffff?text=Kantor+BSILHK" alt="Gambar Profil" class="w-full rounded-lg shadow-lg">
                 <h2 class="mt-6 text-2xl font-semibold text-gray-800">
                     Standar Kuat, LHK Terlindung dan Ekonomi Tumbuh
                 </h2>
@@ -143,26 +73,11 @@
         </div>
     </main>
 
-    <!-- JavaScript untuk fungsionalitas menu mobile dropdown -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            document.querySelectorAll('.mobile-dropdown-toggle').forEach(button => {
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    const icon = button.querySelector('.mobile-dropdown-icon');
-                    content.classList.toggle('hidden');
-                    icon.classList.toggle('rotate-180');
-                });
-            });
-        });
-    </script>
+    <!-- 
+        Memanggil footer dari folder 'partials'.
+        Jalur ini menunjuk ke 'resources/views/partials/_footer.blade.php'.
+    -->
+    @include('partials._footer')
 
 </body>
 </html>

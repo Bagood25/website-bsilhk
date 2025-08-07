@@ -41,269 +41,324 @@
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="font-sans antialiased">
 
-<!-- Top Header Bar -->
-<div class="bg-white text-gray-800 text-sm py-2 shadow-md hidden md:block">
-    <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
-        <!-- Info Kontak -->
-        <div class="flex items-center space-x-6 text-xs">
-            <a href="mailto:bsilhk@gmail.go.id" class="flex items-center text-gray-600 hover:text-green-600">
-                <svg class="h-4 w-4 mr-1 text-emerald-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                bsilhk@gmail.go.id
+<!-- Top Navbar - Sesuai dengan screenshot yang diberikan -->
+<div class="bg-gray-100 text-gray-700 py-2 text-sm hidden md:block border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        <div class="flex space-x-6">
+            <a href="mailto:bsilhk@menlhk.go.id" class="flex items-center hover:text-orange-600 transition-colors duration-200">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                bsilhk@menlhk.go.id
             </a>
-            <a href="tel:02157930168" class="flex items-center text-gray-600 hover:text-green-600">
-                <svg class="h-4 w-4 mr-1 text-emerald-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 1.48a1 1 0 01-.188 1.096l-1.547 1.547a1 1 0 00-.214 1.258l2.258 2.258a1 1 0 001.258-.214l1.547-1.547a1 1 0 011.096-.188l1.48.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.147 18 3 13.853 3 8V6a1 1 0 011-1z"></path></svg>
-                (021) 57930168
+            <a href="tel:(021) 57903068" class="flex items-center hover:text-orange-600 transition-colors duration-200">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/20000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 1.48a1 1 0 01-.188 1.096l-1.547 1.547a1 1 0 00-.214 1.258l2.258 2.258a1 1 0 001.258-.214l1.547-1.547a1 1 0 011.096-.188l1.48.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                (021) 57903068
             </a>
-            <a href="https://maps.app.goo.gl/hihV5bcsUtJ526Ev7" target="_blank" class="flex items-center text-gray-600 hover:text-green-600">
-                <svg class="h-4 w-4 mr-1 text-emerald-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                Jl. Raya Gn. Batu No.5, Bogor
-            </a>
+            <span class="flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                Ged. Manggala Wanabakti Blok VII Lantai 10, Jl. Jenderal Gatot Subroto, Jakarta 10270
+            </span>
         </div>
-        <!-- Ikon Media Sosial -->
         <div class="flex items-center space-x-4">
-            <a href="https://web.facebook.com/pusfaster?locale=id_ID" target="_blank" class="hover:opacity-75">
-                <img class="h-5 w-5" src="/images/facebook.png" alt="Facebook">
+            <a href="https://www.facebook.com/bsilhk.klhk/" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
+                <img src="{{ asset('images/facebook.png') }}" alt="Facebook" class="h-5 w-5">
             </a>
-            <a href="https://www.instagram.com/pusfaster/" target="_blank" class="hover:opacity-75">
-                <img class="h-5 w-5" src="/images/instagram.png" alt="Instagram">
+            <a href="https://www.instagram.com/bsilhk.klhk/" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
+                <img src="{{ asset('images/instagram.png') }}" alt="Instagram" class="h-5 w-5">
             </a>
-            <a href="http://www.youtube.com/@PusfasterBSILHK" target="_blank" class="hover:opacity-75">
-                <img class="h-5 w-5" src="/images/youtube.png" alt="Youtube">
+            <a href="https://www.youtube.com/@bsilhk" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
+                <img src="{{ asset('images/youtube.png') }}" alt="YouTube" class="h-5 w-5">
             </a>
+            <!-- Language Selector (contoh sederhana) -->
+            <div class="relative group">
+                <button class="flex items-center text-gray-700 hover:text-orange-600 focus:outline-none">
+                    <img src="https://placehold.co/20x15/cccccc/ffffff?text=ID" alt="Indonesia Flag" class="h-3 w-5 mr-1">
+                    Indonesia
+                    <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <!-- Dropdown untuk pilihan bahasa -->
+                <div class="absolute right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden group-hover:block">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">English</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Indonesia</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Navbar (Main Header) -->
-<nav class="bg-white shadow-lg py-4">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="flex justify-between items-center">
-            <div class="flex-shrink-0 flex items-center">
-                <!-- Logo yang sudah Anda berikan -->
-                <img class="h-12 w-auto" src="/images/bsilhk.png" alt="Logo BSILHK">
-                <img class="h-12 w-auto ml-4" src="/images/logo-bsilhk.png" alt="Logo Kedua BSILHK">
-            </div>
-
-            <!-- Main Navigation & Search -->
-            <div class="hidden md:flex items-center space-x-4 text-gray-600 text-sm">
-                <a href="/" class="hover:text-green-600">Beranda</a>
-                
-                <!-- Dropdown untuk Tentang BSILHK -->
-                <div class="relative group dropdown">
-                    <div class="dropdown-container">
-                        <button class="hover:text-green-600 flex items-center p-2">
-                            Tentang BSILHK
-                            <svg class="h-4 w-4 ml-1 transition-transform duration-200 group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </button>
-                        <div class="dropdown-menu absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10 border border-gray-200">
-                            <a href="/profil-bsilhk.html" class="block px-4 py-2 hover:bg-gray-100">Profil BSILHK</a>
-                            <a href="/dasar-hukum.html" class="block px-4 py-2 hover:bg-gray-100">Dasar Hukum</a>
-                            <a href="/tugas-dan-fungsi.html" class="block px-4 py-2 hover:bg-gray-100">Tugas dan Fungsi</a>
-                            <a href="/struktur-organisasi.html" class="block px-4 py-2 hover:bg-gray-100">Struktur Organisasi</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dropdown untuk Berita (Menggunakan sub-dropdown) -->
-                <div class="relative group dropdown">
-                    <div class="dropdown-container">
-                        <button class="hover:text-green-600 flex items-center p-2">
-                            Berita
-                            <svg class="h-4 w-4 ml-1 transition-transform duration-200 group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </button>
-                        <div class="dropdown-menu absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10 border border-gray-200">
-                            <div class="relative group/sub dropdown-item">
-                                <a href="#" class="flex justify-between items-center px-4 py-2 hover:bg-gray-100">
-                                    Berita Fokus
-                                    <svg class="h-4 w-4 text-gray-400 group-hover/sub:text-green-600 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                                </a>
-                                <div class="absolute top-0 left-full bg-white shadow-lg rounded-md w-48 z-20 border border-gray-200">
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Berita Utama</a>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Berita BSI</a>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Siaran Pers</a>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Kegiatan</a>
-                                </div>
-                            </div>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Berita Standar</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Kabar BSI</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dropdown untuk Regulasi (Menggunakan sub-dropdown) -->
-                <div class="relative group dropdown">
-                    <div class="dropdown-container">
-                        <button class="hover:text-green-600 flex items-center p-2">
-                            Regulasi
-                            <svg class="h-4 w-4 ml-1 transition-transform duration-200 group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </button>
-                        <div class="dropdown-menu absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10 border border-gray-200">
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Undang-undang</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan Pemerintah</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan Presiden</a>
-                            <div class="relative group/sub dropdown-item">
-                                <a href="#" class="flex justify-between items-center px-4 py-2 hover:bg-gray-100">
-                                    Peraturan Menteri
-                                    <svg class="h-4 w-4 text-gray-400 group-hover/sub:text-green-600 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                                </a>
-                                <div class="absolute top-0 left-full bg-white shadow-lg rounded-md w-48 z-20 border border-gray-200">
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Permen LHK</a>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Permen Keuangan</a>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Permen Pertanian</a>
-                                </div>
-                            </div>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan Kepala BSN</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan Kepala BSILHK</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">SK BSILHK</a>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100">JDIH KLHK</a>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="/agenda" class="hover:text-green-600">Agenda</a>
-
-                <!-- Dropdown untuk Download (Menggunakan sub-dropdown) -->
-                <div class="relative group dropdown">
-                    <div class="dropdown-container">
-                        <button class="hover:text-green-600 flex items-center p-2">
-                            Download
-                            <svg class="h-4 w-4 ml-1 transition-transform duration-200 group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </button>
-                        <div class="dropdown-menu absolute bg-white shadow-lg rounded-md mt-2 w-48 z-10 border border-gray-200">
-                            <div class="relative group/sub dropdown-item">
-                                <a href="#" class="flex justify-between items-center px-4 py-2 hover:bg-gray-100">
-                                    Buku dan Jurnal
-                                    <svg class="h-4 w-4 text-gray-400 group-hover/sub:text-green-600 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                                </a>
-                                <div class="absolute top-0 left-full bg-white shadow-lg rounded-md w-48 z-20 border border-gray-200">
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Buku</a>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Jurnal</a>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Prosiding</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="relative hidden md:flex items-center space-x-4">
-                <input type="text" placeholder="Pencarian..." class="py-2 pl-4 pr-10 rounded-full border border-gray-300 focus:outline-none focus:border-green-500">
-                <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-green-600">
-                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </button>
-                <a href="#" class="bg-green-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-green-700 transition duration-300">
-                    LINE BSILHK
+<nav class="bg-white shadow-md relative z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20">
+            <div class="flex items-center">
+                <!-- Logo -->
+                <a href="/" class="flex-shrink-0 flex items-center">
+                    {{-- Menggunakan logo yang sudah ada dari path public/images/logo-bsilhk.png --}}
+                    <img class="h-10 w-auto" src="{{ asset('images/logo-bsilhk.png') }}" alt="BSILHK Logo">
+                    <span class="ml-3 text-xl font-bold text-gray-900">BSILHK</span>
                 </a>
             </div>
 
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex md:items-center md:ml-6">
+                <div class="flex space-x-4">
+                    <a href="{{ url('/') }}" class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Beranda</a>
+
+                    <!-- Dropdown Tentang BSILHK -->
+                    <div class="relative dropdown dropdown-container">
+                        <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                            Tentang BSILHK
+                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                <a href="{{ url('/profil') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profil BSILHK</a>
+                                <a href="{{ url('/dasar-hukum') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Dasar Hukum</a>
+                                <a href="{{ url('/tugas-dan-fungsi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Tugas dan Fungsi</a>
+                                <a href="{{ url('/struktur-organisasi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Struktur Organisasi</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Berita -->
+                    <div class="relative dropdown dropdown-container">
+                        <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                            Berita
+                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                <a href="{{ url('/fokus-bsi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Fokus BSI</a>
+                                <a href="{{ url('/berita-bsi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita BSI</a>
+                                <a href="{{ url('/berita-standar') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita Standar</a>
+                                <a href="{{ url('/berita-klhk') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita KLHK</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Regulasi -->
+                    <div class="relative dropdown dropdown-container">
+                        <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                            Regulasi
+                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                <!-- Contoh item regulasi dengan sub-dropdown -->
+                                <div class="relative dropdown-item group">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex justify-between items-center" role="menuitem">
+                                        Peraturan Menteri
+                                        <svg class="ml-2 h-4 w-4 transform group-hover:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                    <div class="dropdown-menu absolute w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <div class="py-1">
+                                            <a href="{{ route('regulasi.show', ['title' => 'peraturan-menteri-lhk']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Peraturan Menteri LHK</a>
+                                            <a href="{{ route('regulasi.show', ['title' => 'peraturan-menteri-lain']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Peraturan Menteri Lain</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{{ route('regulasi.show', ['title' => 'undang-undang']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Undang-Undang</a>
+                                <a href="{{ route('regulasi.show', ['title' => 'peraturan-pemerintah']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Peraturan Pemerintah</a>
+                                <a href="{{ route('regulasi.show', ['title' => 'peraturan-presiden']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Peraturan Presiden</a>
+                                <a href="{{ route('regulasi.show', ['title' => 'peraturan-daerah']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Peraturan Daerah</a>
+                                <a href="{{ route('jdih.klhk') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">JDIH KLHK</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('agenda.index') }}" class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Agenda</a>
+
+                    <!-- Dropdown untuk Download -->
+                    <div class="relative dropdown dropdown-container">
+                        <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                            Download
+                            <svg class="ml-2 -mr-0.5 h-4 w-4 transition-transform duration-200 group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                {{-- Mengubah Publikasi dan Katalog SNI 2020 agar menggunakan rute download.show --}}
+                                <a href="{{ route('download.show', ['title' => 'publikasi']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Publikasi</a>
+                                <a href="{{ route('download.show', ['title' => 'katalog-sni-2020']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Katalog SNI 2020</a>
+                                <a href="https://bsilhk.menlhk.go.id/itto-gsk/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">ITTO-GSK</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Search Input (Optional) -->
+                    <div class="relative flex items-center">
+                        <input type="text" placeholder="Pencarian..." class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Line BSILHK Button -->
+                    <a href="#" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-orange-600 hover:bg-orange-700">
+                        LINE BSILHK
+                        <svg class="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
             <!-- Mobile menu button -->
-            <div class="md:hidden flex items-center">
-                <button id="mobile-menu-button" class="text-gray-500 hover:text-green-600 focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <div class="-mr-2 flex items-center md:hidden">
+                <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Icon when menu is closed. -->
+                    <!-- Heroicon name: outline/menu -->
+                    <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <!-- Icon when menu is open. -->
+                    <!-- Heroicon name: outline/x -->
+                    <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Mobile menu content -->
-    <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-1 bg-white">
-        <a href="/" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Beranda</a>
-        
-        <!-- Mobile Dropdown for Tentang BSILHK -->
-        <div class="relative">
-            <button class="w-full text-left flex justify-between items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md mobile-dropdown-toggle">
-                Tentang BSILHK
-                <svg class="h-4 w-4 transform transition-transform duration-200 mobile-dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-            </button>
-            <div class="pl-4 hidden mobile-dropdown-content">
-                <a href="/profil-bsilhk.html" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Profil BSILHK</a>
-                <a href="/dasar-hukum.html" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Dasar Hukum</a>
-                <a href="/tugas-dan-fungsi.html" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Tugas dan Fungsi</a>
-                <a href="/struktur-organisasi.html" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Struktur Organisasi</a>
-            </div>
-        </div>
-
-        <!-- Mobile Dropdown for Berita (Menggunakan sub-dropdown) -->
-        <div class="relative">
-            <button class="w-full text-left flex justify-between items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md mobile-dropdown-toggle">
-                Berita
-                <svg class="h-4 w-4 transform transition-transform duration-200 mobile-dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-            </button>
-            <div class="pl-4 hidden mobile-dropdown-content">
-                <div class="relative">
-                    <button class="w-full text-left flex justify-between items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md mobile-sub-dropdown-toggle">
-                        Berita Fokus
-                        <svg class="h-4 w-4 text-gray-400 transform transition-transform duration-200 mobile-sub-dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    </button>
-                    <div class="pl-4 hidden mobile-sub-dropdown-content">
-                        <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Berita Utama</a>
-                        <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Berita BSI</a>
-                        <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Siaran Pers</a>
-                        <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Kegiatan</a>
-                    </div>
-                </div>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Berita Standar</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Kabar BSI</a>
-            </div>
-        </div>
-
-        <!-- Mobile Dropdown for Regulasi (Menggunakan sub-dropdown) -->
-        <div class="relative">
-            <button class="w-full text-left flex justify-between items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md mobile-dropdown-toggle">
-                Regulasi
-                <svg class="h-4 w-4 transform transition-transform duration-200 mobile-dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-            </button>
-            <div class="pl-4 hidden mobile-dropdown-content">
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Undang-undang</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Peraturan Pemerintah</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Peraturan Presiden</a>
-                <div class="relative">
-                    <button class="w-full text-left flex justify-between items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md mobile-sub-dropdown-toggle">
-                        Peraturan Menteri
-                        <svg class="h-4 w-4 text-gray-400 transform transition-transform duration-200 mobile-sub-dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    </button>
-                    <div class="pl-4 hidden mobile-sub-dropdown-content">
-                        <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Permen LHK</a>
-                        <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Permen Keuangan</a>
-                        <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Permen Pertanian</a>
-                    </div>
-                </div>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Peraturan Kepala BSN</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Peraturan Kepala BSILHK</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">SK BSILHK</a>
-                <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">JDIH KLHK</a>
-            </div>
-        </div>
-        
-        <a href="/agenda" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Agenda</a>
-
-        <!-- Mobile Dropdown for Download (Menggunakan sub-dropdown) -->
-        <div class="relative">
-            <button class="w-full text-left flex justify-between items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md mobile-dropdown-toggle">
-                Download
-                <svg class="h-4 w-4 transform transition-transform duration-200 mobile-dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-            </button>
-            <div class="pl-4 hidden mobile-dropdown-content">
-                <div class="relative">
-                    <button class="w-full text-left flex justify-between items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md mobile-sub-dropdown-toggle">
-                        Buku dan Jurnal
-                        <svg class="h-4 w-4 text-gray-400 transform transition-transform duration-200 mobile-sub-dropdown-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    </button>
-                    <div class="pl-4 hidden mobile-sub-dropdown-content">
-                        <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Buku</a>
-                        <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Jurnal</a>
-                        <a href="#" class="block px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-md">Prosiding</a>
-                    </div>
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="md:hidden hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <!-- Mobile Top Navbar Content -->
+            <div class="flex flex-col space-y-2 py-2 border-b border-gray-200">
+                <a href="mailto:bsilhk@menlhk.go.id" class="flex items-center text-gray-700 hover:text-orange-600 text-sm font-medium">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                    bsilhk@menlhk.go.id
+                </a>
+                <a href="tel:(021) 57903068" class="flex items-center text-gray-700 hover:text-orange-600 text-sm font-medium">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 1.48a1 1 0 01-.188 1.096l-1.547 1.547a1 1 0 00-.214 1.258l2.258 2.258a1 1 0 001.258-.214l1.547-1.547a1 1 0 011.096-.188l1.48.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                    (021) 57903068
+                </a>
+                <span class="flex items-center text-gray-700 text-sm font-medium">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                    Ged. Manggala Wanabakti Blok VII Lantai 10, Jl. Jenderal Gatot Subroto, Jakarta 10270
+                </span>
+                <div class="flex space-x-4 mt-2">
+                    <a href="https://www.facebook.com/bsilhk.klhk/" target="_blank" class="text-gray-700 hover:text-orange-600">
+                        <img src="{{ asset('images/facebook.png') }}" alt="Facebook" class="h-5 w-5">
+                    </a>
+                    <a href="https://www.instagram.com/bsilhk.klhk/" target="_blank" class="text-gray-700 hover:text-orange-600">
+                        <img src="{{ asset('images/instagram.png') }}" alt="Instagram" class="h-5 w-5">
+                    </a>
+                    <a href="https://www.youtube.com/@bsilhk" target="_blank" class="text-gray-700 hover:text-orange-600">
+                        <img src="{{ asset('images/youtube.png') }}" alt="YouTube" class="h-5 w-5">
+                    </a>
                 </div>
             </div>
-        </div>
+            <!-- End Mobile Top Navbar Content -->
 
-        <div class="pt-2">
-            <input type="text" placeholder="Pencarian..." class="w-full py-2 pl-4 pr-10 rounded-full border border-gray-300 focus:outline-none focus:border-green-500">
+            <a href="{{ url('/') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Beranda</a>
+
+            <!-- Mobile Dropdown Tentang BSILHK -->
+            <div class="relative">
+                <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
+                    Tentang BSILHK
+                    <svg class="mobile-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
+                    <a href="{{ url('/profil') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Profil BSILHK</a>
+                    <a href="{{ url('/dasar-hukum') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Dasar Hukum</a>
+                    <a href="{{ url('/tugas-dan-fungsi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Tugas dan Fungsi</a>
+                    <a href="{{ url('/struktur-organisasi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Struktur Organisasi</a>
+                </div>
+            </div>
+
+            <!-- Mobile Dropdown Berita -->
+            <div class="relative">
+                <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
+                    Berita
+                    <svg class="mobile-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
+                    <a href="{{ url('/fokus-bsi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Fokus BSI</a>
+                    <a href="{{ url('/berita-bsi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita BSI</a>
+                    <a href="{{ url('/berita-standar') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita Standar</a>
+                    <a href="{{ url('/berita-klhk') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita KLHK</a>
+                </div>
+            </div>
+
+            <!-- Mobile Dropdown Regulasi -->
+            <div class="relative">
+                <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
+                    Regulasi
+                    <svg class="mobile-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
+                    <!-- Mobile Sub-Dropdown Peraturan Menteri -->
+                    <div class="relative">
+                        <button class="mobile-sub-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            Peraturan Menteri
+                            <svg class="mobile-sub-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="mobile-sub-dropdown-menu hidden pl-4 mt-1 space-y-1">
+                            <a href="{{ route('regulasi.show', ['title' => 'peraturan-menteri-lhk']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan Menteri LHK</a>
+                            <a href="{{ route('regulasi.show', ['title' => 'peraturan-menteri-lain']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan Menteri Lain</a>
+                        </div>
+                    </div>
+                    <a href="{{ route('regulasi.show', ['title' => 'undang-undang']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Undang-Undang</a>
+                    <a href="{{ route('regulasi.show', ['title' => 'peraturan-pemerintah']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan Pemerintah</a>
+                    <a href="{{ route('regulasi.show', ['title' => 'peraturan-presiden']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan Presiden</a>
+                    <a href="{{ route('regulasi.show', ['title' => 'peraturan-daerah']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan Daerah</a>
+                    <a href="{{ route('jdih.klhk') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">JDIH KLHK</a>
+                </div>
+            </div>
+
+            <a href="{{ route('agenda.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Agenda</a>
+
+            <!-- Mobile Dropdown Download -->
+            <div class="relative">
+                <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
+                    Download
+                    <svg class="mobile-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
+                    {{-- Mengubah Publikasi dan Katalog SNI 2020 agar menggunakan rute download.show --}}
+                    <a href="{{ route('download.show', ['title' => 'publikasi']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Publikasi</a>
+                    <a href="{{ route('download.show', ['title' => 'katalog-sni-2020']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Katalog SNI 2020</a>
+                    <a href="https://bsilhk.menlhk.go.id/itto-gsk/" target="_blank" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">ITTO-GSK</a>
+                </div>
+            </div>
         </div>
-        <a href="#" class="mt-2 block w-full text-center bg-green-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-green-700 transition duration-300">LINE BSILHK</a>
+        <div class="pt-4 pb-3 border-t border-gray-200">
+            <div class="flex items-center px-5">
+                <!-- User Info (Optional) -->
+            </div>
+            <div class="mt-3 px-2 space-y-1">
+                <!-- Mobile Search Input -->
+                <input type="text" placeholder="Pencarian..." class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                <!-- Mobile Line BSILHK Button -->
+                <a href="#" class="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange-600 hover:bg-orange-700 mt-2">
+                    LINE BSILHK
+                </a>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -313,32 +368,38 @@
         // Main Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
 
         // Loop through all main mobile dropdowns
         document.querySelectorAll('.mobile-dropdown-toggle').forEach(button => {
             button.addEventListener('click', () => {
                 const content = button.nextElementSibling;
                 const icon = button.querySelector('.mobile-dropdown-icon');
-                content.classList.toggle('hidden');
-                icon.classList.toggle('rotate-180');
+                if (content && icon) {
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                }
             });
         });
 
-        // Loop through all nested mobile sub-dropdowns
+        // Loop through all nested mobile sub-dropdowns (This section is now for general mobile dropdowns, not specific sub-dropdowns)
+        // The previous sub-dropdown logic for 'Peraturan Menteri' has been removed.
+        // This loop will now only apply to top-level mobile dropdowns.
         document.querySelectorAll('.mobile-sub-dropdown-toggle').forEach(button => {
             button.addEventListener('click', () => {
                 const content = button.nextElementSibling;
                 const icon = button.querySelector('.mobile-sub-dropdown-icon');
-                content.classList.toggle('hidden');
-                icon.classList.toggle('rotate-90'); 
+                if (content && icon) {
+                    content.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-90');
+                }
             });
         });
     });
 </script>
-
 </body>
 </html>

@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
-use App\Models\PublicService;
 use Illuminate\Http\Request;
+use App\Models\Berita;
 
 class HomeController extends Controller
 {
     /**
-     * Menampilkan halaman utama dengan data ringkasan.
+     * Tampilkan halaman dashboard aplikasi.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        // Ambil 3 berita terbaru yang diurutkan berdasarkan tanggal publikasi
-        $latestNews = News::orderBy('published_at', 'desc')->limit(3)->get();
-        
-        // Ambil semua layanan publik
-        $publicServices = PublicService::all();
-        
-        // Kirim data ke view 'home'
-        return view('home', compact('latestNews', 'publicServices'));
+        // Mengambil 6 data berita terbaru untuk slider utama
+        $beritaUtama = Berita::latest()->take(6)->get();
+
+        // Mengambil 3 data berita fokus terbaru
+        $beritaFokus = Berita::latest()->skip(6)->take(3)->get();
+
+        // Mengambil 4 data berita standar terbaru
+        $beritaStandar = Berita::latest()->skip(9)->take(4)->get();
+
+        // Mengirimkan semua data berita ke view
+        return view('home', compact('beritaUtama', 'beritaFokus', 'beritaStandar'));
     }
 }
