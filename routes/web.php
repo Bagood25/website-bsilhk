@@ -6,6 +6,9 @@ use App\Http\Controllers\NewsController; // Pastikan ini sudah ada atau tambahka
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\AdminBeritaController; 
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +20,15 @@ use App\Http\Controllers\DownloadController;
 | diberikan ke grup middleware "web".
 |
 */
+Route::resource('/admin/berita', AdminBeritaController::class)->names([
+    'index' => 'admin.berita.index',
+    'create' => 'admin.berita.create',
+    'store' => 'admin.berita.store',
+    'show' => 'admin.berita.show',
+    'edit' => 'admin.berita.edit',
+    'update' => 'admin.berita.update',
+    'destroy' => 'admin.berita.destroy',
+]);
 
 // Rute untuk halaman utama
 Route::get('/', [HomeController::class, 'index']);
