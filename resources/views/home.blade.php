@@ -15,7 +15,7 @@
                         <div class="relative text-center text-white px-4">
                             <h2 class="text-4xl font-bold mb-2">{{ $berita->judul }}</h2>
                             <p class="text-lg">{{ \Illuminate\Support\Str::limit(strip_tags($berita->isi), 100) }}</p>
-                            <a href="{{ route('berita.show', $berita->slug) }}" class="mt-4 inline-block bg-green-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-green-700 transition duration-300">Baca Selengkapnya</a>
+                            <a href="{{ route('news.show', $berita->slug) }}" class="text-green-600 font-medium hover:underline inline-block mt-4">Baca Selengkapnya →</a>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     <p class="text-gray-600 text-sm mb-4 line-clamp-3">
                         {{ \Illuminate\Support\Str::limit(strip_tags($berita->isi), 150) }}
                     </p>
-                    <a href="{{ route('berita.show', $berita->slug) }}" class="text-green-600 font-medium hover:underline">Baca Selengkapnya >></a>
+                    <a href="{{ route('news.show', $berita->slug) }}" class="text-green-500 font-medium hover:text-green-600 transition duration-300">
                 </div>
             </div>
             @endforeach
@@ -62,7 +62,7 @@
                     <p class="text-gray-300 mb-6">
                         {{ \Illuminate\Support\Str::limit(strip_tags($beritaStandar->first()->isi), 200) }}
                     </p>
-                    <a href="{{ route('berita.show', $beritaStandar->first()->slug) }}" class="bg-green-600 text-white font-semibold py-3 px-8 rounded-full self-start hover:bg-green-700 transition duration-300">Baca Selengkapnya</a>
+                   <a href="{{ route('news.show', $beritaStandar->first()->slug) }}" class="bg-green-600 text-white font-semibold py-3 px-8 rounded-full self-start hover:bg-green-700 transition duration-300">Baca Selengkapnya</a>
                 </div>
             </div>
             <div class="relative w-full overflow-hidden">

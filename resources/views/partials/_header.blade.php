@@ -177,22 +177,19 @@
                     <a href="{{ route('agenda.index') }}" class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Agenda</a>
 
                     <!-- Dropdown untuk Download -->
-                    <div class="relative dropdown dropdown-container">
-                        <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
-                            Download
-                            <svg class="ml-2 -mr-0.5 h-4 w-4 transition-transform duration-200 group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                {{-- Mengubah Publikasi dan Katalog SNI 2020 agar menggunakan rute download.show --}}
-                                <a href="{{ route('download.show', ['title' => 'publikasi']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Publikasi</a>
-                                <a href="{{ route('download.show', ['title' => 'katalog-sni-2020']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Katalog SNI 2020</a>
-                                <a href="https://bsilhk.menlhk.go.id/itto-gsk/" target="_blank" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">ITTO-GSK</a>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="relative group">
+        <button class="text-gray-700 hover:text-green-600 font-medium transition duration-300 flex items-center">
+        Download
+        <svg class="w-4 h-4 ml-1 transform transition-transform duration-300 group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+        </svg>
+    </button>
+    <div class="absolute hidden group-hover:block mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 z-20">
+        <a href="{{ route('download.show', 'laporan-tahunan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Laporan Tahunan</a>
+        <a href="{{ route('download.show', 'rencana-kerja') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Rencana Kerja</a>
+        <a href="https://bsilhk.menlhk.go.id/itto-gsk/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ITTO</a>
+    </div>
+</div>
 
                     <!-- Search Input (Optional) -->
                     <div class="relative flex items-center">

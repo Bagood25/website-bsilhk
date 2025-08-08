@@ -2,13 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\NewsController; // Pastikan ini sudah ada atau tambahkan
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DownloadController;
-use App\Http\Controllers\BeritaController;
-use App\Http\Controllers\AdminBeritaController; 
-
 
 /*
 |--------------------------------------------------------------------------
@@ -20,34 +17,19 @@ use App\Http\Controllers\AdminBeritaController;
 | diberikan ke grup middleware "web".
 |
 */
-Route::resource('/admin/berita', AdminBeritaController::class)->names([
-    'index' => 'admin.berita.index',
-    'create' => 'admin.berita.create',
-    'store' => 'admin.berita.store',
-    'show' => 'admin.berita.show',
-    'edit' => 'admin.berita.edit',
-    'update' => 'admin.berita.update',
-    'destroy' => 'admin.berita.destroy',
-]);
 
+// --- Rute PUBLIK (tidak memerlukan login) ---
 // Rute untuk halaman utama
 Route::get('/', [HomeController::class, 'index']);
 
-// Rute untuk berita halaman depan
-Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+// Rute untuk daftar berita halaman depan dan detail berita
+Route::get('/news', [NewsController::class, 'publicIndex'])->name('news.index');
 Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
-// --- Rute CRUD untuk admin ---
-// Menggunakan Route::resource untuk membuat rute CRUD secara otomatis
-Route::resource('admin/news', NewsController::class)->names([
-    'index' => 'admin.news.index',
-    'create' => 'admin.news.create',
-    'store' => 'admin.news.store',
-    'edit' => 'admin.news.edit',
-    'update' => 'admin.news.update',
-    'destroy' => 'admin.news.destroy',
-])->middleware(['auth']); // Tambahkan middleware 'auth' untuk melindungi rute
-// -----------------------------
+// Rute untuk halaman "Profil BSILHK"
+Route::get('/profil', function () {
+    return view('profil');
+});
 
 // Rute untuk daftar layanan publik
 Route::get('/services', [PublicServiceController::class, 'index']);
@@ -55,24 +37,28 @@ Route::get('/services', [PublicServiceController::class, 'index']);
 // Rute untuk daftar lokasi
 Route::get('/locations', [LocationController::class, 'index']);
 
-// === PENAMBAHAN DAN PERBAIKAN RUTE DI SINI UNTUK MENU BERITA ===
-// Route baru untuk halaman Berita Fokus BSI
-// Ini akan memanggil file view 'fokus-bsi.blade.php' yang sudah ada
-Route::get('/fokus-bsi', function () {
-    return view('fokus-bsi');
-})->name('fokus-bsi');
+// Rute untuk halaman regulasi
+Route::get('/regulasi/{title}', function ($title) {
+    $formattedTitle = str_replace('-', ' ', $title);
+    $formattedTitle = ucwords($formattedTitle);
+    return view('regulasi', ['pageTitle' => $formattedTitle]);
+})->name('regulasi.show');
 
-// Route baru untuk halaman Berita BSI
-// Ini akan memanggil file view 'berita-bsi.blade.php' jika Anda membutuhkannya
-Route::get('/berita-bsi', function () {
-    return view('berita-bsi');
-})->name('berita-bsi');
-// ===============================================================
+// Rute untuk JDIH KLHK secara spesifik
+Route::get('/jdih-klhk', function () {
+    return view('regulasi', ['pageTitle' => 'JDIH KLHK']);
+})->name('jdih.klhk');
 
-// Rute untuk halaman "Profil BSILHK"
-Route::get('/profil', function () {
-    return view('profil');
+// Rute untuk halaman "Berita KLHK"
+Route::get('/berita-klhk', function () {
+    return view('berita-klhk');
 });
+
+// Rute untuk halaman "Agenda BSILHK"
+Route::get('/agenda', function () {
+    // Asumsi Anda memiliki view bernama 'agenda.blade.php'
+    return view('agenda');
+})->name('agenda.index');
 
 // Rute untuk halaman "Dasar Hukum"
 Route::get('/dasar-hukum', function () {
@@ -88,28 +74,6 @@ Route::get('/tugas-dan-fungsi', function () {
 Route::get('/struktur-organisasi', function () {
     return view('struktur_organisasi');
 });
-
-// Rute untuk halaman "Berita KLHK"
-Route::get('/berita-klhk', function () {
-    return view('berita-klhk');
-});
-
-// Rute generik untuk halaman regulasi
-Route::get('/regulasi/{title}', function ($title) {
-    $formattedTitle = str_replace('-', ' ', $title);
-    $formattedTitle = ucwords($formattedTitle);
-    return view('regulasi', ['pageTitle' => $formattedTitle]);
-})->name('regulasi.show');
-
-// Rute untuk JDIH KLHK secara spesifik
-Route::get('/jdih-klhk', function () {
-    return view('regulasi', ['pageTitle' => 'JDIH KLHK']);
-})->name('jdih.klhk');
-
-// routes/web.php
-Route::get('/agenda', function () {
-    return view('agenda', ['pageTitle' => 'Agenda']);
-})->name('agenda.index');
 
 // Rute generik untuk Download
 Route::get('/download/{title}', [DownloadController::class, 'show'])->name('download.show');
@@ -164,6 +128,72 @@ Route::get('/search', function () {
     return view('search');
 });
 
+// === Rute yang terproteksi oleh middleware 'auth' ===
+Route::middleware(['auth'])->group(function () {
+
+    // Rute CRUD untuk admin (News)
+    Route::resource('admin/news', NewsController::class)->names([
+        'index' => 'admin.news.index',
+        'create' => 'admin.news.create',
+        'store' => 'admin.news.store',
+        'edit' => 'admin.news.edit',
+        'update' => 'admin.news.update',
+        'destroy' => 'admin.news.destroy',
+    ]);
+
+    // Rute untuk halaman "Dashboard"
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    // Rute untuk halaman "Profile"
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
+
+    // Rute untuk halaman "Settings"
+    Route::get('/settings', function () {
+        return view('settings');
+    })->name('settings');
+
+    // Rute untuk halaman "Admin Dashboard"
+    Route::get('/admin', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    // Rute untuk halaman "User Management"
+    Route::get('/admin/users', function () {
+        return view('admin.users');
+    })->name('admin.users');
+    
+    // Rute untuk halaman "Role Management"
+    Route::get('/admin/roles', function () {
+        return view('admin.roles');
+    })->name('admin.roles');
+
+    // Rute untuk halaman "Permission Management"
+    Route::get('/admin/permissions', function () {
+        return view('admin.permissions');
+    })->name('admin.permissions');
+    
+    // Rute untuk halaman "Logs"
+    Route::get('/admin/logs', function () {
+        return view('admin.logs');
+    })->name('admin.logs');
+
+    // Rute untuk halaman "Backup"
+    Route::get('/admin/backup', function () {
+        return view('admin.backup');
+    })->name('admin.backup');
+    
+    // Rute untuk halaman "Maintenance"
+    Route::get('/admin/maintenance', function () {
+        return view('admin.maintenance');
+    })->name('admin.maintenance');
+    
+});
+// ===============================================================
+
 // Rute untuk halaman "Login"
 Route::get('/login', function () {
     return view('auth.login');
@@ -194,57 +224,10 @@ Route::get('/confirm-password', function () {
     return view('auth.confirm-password');
 })->name('password.confirm');
 
-// Rute untuk halaman "Dashboard" (contoh rute setelah login)
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-// Rute untuk halaman "Profile"
-Route::get('/profile', function () {
-    return view('profile');
-})->middleware(['auth'])->name('profile');
-
-// Rute untuk halaman "Settings"
-Route::get('/settings', function () {
-    return view('settings');
-})->middleware(['auth'])->name('settings');
-
-// Rute untuk halaman "Admin"
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'can:access-admin'])->name('admin.dashboard');
-
-// Rute untuk halaman "User Management"
-Route::get('/admin/users', function () {
-    return view('admin.users');
-})->middleware(['auth', 'can:manage-users'])->name('admin.users');
-
-// Rute untuk halaman "Role Management"
-Route::get('/admin/roles', function () {
-    return view('admin.roles');
-})->middleware(['auth', 'can:manage-roles'])->name('admin.roles');
-
-// Rute untuk halaman "Permission Management"
-Route::get('/admin/permissions', function () {
-    return view('admin.permissions');
-})->middleware(['auth', 'can:manage-permissions'])->name('admin.permissions');
-
-// Rute untuk halaman "Logs"
-Route::get('/admin/logs', function () {
-    return view('admin.logs');
-})->middleware(['auth', 'can:view-logs'])->name('admin.logs');
-
-// Rute untuk halaman "Backup"
-Route::get('/admin/backup', function () {
-    return view('admin.backup');
-})->middleware(['auth', 'can:manage-backup'])->name('admin.backup');
-
-// Rute untuk halaman "Maintenance"
-Route::get('/admin/maintenance', function () {
-    return view('admin.maintenance');
-})->middleware(['auth', 'can:manage-maintenance'])->name('admin.maintenance');
-
 // Rute untuk halaman "Error 404"
 Route::fallback(function () {
     return view('errors.404');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

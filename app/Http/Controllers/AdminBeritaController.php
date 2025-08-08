@@ -80,7 +80,7 @@ class AdminBeritaController extends Controller
         
         // Cek apakah ada file gambar yang diunggah
         if ($request->hasFile('gambar')) {
-             $validatedData['gambar'] = $request->file('gambar')->store('post-images');
+            $validatedData['gambar'] = $request->file('gambar')->store('post-images', 'public');
         }
 
         $berita->update($validatedData);

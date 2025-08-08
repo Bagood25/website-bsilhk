@@ -44,15 +44,15 @@ class NewsController extends Controller
         // Validasi data yang masuk dari form
         $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi gambar
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'content' => 'required',
         ]);
 
         $imagePath = null;
         // Proses unggah gambar jika ada
         if ($request->hasFile('image')) {
-            // Simpan file gambar ke direktori 'public/images'
-            $imagePath = $request->file('image')->store('public/images');
+            // Simpan file gambar ke disk 'public' di direktori 'images'
+            $imagePath = $request->file('image')->store('images', 'public');
         }
 
         // Buat slug dari judul
@@ -116,10 +116,10 @@ class NewsController extends Controller
         if ($request->hasFile('image')) {
             // Hapus gambar lama jika ada
             if ($news->image) {
-                Storage::delete($news->image);
+                Storage::disk('public')->delete($news->image);
             }
-            // Simpan gambar baru
-            $imagePath = $request->file('image')->store('public/images');
+            // Simpan gambar baru ke disk 'public' di direktori 'images'
+            $imagePath = $request->file('image')->store('images', 'public');
         }
 
         // Buat slug dari judul
@@ -148,7 +148,7 @@ class NewsController extends Controller
     {
         // Hapus gambar dari storage
         if ($news->image) {
-            Storage::delete($news->image);
+            Storage::disk('public')->delete($news->image);
         }
         // Hapus data berita dari database
         $news->delete();
@@ -156,5 +156,18 @@ class NewsController extends Controller
         // Redirect kembali ke halaman daftar berita dengan pesan sukses
         return redirect()->route('admin.news.index')
                          ->with('success', 'Berita berhasil dihapus.');
+    }
+
+    /**
+     * Tampilkan daftar berita di halaman publik.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function publicIndex()
+    {
+        // Ambil data berita dan lakukan paginasi untuk halaman publik
+        $allNews = News::latest()->paginate(10);
+        // Kembalikan view publik dan kirim data berita
+        return view('news.index', compact('allNews'));
     }
 }
