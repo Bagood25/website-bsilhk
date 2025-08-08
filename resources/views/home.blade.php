@@ -63,6 +63,7 @@
                         {{ \Illuminate\Support\Str::limit(strip_tags($beritaStandar->first()->isi), 200) }}
                     </p>
                    <a href="{{ route('news.show', $beritaStandar->first()->slug) }}" class="bg-green-600 text-white font-semibold py-3 px-8 rounded-full self-start hover:bg-green-700 transition duration-300">Baca Selengkapnya</a>
+
                 </div>
             </div>
             <div class="relative w-full overflow-hidden">
