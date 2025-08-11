@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str; // Tambahkan ini untuk slug
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class AdminBeritaController extends Controller
 {
     /**
-     * Menampilkan daftar semua berita di halaman admin.
-     * READ (Admin)
+     * Display a listing of the resource.
      */
     public function index()
     {
-        $beritas = Berita::all();
-        return view('admin.berita.index', compact('beritas'));
+        return view('admin.berita.index', [
+            'beritas' => Berita::latest()->paginate(10)
+        ]);
     }
 
     /**
-     * Menampilkan form untuk membuat berita baru.
-     * CREATE (Admin)
+     * Show the form for creating a new resource.
      */
     public function create()
     {
@@ -28,60 +28,65 @@ class AdminBeritaController extends Controller
     }
 
     /**
-     * Menyimpan berita baru ke database.
-     * CREATE (Admin)
+     * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'judul' => 'required|max:255',
-            'slug' => 'required|unique:berita',
-            'isi' => 'required',
-            'kategori' => 'required', // Tambahkan validasi untuk kategori
+            'judul' => 'required|max:255|unique:beritas',
+            'kategori' => 'required',
+            'gambar' => 'image|file|max:2048', // Ukuran gambar maksimal 2MB
+            'isi' => 'required'
         ]);
 
-        // Cek apakah ada file gambar yang diunggah
-        if ($request->hasFile('gambar')) {
-            $validatedData['gambar'] = $request->file('gambar')->store('post-images');
+        if ($request->file('gambar')) {
+            $validatedData['gambar'] = $request->file('gambar')->store('post-images', 'public');
         }
+
+        // PERBAIKAN UTAMA: Menambahkan user_id dari user yang login
+        $validatedData['user_id'] = auth()->id();
+        $validatedData['kutipan'] = Str::limit(strip_tags($request->isi), 150);
+        $validatedData['slug'] = Str::slug($request->judul, '-');
 
         Berita::create($validatedData);
 
-        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan!');
+        return redirect()->route('admin.berita.index')->with('success', 'Berita baru berhasil ditambahkan!');
     }
 
     /**
-     * Menampilkan form untuk mengedit berita.
-     * EDIT (Admin)
+     * Show the form for editing the specified resource.
      */
     public function edit(Berita $berita)
     {
-        return view('admin.berita.edit', compact('berita'));
+        return view('admin.berita.edit', [
+            'berita' => $berita
+        ]);
     }
 
     /**
-     * Memperbarui berita di database.
-     * UPDATE (Admin)
+     * Update the specified resource in storage.
      */
     public function update(Request $request, Berita $berita)
     {
         $rules = [
-            'judul' => 'required|max:255',
-            'isi' => 'required',
-            'kategori' => 'required', // Tambahkan validasi untuk kategori
+            'judul' => 'required|max:255|unique:beritas,judul,' . $berita->id,
+            'kategori' => 'required',
+            'gambar' => 'image|file|max:2048',
+            'isi' => 'required'
         ];
 
-        // Validasi slug agar unik kecuali untuk berita yang sedang diedit
-        if ($request->slug != $berita->slug) {
-            $rules['slug'] = 'required|unique:berita';
-        }
-
         $validatedData = $request->validate($rules);
-        
-        // Cek apakah ada file gambar yang diunggah
-        if ($request->hasFile('gambar')) {
+
+        if ($request->file('gambar')) {
+            // Hapus gambar lama jika ada
+            if ($berita->gambar) {
+                Storage::disk('public')->delete($berita->gambar);
+            }
             $validatedData['gambar'] = $request->file('gambar')->store('post-images', 'public');
         }
+
+        $validatedData['slug'] = Str::slug($request->judul, '-');
+        $validatedData['kutipan'] = Str::limit(strip_tags($request->isi), 150);
 
         $berita->update($validatedData);
 
@@ -89,17 +94,16 @@ class AdminBeritaController extends Controller
     }
 
     /**
-     * Menghapus berita dari database.
-     * DELETE (Admin)
+     * Remove the specified resource from storage.
      */
     public function destroy(Berita $berita)
     {
-        // Hapus gambar jika ada
         if ($berita->gambar) {
-            \Illuminate\Support\Facades\Storage::delete($berita->gambar);
+            Storage::disk('public')->delete($berita->gambar);
         }
-
+        
         $berita->delete();
+
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus!');
     }
 }

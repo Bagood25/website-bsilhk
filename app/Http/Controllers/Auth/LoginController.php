@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth; // <-- Pastikan ini ditambahkan
 
 class LoginController extends Controller
 {
@@ -25,7 +27,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // Properti ini tidak akan kita gunakan lagi, karena kita ganti dengan method redirectTo()
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -35,6 +38,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('auth')->only('logout');
+    }
+
+    /**
+     * Mengarahkan pengguna setelah login berdasarkan perannya.
+     *
+     * @return string
+     */
+    public function redirectTo()
+    {
+        // Periksa apakah pengguna yang login adalah admin (memiliki is_admin == true)
+        if (Auth::user()->is_admin) {
+            // Jika admin, arahkan ke dashboard berita admin
+            return '/admin/berita';
+        }
+
+        // Jika bukan admin, arahkan ke halaman home
+        return RouteServiceProvider::HOME;
     }
 }
