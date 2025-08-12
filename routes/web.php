@@ -10,15 +10,12 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Auth\LoginController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
-
-// --- Rute PUBLIK (bisa diakses siapa saja) ---
+// --- Rute PUBLIK ---
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/news/{news:slug}', [NewsController::class, 'show'])->name('news.show');
+
+// PERBAIKAN FINAL: Mengubah {news:slug} menjadi {slug} agar cocok dengan controller.
+Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+
 Route::get('/profil', fn() => view('profil'));
 Route::get('/services', [PublicServiceController::class, 'index']);
 Route::get('/locations', [LocationController::class, 'index']);
@@ -42,29 +39,22 @@ Route::get('/sitemap.xml', fn() => response()->file(public_path('sitemap.xml')))
 Route::get('/search', fn() => view('search'));
 
 
-// --- Rute Autentikasi dari Laravel UI ---
+// --- Rute Autentikasi ---
 Auth::routes();
-
-// --- Rute Logout Manual (Tambahan untuk kemudahan) ---
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout.get');
 
 
-// --- Rute ADMIN (hanya bisa diakses oleh admin yang sudah login) ---
+// --- Rute ADMIN ---
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
-    // PERBAIKAN UTAMA: Menghapus rute 'show' untuk menghindari konflik
-    Route::resource('berita', AdminBeritaController::class)->except([
-        'show'
-    ])->parameters([
-        'berita' => 'berita'
-    ]);
+    Route::resource('berita', AdminBeritaController::class)->except(['show'])->parameters(['berita' => 'berita']);
 });
 
 
-// --- Rute untuk Pengguna yang Sudah Login (non-admin) ---
+// --- Rute Pengguna Login ---
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user.home');
 
 
-// Fallback jika halaman tidak ditemukan
+// --- Fallback ---
 Route::fallback(function() {
     return view('errors.404');
 });

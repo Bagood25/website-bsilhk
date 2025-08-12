@@ -2,40 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Berita;
+use App\Models\News; // Menggunakan model News yang sudah diperbaiki
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class AdminBeritaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('admin.berita.index', [
-            'beritas' => Berita::latest()->paginate(10)
+            'beritas' => News::latest()->paginate(10)
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.berita.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'judul' => 'required|max:255|unique:beritas',
             'kategori' => 'required',
-            'gambar' => 'image|file|max:2048', // Ukuran gambar maksimal 2MB
+            'gambar' => 'image|file|max:2048',
             'isi' => 'required'
         ]);
 
@@ -43,30 +34,23 @@ class AdminBeritaController extends Controller
             $validatedData['gambar'] = $request->file('gambar')->store('post-images', 'public');
         }
 
-        // PERBAIKAN UTAMA: Menambahkan user_id dari user yang login
         $validatedData['user_id'] = auth()->id();
         $validatedData['kutipan'] = Str::limit(strip_tags($request->isi), 150);
         $validatedData['slug'] = Str::slug($request->judul, '-');
 
-        Berita::create($validatedData);
+        News::create($validatedData);
 
         return redirect()->route('admin.berita.index')->with('success', 'Berita baru berhasil ditambahkan!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Berita $berita)
+    public function edit(News $berita)
     {
         return view('admin.berita.edit', [
             'berita' => $berita
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Berita $berita)
+    public function update(Request $request, News $berita)
     {
         $rules = [
             'judul' => 'required|max:255|unique:beritas,judul,' . $berita->id,
@@ -78,7 +62,6 @@ class AdminBeritaController extends Controller
         $validatedData = $request->validate($rules);
 
         if ($request->file('gambar')) {
-            // Hapus gambar lama jika ada
             if ($berita->gambar) {
                 Storage::disk('public')->delete($berita->gambar);
             }
@@ -93,10 +76,7 @@ class AdminBeritaController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diubah!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Berita $berita)
+    public function destroy(News $berita)
     {
         if ($berita->gambar) {
             Storage::disk('public')->delete($berita->gambar);

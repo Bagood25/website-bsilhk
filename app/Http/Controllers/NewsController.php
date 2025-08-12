@@ -4,26 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class NewsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $beritas = News::latest()->paginate(9);
-        return view('news.index', compact('beritas'));
+        return view('news.index', [
+            'news' => News::all()
+        ]);
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan detail berita.
+     * Kode ini secara manual mencari berita berdasarkan slug.
+     *
+     * @param  string  $slug
+     * @return \Illuminate\Contracts\View\View
      */
-    public function show(News $news)
+    public function show($slug): View
     {
-        // PERBAIKAN: Kembali menggunakan view 'show' yang standar
+        // 1. Cari berita secara manual berdasarkan slug dari URL.
+        //    firstOrFail() akan secara otomatis menampilkan halaman 404 jika tidak ditemukan.
+        $news = News::where('slug', $slug)->firstOrFail();
+
+        // 2. Siapkan nama penulis dengan aman.
+        $authorName = optional($news->user)->name ?? 'Penulis tidak diketahui';
+
+        // 3. Kirim data yang sudah pasti ada ke view.
         return view('news.show', [
-            'news' => $news
+            'news' => $news,
+            'authorName' => $authorName,
         ]);
     }
 }
