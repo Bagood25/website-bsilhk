@@ -2,26 +2,40 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
+// --- Controller untuk Halaman Publik ---
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminBeritaController;
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PublicNewsController; // Pastikan controller ini digunakan
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Auth\LoginController;
 
-// --- Rute PUBLIK ---
+// --- Controller untuk Halaman Admin ---
+use App\Http\Controllers\AdminBeritaController;
+
+
+// =========================================================================
+// == RUTE PUBLIK
+// =========================================================================
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// PERBAIKAN FINAL: Mengubah {news:slug} menjadi {slug} agar cocok dengan controller.
-Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
+// --- PERBAIKAN UNTUK SEMUA LINK BERITA ---
+Route::get('/fokus-bsi', [PublicNewsController::class, 'showFokusBsiNews'])->name('news.fokus');
+Route::get('/berita-bsi', [PublicNewsController::class, 'showBsiNews'])->name('news.bsi');
+Route::get('/berita-klhk', [PublicNewsController::class, 'showKlhNews'])->name('news.klhk');
+Route::get('/berita-standar', [PublicNewsController::class, 'showStandarNews'])->name('news.standar');
+Route::get('/berita/{slug}', [PublicNewsController::class, 'showDetail'])->name('news.show');
+// --- AKHIR DARI PERBAIKAN ---
 
+
+// Rute Publik Lainnya (Tidak diubah)
 Route::get('/profil', fn() => view('profil'));
 Route::get('/services', [PublicServiceController::class, 'index']);
 Route::get('/locations', [LocationController::class, 'index']);
 Route::get('/regulasi/{title}', fn($title) => view('regulasi', ['pageTitle' => ucwords(str_replace('-', ' ', $title))]))->name('regulasi.show');
 Route::get('/jdih-klhk', fn() => view('regulasi', ['pageTitle' => 'JDIH KLHK']))->name('jdih.klhk');
-Route::get('/berita-klhk', fn() => view('berita-klhk'));
 Route::get('/agenda', fn() => view('agenda'))->name('agenda.index');
 Route::get('/dasar-hukum', fn() => view('dasar_hukum'));
 Route::get('/tugas-dan-fungsi', fn() => view('tugas_dan_fungsi'));
