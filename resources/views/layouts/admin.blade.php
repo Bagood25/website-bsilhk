@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - @yield('title', 'Dashboard')</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div class="flex h-screen bg-gray-200">
+        <div class="w-64 bg-gray-800 text-white flex-shrink-0 flex flex-col">
+            <div class="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-700">
+                Admin Panel
+            </div>
+
+            <nav class="flex-grow p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="{{ route('admin.berita.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-gray-700 transition duration-200">
+                            <i class="fas fa-fw fa-newspaper"></i>
+                            <span>Manajemen Berita</span>
+                        </a>
+                    </li>
+                    
+                    {{-- =============================================== --}}
+                    {{-- == INI DIA MENU BARU ANDA == --}}
+                    <li>
+                        <a href="{{ route('admin.photos.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-gray-700 transition duration-200">
+                            <i class="fas fa-fw fa-images"></i>
+                            <span>Galeri Foto</span>
+                        </a>
+                    </li>
+                    {{-- =============================================== --}}
+
+                </ul>
+            </nav>
+
+            <div class="p-4 border-t border-gray-700">
+                <div class="flex items-center mb-4">
+                    <img class="w-10 h-10 rounded-full mr-3" src="https://placehold.co/100x100" alt="Avatar">
+                    <div>
+                        <p class="font-semibold">{{ Auth::user()->name }}</p>
+                        <p class="text-xs text-gray-400">Administrator</p>
+                    </div>
+                </div>
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                   class="flex items-center justify-center space-x-2 w-full text-center px-4 py-2 rounded bg-red-600 hover:bg-red-700 transition duration-200">
+                    <i class="fas fa-fw fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                    @csrf
+                </form>
+            </div>
+        </div>
+
+        <main class="flex-1 overflow-y-auto p-6">
+            @yield('content')
+        </main>
+    </div>
+
+</body>
+</html>

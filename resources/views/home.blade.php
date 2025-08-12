@@ -110,22 +110,37 @@
     </div>
 </section>
 
-    <section id="galeri-foto" class="my-16 container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Galeri Foto</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-            @for ($i = 1; $i <= 9; $i++)
-                <div class="relative overflow-hidden rounded-lg shadow-lg group">
-                    <img src="https://placehold.co/400x300/10b981/ffffff?text=Foto+{{ $i }}" alt="Galeri Foto {{ $i }}" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-300">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <p class="text-white font-semibold text-lg">Deskripsi Foto {{ $i }}</p>
+<section id="galeri-foto" class="my-16 container mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Galeri Foto</h2>
+    
+    @if($latestPhotos->isNotEmpty())
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            
+            @foreach($latestPhotos as $photo)
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                    <div class="aspect-w-4 aspect-h-3">
+                        <img src="{{ asset('storage/' . $photo->gambar) }}" alt="{{ $photo->judul }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
+                    </div>
+                    {{-- PERUBAHAN DI SINI --}}
+                    <div class="p-4 bg-white text-center">
+                        <h3 class="font-semibold text-gray-900 text-base truncate" title="{{ $photo->judul }}">{{ $photo->judul }}</h3>
                     </div>
                 </div>
-            @endfor
+            @endforeach
+
         </div>
-        <div class="text-center mt-8">
-            <a href="#" class="text-green-600 font-medium hover:underline text-lg">Selengkapnya</a>
+
+        <div class="text-center mt-12">
+            <a href="{{ route('gallery.index') }}" class="bg-green-600 text-white font-semibold py-3 px-8 rounded-full hover:bg-green-700 transition duration-300">
+                Lihat Semua Foto
+            </a>
         </div>
-    </section>
+    @else
+        <div class="text-center py-8">
+            <p class="text-gray-500">Galeri foto akan segera tersedia.</p>
+        </div>
+    @endif
+</section>
 
     <section id="profil-kepala-bsi" class="my-16 bg-gray-900 text-white py-16">
     <div class="container mx-auto px-6">

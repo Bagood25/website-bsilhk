@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Perintah untuk membuat tabel 'beritas' (TIDAK BERUBAH)
         Schema::create('beritas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
@@ -24,6 +25,14 @@ return new class extends Migration
             $table->timestamps(); // Menambahkan created_at dan updated_at
             $table->softDeletes(); // Menambahkan deleted_at
         });
+
+        // TAMBAHAN: Perintah untuk membuat tabel 'photos' (BERJALAN SETELAH 'beritas' DIBUAT)
+        Schema::create('photos', function (Blueprint $table) {
+            $table->id();
+            $table->string('judul');
+            $table->string('gambar');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -31,6 +40,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Perintah untuk menghapus tabel 'beritas'
         Schema::dropIfExists('beritas');
+
+        // TAMBAHAN: Perintah untuk menghapus tabel 'photos'
+        Schema::dropIfExists('photos');
     }
 };

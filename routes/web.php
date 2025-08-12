@@ -5,11 +5,12 @@ use Illuminate\Support\Facades\Auth;
 
 // --- Controller untuk Halaman Publik ---
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PublicNewsController; // Pastikan controller ini digunakan
+use App\Http\Controllers\PublicNewsController;
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\GaleriController; // <-- Tambahkan ini
 
 // --- Controller untuk Halaman Admin ---
 use App\Http\Controllers\AdminBeritaController;
@@ -21,16 +22,15 @@ use App\Http\Controllers\AdminBeritaController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// --- PERBAIKAN UNTUK SEMUA LINK BERITA ---
+// --- Rute Berita ---
 Route::get('/fokus-bsi', [PublicNewsController::class, 'showFokusBsiNews'])->name('news.fokus');
 Route::get('/berita-bsi', [PublicNewsController::class, 'showBsiNews'])->name('news.bsi');
 Route::get('/berita-klhk', [PublicNewsController::class, 'showKlhNews'])->name('news.klhk');
 Route::get('/berita-standar', [PublicNewsController::class, 'showStandarNews'])->name('news.standar');
 Route::get('/berita/{slug}', [PublicNewsController::class, 'showDetail'])->name('news.show');
-// --- AKHIR DARI PERBAIKAN ---
 
 
-// Rute Publik Lainnya (Tidak diubah)
+// Rute Publik Lainnya
 Route::get('/profil', fn() => view('profil'));
 Route::get('/services', [PublicServiceController::class, 'index']);
 Route::get('/locations', [LocationController::class, 'index']);
@@ -42,7 +42,7 @@ Route::get('/tugas-dan-fungsi', fn() => view('tugas_dan_fungsi'));
 Route::get('/struktur-organisasi', fn() => view('struktur_organisasi'));
 Route::get('/download/{title}', [DownloadController::class, 'show'])->name('download.show');
 Route::get('/itto', fn() => view('itto'));
-Route::get('/galeri-foto', fn() => view('galeri_foto'));
+Route::get('/galeri-foto', [GaleriController::class, 'index'])->name('gallery.index'); // <-- PERUBAHAN DI SINI
 Route::get('/galeri-video', fn() => view('galeri_video'));
 Route::get('/kontak', fn() => view('kontak'));
 Route::get('/faq', fn() => view('faq'));
@@ -61,6 +61,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout.get');
 // --- Rute ADMIN ---
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('berita', AdminBeritaController::class)->except(['show'])->parameters(['berita' => 'berita']);
+    Route::resource('photos', \App\Http\Controllers\Admin\PhotoController::class)->except(['show', 'edit', 'update']);
 });
 
 
