@@ -29,7 +29,7 @@ class HomeController extends Controller
         // == 2. TAMBAHKAN BARIS INI ==
         //    Mengambil 9 foto terbaru untuk ditampilkan di halaman utama.
         // ====================================================================
-        $latestPhotos = Photo::latest()->take(9)->get();
+        $latestPhotos = Photo::latest()->take(12)->get();
 
 
         // Mengirim semua data ke view 'home'

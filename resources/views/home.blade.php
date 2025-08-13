@@ -112,22 +112,28 @@
 
 <section id="galeri-foto" class="my-16 container mx-auto px-6">
     <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Galeri Foto</h2>
-    
+
     @if($latestPhotos->isNotEmpty())
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            
-            @foreach($latestPhotos as $photo)
-                <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
-                    <div class="aspect-w-4 aspect-h-3">
-                        <img src="{{ asset('storage/' . $photo->gambar) }}" alt="{{ $photo->judul }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
-                    </div>
-                    {{-- PERUBAHAN DI SINI --}}
-                    <div class="p-4 bg-white text-center">
-                        <h3 class="font-semibold text-gray-900 text-base truncate" title="{{ $photo->judul }}">{{ $photo->judul }}</h3>
+        <div class="swiper photo-slider relative">
+            <div class="swiper-wrapper">
+
+                @foreach($latestPhotos as $photo)
+                <div class="swiper-slide">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
+                        <div class="aspect-w-4 aspect-h-3">
+                            <img src="{{ asset('storage/' . $photo->gambar) }}" alt="{{ $photo->judul }}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-3 bg-white text-center">
+                            <h3 class="font-semibold text-gray-900 text-sm truncate" title="{{ $photo->judul }}">{{ $photo->judul }}</h3>
+                        </div>
                     </div>
                 </div>
-            @endforeach
+                @endforeach
 
+            </div>
+
+            <div class="swiper-button-prev text-green-600"></div>
+            <div class="swiper-button-next text-green-600"></div>
         </div>
 
         <div class="text-center mt-12">
@@ -191,7 +197,7 @@
     </div>
 </section>
 
-<section id="testimoni-video" class="my-16 relative bg-cover bg-center py-24" style="background-image: url('https://placehold.co/1920x1080/0d9488/ffffff?text=Latar+Belakang');">
+<section id="testimoni-video" class="my-16 relative bg-cover bg-center py-24" style="background-image: url('{{ asset('images/background indonesia.png') }}');">
     <div class="absolute inset-0 bg-black opacity-60"></div>
     <div class="container mx-auto px-6 relative z-10 text-white">
         
@@ -294,7 +300,7 @@
     </section>
 
     <section id="footer-menu" class="my-16">
-        <div id="ppid-menu" class="relative bg-cover bg-center py-24 mb-16" style="background-image: url('https://placehold.co/1920x1080/0d9488/ffffff?text=Pulau+Indonesia');">
+        <div id="ppid-menu" class="relative bg-cover bg-center py-24 mb-16" style="background-image: url('{{ asset('images/background indonesia.png') }}');">
             <div class="absolute inset-0 bg-black opacity-60"></div>
             <div class="container mx-auto px-6 relative z-10 text-white text-center">
                 <h2 class="text-4xl font-bold">PPID Menu</h2>
