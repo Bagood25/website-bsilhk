@@ -8,12 +8,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicNewsController;
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\LocationController;
-use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\DownloadController; // Controller untuk halaman unduhan publik
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\GaleriController; // <-- Tambahkan ini
+use App\Http\Controllers\GaleriController;
 
 // --- Controller untuk Halaman Admin ---
 use App\Http\Controllers\AdminBeritaController;
+use App\Http\Controllers\Admin\PhotoController;
+// 1. TAMBAHKAN: Panggil Admin DownloadController (beri alias agar tidak bentrok)
+use App\Http\Controllers\Admin\DownloadController as AdminDownloadController;
 
 
 // =========================================================================
@@ -40,9 +43,12 @@ Route::get('/agenda', fn() => view('agenda'))->name('agenda.index');
 Route::get('/dasar-hukum', fn() => view('dasar_hukum'));
 Route::get('/tugas-dan-fungsi', fn() => view('tugas_dan_fungsi'));
 Route::get('/struktur-organisasi', fn() => view('struktur_organisasi'));
-Route::get('/download/{title}', [DownloadController::class, 'show'])->name('download.show');
+
+// 2. UBAH: Sesuaikan rute unduhan publik agar menggunakan 'kategori'
+Route::get('/download/{kategori}', [DownloadController::class, 'show'])->name('download.kategori');
+
 Route::get('/itto', fn() => view('itto'));
-Route::get('/galeri-foto', [GaleriController::class, 'index'])->name('gallery.index'); // <-- PERUBAHAN DI SINI
+Route::get('/galeri-foto', [GaleriController::class, 'index'])->name('gallery.index');
 Route::get('/galeri-video', fn() => view('galeri_video'));
 Route::get('/kontak', fn() => view('kontak'));
 Route::get('/faq', fn() => view('faq'));
@@ -58,10 +64,22 @@ Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout.get');
 
 
-// --- Rute ADMIN ---
+// =========================================================================
+// == RUTE ADMIN
+// =========================================================================
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('berita', AdminBeritaController::class)->except(['show'])->parameters(['berita' => 'berita']);
-    Route::resource('photos', \App\Http\Controllers\Admin\PhotoController::class)->except(['show', 'edit', 'update']);
+    Route::resource('photos', PhotoController::class)->except(['show', 'edit', 'update']);
+
+    // 3. TAMBAHKAN: Rute resource untuk manajemen unduhan di panel admin
+    // Ini akan secara otomatis membuat URL untuk:
+    // - admin/downloads (index)
+    // - admin/downloads/create (create)
+    // - admin/downloads (store)
+    // - admin/downloads/{download}/edit (edit)
+    // - admin/downloads/{download} (update)
+    // - admin/downloads/{download} (destroy)
+    Route::resource('downloads', AdminDownloadController::class);
 });
 
 

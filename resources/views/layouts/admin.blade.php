@@ -14,6 +14,7 @@
 <body class="bg-gray-100">
 
     <div class="flex h-screen bg-gray-200">
+        {{-- Sidebar --}}
         <div class="w-64 bg-gray-800 text-white flex-shrink-0 flex flex-col">
             <div class="h-16 flex items-center justify-center text-xl font-bold border-b border-gray-700">
                 Admin Panel
@@ -22,21 +23,26 @@
             <nav class="flex-grow p-4">
                 <ul class="space-y-2">
                     <li>
-                        <a href="{{ route('admin.berita.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-gray-700 transition duration-200">
+                        <a href="{{ route('admin.berita.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.berita.*') ? 'bg-gray-700' : '' }}">
                             <i class="fas fa-fw fa-newspaper"></i>
                             <span>Manajemen Berita</span>
                         </a>
                     </li>
                     
-                    {{-- =============================================== --}}
-                    {{-- == INI DIA MENU BARU ANDA == --}}
                     <li>
-                        <a href="{{ route('admin.photos.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-gray-700 transition duration-200">
+                        <a href="{{ route('admin.photos.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.photos.*') ? 'bg-gray-700' : '' }}">
                             <i class="fas fa-fw fa-images"></i>
                             <span>Galeri Foto</span>
                         </a>
                     </li>
-                    {{-- =============================================== --}}
+
+                    {{-- Menu Download --}}
+                    <li>
+                        <a href="{{ route('admin.downloads.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.downloads.*') ? 'bg-gray-700' : '' }}">
+                            <i class="fas fa-fw fa-download"></i>
+                            <span>Manajemen Unduhan</span>
+                        </a>
+                    </li>
 
                 </ul>
             </nav>
@@ -61,10 +67,14 @@
             </div>
         </div>
 
+        {{-- Main Content --}}
         <main class="flex-1 overflow-y-auto p-6">
             @yield('content')
         </main>
     </div>
+
+    {{-- BARIS INI YANG AKAN MEMPERBAIKI MASALAH ANDA --}}
+    @stack('scripts')
 
 </body>
 </html>
