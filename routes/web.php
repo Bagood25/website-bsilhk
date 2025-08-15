@@ -8,16 +8,16 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicNewsController;
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\LocationController;
-use App\Http\Controllers\DownloadController; // Controller untuk halaman unduhan publik
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\AgendaController; // 1. TAMBAHKAN: Panggil AgendaController publik
 
 // --- Controller untuk Halaman Admin ---
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\Admin\PhotoController;
-// 1. TAMBAHKAN: Panggil Admin DownloadController (beri alias agar tidak bentrok)
 use App\Http\Controllers\Admin\DownloadController as AdminDownloadController;
-
+use App\Http\Controllers\Admin\AgendaController as AdminAgendaController; // 2. TAMBAHKAN: Panggil AgendaController admin
 
 // =========================================================================
 // == RUTE PUBLIK
@@ -39,14 +39,14 @@ Route::get('/services', [PublicServiceController::class, 'index']);
 Route::get('/locations', [LocationController::class, 'index']);
 Route::get('/regulasi/{title}', fn($title) => view('regulasi', ['pageTitle' => ucwords(str_replace('-', ' ', $title))]))->name('regulasi.show');
 Route::get('/jdih-klhk', fn() => view('regulasi', ['pageTitle' => 'JDIH KLHK']))->name('jdih.klhk');
-Route::get('/agenda', fn() => view('agenda'))->name('agenda.index');
+
+// 3. UBAH: Rute agenda dari statis menjadi dinamis
+Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda.index');
+
 Route::get('/dasar-hukum', fn() => view('dasar_hukum'));
 Route::get('/tugas-dan-fungsi', fn() => view('tugas_dan_fungsi'));
 Route::get('/struktur-organisasi', fn() => view('struktur_organisasi'));
-
-// 2. UBAH: Sesuaikan rute unduhan publik agar menggunakan 'kategori'
 Route::get('/download/{kategori}', [DownloadController::class, 'show'])->name('download.kategori');
-
 Route::get('/itto', fn() => view('itto'));
 Route::get('/galeri-foto', [GaleriController::class, 'index'])->name('gallery.index');
 Route::get('/galeri-video', fn() => view('galeri_video'));
@@ -70,16 +70,10 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout.get');
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('berita', AdminBeritaController::class)->except(['show'])->parameters(['berita' => 'berita']);
     Route::resource('photos', PhotoController::class)->except(['show', 'edit', 'update']);
-
-    // 3. TAMBAHKAN: Rute resource untuk manajemen unduhan di panel admin
-    // Ini akan secara otomatis membuat URL untuk:
-    // - admin/downloads (index)
-    // - admin/downloads/create (create)
-    // - admin/downloads (store)
-    // - admin/downloads/{download}/edit (edit)
-    // - admin/downloads/{download} (update)
-    // - admin/downloads/{download} (destroy)
     Route::resource('downloads', AdminDownloadController::class);
+
+    // 4. TAMBAHKAN: Rute resource untuk manajemen agenda di panel admin
+    Route::resource('agenda', AdminAgendaController::class)->except(['show']);
 });
 
 

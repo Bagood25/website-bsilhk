@@ -4,7 +4,7 @@
 
 @section('content')
     {{-- Hero Section / Banner --}}
-    <div class="relative h-64 bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('https://placehold.co/1920x400/0d9488/ffffff?text=Unduhan');">
+    <div class="relative h-64 bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('{{ asset('images/background hutan.jpg') }}');">
         <div class="absolute inset-0 bg-black opacity-50"></div>
         <div class="relative z-10 text-center p-4">
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight">{{ $title }}</h1>
@@ -41,10 +41,6 @@
                             <i class="fas {{ $iconClass }} text-4xl mr-4 mt-1"></i>
                             <div>
                                 <h3 class="text-lg font-semibold text-gray-900 leading-tight">{{ $item->judul }}</h3>
-                                {{-- ====================================================== --}}
-                                {{-- == BARIS DI BAWAH INI TELAH DIHAPUS == --}}
-                                {{-- <p class="text-xs text-gray-500">{{ $item->nama_file }}</p> --}}
-                                {{-- ====================================================== --}}
                             </div>
                         </div>
 

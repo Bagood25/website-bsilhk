@@ -24,7 +24,7 @@
     @include('partials._header')
 
     <!-- Hero Section / Banner -->
-    <div class="relative h-64 bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('https://placehold.co/1920x400/1e40af/ffffff?text=Banner+Dasar+Hukum');">
+    <div class="relative h-64 bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('{{ asset('images/background hutan.jpg') }}');">
         <!-- Overlay untuk visibilitas teks -->
         <div class="absolute inset-0 bg-black opacity-50"></div>
         

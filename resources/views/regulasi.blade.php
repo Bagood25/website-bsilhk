@@ -4,7 +4,7 @@
 
 @section('content') {{-- Mengisi bagian 'content' di layout --}}
     {{-- Hero Section --}}
-    <div class="relative bg-cover bg-center h-64 md:h-80 flex items-center justify-center" style="background-image: url('https://placehold.co/1200x400/000000/FFFFFF?text=Background+Image+Regulasi');">
+    <div class="relative bg-cover bg-center h-64 md:h-80 flex items-center justify-center" style="background-image: url('{{ asset('images/background hutan.jpg') }}');">
         <div class="absolute inset-0 bg-black opacity-50"></div> {{-- Overlay gelap --}}
         <div class="relative z-10 text-center text-white p-4">
             <h1 class="text-3xl md:text-5xl font-bold mb-2">{{ $pageTitle ?? 'Regulasi' }}</h1>
