@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
-use App\Models\Photo; // 1. TAMBAHKAN INI untuk memanggil model Photo
+use App\Models\Photo;
+use App\Models\Agenda; // Memanggil model Agenda
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,7 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Query untuk Berita (Tidak diubah)
+        // Query untuk Berita
         $beritaUtama = News::where('kategori', 'berita_utama')->latest()->take(4)->get();
         $beritaFokus = News::whereIn('kategori', ['berita_fokus', 'berita_utama'])
                              ->latest()
@@ -25,12 +26,11 @@ class HomeController extends Controller
         $kabarBsi = News::where('kategori', 'kabar_bsi')->latest()->take(3)->get();
         $beritaKlhk = News::where('kategori', 'berita_klhk')->latest()->take(4)->get();
 
-        // ====================================================================
-        // == 2. TAMBAHKAN BARIS INI ==
-        //    Mengambil 9 foto terbaru untuk ditampilkan di halaman utama.
-        // ====================================================================
+        // Query untuk Foto
         $latestPhotos = Photo::latest()->take(12)->get();
 
+        // Query untuk mengambil 3 agenda terbaru
+        $latestAgendas = Agenda::latest()->take(3)->get();
 
         // Mengirim semua data ke view 'home'
         return view('home', compact(
@@ -39,7 +39,8 @@ class HomeController extends Controller
             'beritaStandar',
             'kabarBsi',
             'beritaKlhk',
-            'latestPhotos' // <-- 3. Tambahkan variabel baru di sini
+            'latestPhotos',
+            'latestAgendas' // Mengirim variabel agenda ke view
         ));
     }
 }

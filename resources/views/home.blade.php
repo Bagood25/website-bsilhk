@@ -309,24 +309,33 @@
         </div>
 
         <div id="agenda-bsilhk" class="bg-gray-900 text-white py-16 mb-16">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Agenda BSILHK</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    @for ($i = 1; $i <= 3; $i++)
-                        <div class="rounded-lg shadow-lg overflow-hidden">
-                            <img src="https://placehold.co/600x400/10b981/ffffff?text=Agenda+{{ $i }}" alt="Agenda {{ $i }}" class="w-full h-48 object-cover">
-                            <div class="p-4">
-                                <h4 class="font-semibold text-lg">Judul Agenda {{ $i }}</h4>
-                                <p class="text-sm text-gray-300 mt-2">Deskripsi singkat agenda BSILHK ke-{{ $i }}.</p>
-                            </div>
-                        </div>
-                    @endfor
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">Agenda BSILHK</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            
+            @forelse($latestAgendas as $agenda)
+                <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col">
+                    <img src="{{ $agenda->gambar ? asset('storage/' . $agenda->gambar) : 'https://placehold.co/600x400/10b981/ffffff?text=Agenda' }}" alt="Gambar {{ $agenda->judul }}" class="w-full h-48 object-cover">
+                    <div class="p-4 flex flex-col flex-grow text-left">
+                        <h4 class="font-semibold text-lg leading-tight">{{ $agenda->judul }}</h4>
+                        <p class="text-xs text-gray-400 mt-1">{{ \Carbon\Carbon::parse($agenda->tanggal)->translatedFormat('d F Y') }}</p>
+                        <p class="text-sm text-gray-300 mt-2 flex-grow line-clamp-2">{{ $agenda->deskripsi }}</p>
+                    </div>
                 </div>
-                <div class="text-center mt-8">
-                    <a href="#" class="text-green-600 font-medium hover:underline text-lg">Selengkapnya</a>
+            @empty
+                <div class="col-span-full text-center py-10">
+                    <p class="text-gray-400">Belum ada agenda yang dijadwalkan.</p>
                 </div>
-            </div>
+            @endforelse
+
         </div>
+        <div class="text-center mt-12">
+            <a href="{{ route('agenda.index') }}" class="text-green-500 font-semibold hover:underline text-lg transition-colors duration-300">
+                Lihat Semua Agenda &rarr;
+            </a>
+        </div>
+    </div>
+</div>
 
         <div id="partner" class="container mx-auto px-6">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Partner</h2>
