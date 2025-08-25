@@ -21,7 +21,8 @@ class IsAdmin
             return $next($request);
         }
 
-        // Jika bukan admin, arahkan kembali ke halaman home
-        return redirect('/home')->with('error', 'Anda tidak memiliki akses ke halaman admin.');
+        // --- UBAH BARIS DI BAWAH INI ---
+        // Jika bukan admin, arahkan kembali ke halaman utama (/)
+        return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman admin.');
     }
 }

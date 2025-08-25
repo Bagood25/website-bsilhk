@@ -44,14 +44,23 @@
                         </a>
                     </li>
 
-                    <!-- INI BAGIAN YANG DITAMBAHKAN -->
                     <li>
                         <a href="{{ route('admin.agenda.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.agenda.*') ? 'bg-gray-700' : '' }}">
                             <i class="fas fa-fw fa-calendar-alt"></i>
                             <span>Manajemen Agenda</span>
                         </a>
                     </li>
-                    <!-- BATAS AKHIR BAGIAN YANG DITAMBAHKAN -->
+
+                    {{-- =============================================== --}}
+                    {{-- ==      MENU VIDEO DITAMBAHKAN DI SINI       == --}}
+                    {{-- =============================================== --}}
+                    <li>
+                        <a href="{{ route('admin.videos.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.videos.*') ? 'bg-gray-700' : '' }}">
+                            <i class="fas fa-fw fa-video"></i>
+                            <span>Manajemen Video</span>
+                        </a>
+                    </li>
+                    {{-- =============================================== --}}
 
                 </ul>
             </nav>

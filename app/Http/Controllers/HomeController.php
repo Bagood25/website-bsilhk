@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Photo;
-use App\Models\Agenda; // Memanggil model Agenda
+use App\Models\Agenda;
+use App\Models\Video; // 1. Panggil Model Video
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan halaman utama dengan semua data yang diperlukan.
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,13 +27,16 @@ class HomeController extends Controller
         $kabarBsi = News::where('kategori', 'kabar_bsi')->latest()->take(3)->get();
         $beritaKlhk = News::where('kategori', 'berita_klhk')->latest()->take(4)->get();
 
-        // Query untuk Foto
+        // Query untuk Foto Galeri
         $latestPhotos = Photo::latest()->take(12)->get();
 
-        // Query untuk mengambil 3 agenda terbaru
+        // Query untuk Agenda
         $latestAgendas = Agenda::latest()->take(3)->get();
 
-        // Mengirim semua data ke view 'home'
+        // 2. Query untuk mengambil 3 video terbaru
+        $latestVideos = Video::latest()->take(15)->get();
+
+        // Mengirim semua data yang sudah diambil ke view 'home'
         return view('home', compact(
             'beritaUtama',
             'beritaFokus',
@@ -40,7 +44,8 @@ class HomeController extends Controller
             'kabarBsi',
             'beritaKlhk',
             'latestPhotos',
-            'latestAgendas' // Mengirim variabel agenda ke view
+            'latestAgendas',
+            'latestVideos' // 3. Kirim variabel video ke view
         ));
     }
 }

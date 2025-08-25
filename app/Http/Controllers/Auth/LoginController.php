@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth; // <-- Pastikan ini ditambahkan
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -21,14 +21,6 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    // Properti ini tidak akan kita gunakan lagi, karena kita ganti dengan method redirectTo()
-    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -53,7 +45,7 @@ class LoginController extends Controller
             return '/admin/berita';
         }
 
-        // Jika bukan admin, arahkan ke halaman home
-        return RouteServiceProvider::HOME;
+        // Jika bukan admin, arahkan ke halaman utama
+        return '/';
     }
 }

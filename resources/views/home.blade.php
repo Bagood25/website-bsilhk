@@ -205,56 +205,56 @@
         <h2 class="text-3xl font-bold text-center mb-12">Testimoni</h2>
         <div class="flex flex-col md:flex-row justify-center space-y-8 md:space-y-0 md:space-x-8 mb-16">
             <div class="bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-lg max-w-lg">
-                <p class="italic text-lg mb-4">
-                    "BSILHK telah memberikan dampak nyata dalam mendukung standarisasi lingkungan. Layanan mereka sangat profesional dan membantu."
-                </p>
+                <p class="italic text-lg mb-4">"BSILHK telah memberikan dampak nyata dalam mendukung standarisasi lingkungan. Layanan mereka sangat profesional dan membantu."</p>
                 <p class="font-semibold">- Nama Pengguna 1</p>
             </div>
             <div class="bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-lg max-w-lg">
-                <p class="italic text-lg mb-4">
-                    "Informasi yang disediakan di website sangat lengkap dan mudah diakses. Sangat membantu pekerjaan kami."
-                </p>
+                <p class="italic text-lg mb-4">"Informasi yang disediakan di website sangat lengkap dan mudah diakses. Sangat membantu pekerjaan kami."</p>
                 <p class="font-semibold">- Nama Pengguna 2</p>
             </div>
         </div>
 
-        {{-- ====================================================== --}}
-        {{-- == BAGIAN GALERI VIDEO YANG SUDAH DIPERBAIKI == --}}
-        {{-- ====================================================== --}}
         <h2 class="text-3xl font-bold text-center mb-12 mt-16">Galeri Video</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-    
-            <a href="https://www.youtube.com/watch?v=X1DEmB91Zhg" target="_blank" class="block group relative overflow-hidden rounded-lg shadow-lg">
-                <img src="https://img.youtube.com/vi/X1DEmB91Zhg/hqdefault.jpg" alt="Video Profil BSILHK" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-300">
-                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"></path></svg>
-                </div>
-                <div class="absolute bottom-0 left-0 bg-gradient-to-t from-black via-black/70 to-transparent w-full p-4">
-                    <h4 class="text-white font-semibold">Video Profil BSILHK</h4>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=tI8P-4_N8GA" target="_blank" class="block group relative overflow-hidden rounded-lg shadow-lg">
-                <img src="https://img.youtube.com/vi/tI8P-4_N8GA/hqdefault.jpg" alt="Inovasi Bambu Laminasi" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-300">
-                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"></path></svg>
-                </div>
-                <div class="absolute bottom-0 left-0 bg-gradient-to-t from-black via-black/70 to-transparent w-full p-4">
-                    <h4 class="text-white font-semibold">Inovasi Bambu Laminasi</h4>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=r1LNTnLOh3A" target="_blank" class="block group relative overflow-hidden rounded-lg shadow-lg">
-                <img src="https://img.youtube.com/vi/r1LNTnLOh3A/hqdefault.jpg" alt="Standar Ekowisata" class="w-full h-48 object-cover transform group-hover:scale-110 transition-transform duration-300">
-                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"></path></svg>
-                </div>
-                <div class="absolute bottom-0 left-0 bg-gradient-to-t from-black via-black/70 to-transparent w-full p-4">
-                    <h4 class="text-white font-semibold">Standar Ekowisata</h4>
-                </div>
-            </a>
-
+        
+        @if($latestVideos->isNotEmpty())
+        <div class="swiper video-slider relative">
+            <div class="swiper-wrapper">
+                @foreach($latestVideos as $video)
+                    @php
+                        preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $video->youtube_url, $matches);
+                        $youtubeId = $matches[1] ?? null;
+                    @endphp
+                    @if($youtubeId)
+                    <div class="swiper-slide">
+                        {{-- ====================================================== --}}
+                        {{-- ==           PERUBAHAN UTAMA ADA DI SINI            == --}}
+                        {{-- ====================================================== --}}
+                        <a href="{{ $video->youtube_url }}" target="_blank" rel="noopener noreferrer" 
+                           class="block group relative overflow-hidden rounded-lg shadow-lg h-full aspect-video">
+                            {{-- Class 'h-48' dihapus dan diganti 'h-full' agar mengisi wadah --}}
+                            <img src="https://img.youtube.com/vi/{{ $youtubeId }}/hqdefault.jpg" alt="{{ $video->judul }}" 
+                                 class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300">
+                        {{-- ====================================================== --}}
+                            
+                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                            </div>
+                            <div class="absolute bottom-0 left-0 bg-gradient-to-t from-black via-black/70 to-transparent w-full p-4">
+                                <h4 class="text-white font-semibold text-lg">{{ $video->judul }}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    @endif
+                @endforeach
+            </div>
+            <div class="swiper-button-prev text-white"></div>
+            <div class="swiper-button-next text-white"></div>
         </div>
+        @else
+        <div class="text-center text-gray-200">
+            <p>Belum ada video yang ditambahkan.</p>
+        </div>
+        @endif
 
     </div>
 </section>

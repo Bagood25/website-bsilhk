@@ -61,13 +61,13 @@
             </span>
         </div>
         <div class="flex items-center space-x-4">
-            <a href="https://www.facebook.com/bsilhk.klhk/" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
+            <a href="https://www.facebook.com/pusfaster" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
                 <img src="{{ asset('images/facebook.png') }}" alt="Facebook" class="h-5 w-5">
             </a>
-            <a href="https://www.instagram.com/bsilhk.klhk/" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
+            <a href="https://www.instagram.com/pusfaster/" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
                 <img src="{{ asset('images/instagram.png') }}" alt="Instagram" class="h-5 w-5">
             </a>
-            <a href="https://www.youtube.com/@bsilhk" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
+            <a href="www.youtube.com/@BadanStandardisasiInstrumenLHK/" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
                 <img src="{{ asset('images/youtube.png') }}" alt="YouTube" class="h-5 w-5">
             </a>
             <!-- Language Selector (contoh sederhana) -->
@@ -256,7 +256,7 @@
                     <a href="https://www.instagram.com/pusfaster/" target="_blank" class="text-gray-700 hover:text-orange-600">
                         <img src="{{ asset('images/instagram.png') }}" alt="Instagram" class="h-5 w-5">
                     </a>
-                    <a href="https://www.youtube.com/@PusfasterBSILHK" target="_blank" class="text-gray-700 hover:text-orange-600">
+                    <a href="www.youtube.com/@BadanStandardisasiInstrumenLHK/   " target="_blank" class="text-gray-700 hover:text-orange-600">
                         <img src="{{ asset('images/youtube.png') }}" alt="YouTube" class="h-5 w-5">
                     </a>
                 </div>

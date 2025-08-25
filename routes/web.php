@@ -18,6 +18,7 @@ use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\DownloadController as AdminDownloadController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController; // 2. TAMBAHKAN: Panggil AgendaController admin
+use App\Http\Controllers\Admin\VideoController;
 
 // =========================================================================
 // == RUTE PUBLIK
@@ -74,6 +75,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
 
     // 4. TAMBAHKAN: Rute resource untuk manajemen agenda di panel admin
     Route::resource('agenda', AdminAgendaController::class)->except(['show']);
+    Route::resource('videos', \App\Http\Controllers\Admin\VideoController::class)->except(['show']);
 });
 
 
@@ -85,3 +87,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::fallback(function() {
     return view('errors.404');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
