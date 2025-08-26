@@ -55,10 +55,10 @@
                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/20000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 1.48a1 1 0 01-.188 1.096l-1.547 1.547a1 1 0 00-.214 1.258l2.258 2.258a1 1 0 001.258-.214l1.547-1.547a1 1 0 011.096-.188l1.48.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
                 (021) 57903068
             </a>
-            <span class="flex items-center">
-                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                Ged. Manggala Wanabakti Blok VII Lantai 10, Jl. Jenderal Gatot Subroto, Jakarta 10270
-            </span>
+            <a href="https://www.google.com/maps/search/?api=1&query=Pusat+Penelitian+Dan+Pengembangan+Hutan+Bogor" target="_blank" class="flex items-center hover:text-orange-600 transition-colors duration-200">
+    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+    Jalan Gunung Batu Nomor 5, Kota Bogor, 1168
+</a>
         </div>
         <div class="flex items-center space-x-4">
             <a href="https://www.facebook.com/pusfaster" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
@@ -89,32 +89,40 @@
 
 <nav class="bg-white shadow-md relative z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20">
+        {{-- TAMBAHKAN class="items-center" di sini untuk mensejajarkan semua item --}}
+        <div class="flex justify-between items-center h-20"> 
             <div class="flex items-center">
-                <!-- Logo -->
-                <a href="/" class="flex-shrink-0 flex items-center">
-                    {{-- Menggunakan logo yang sudah ada dari path public/images/logo-bsilhk.png --}}
+                {{-- HAPUS tag <a> yang membungkus logo --}}
+                <div class="flex-shrink-0 flex items-center">
+                    {{-- Logo pertama --}}
                     <img class="h-10 w-auto" src="{{ asset('images/logo-bsilhk.png') }}" alt="BSILHK Logo">
-                    <span class="ml-3 text-xl font-bold text-gray-900">BSILHK</span>
-                </a>
+                    
+                    {{-- Logo kedua --}}
+                    <img class="h-10 w-auto ml-2" src="{{ asset('images/bsilhk.png') }}" alt="Logo Kedua">
+
+                   
+                </div>
+                {{-- TUTUP div di sini --}}
             </div>
+
+            <div class="hidden md:flex md:items-center md:ml-6">
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex md:items-center md:ml-6">
                 <div class="flex space-x-4">
                     <a href="{{ url('/') }}" class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Beranda</a>
 
-                    <!-- Dropdown Tentang BSILHK -->
+                    <!-- Dropdown Tentang P2SEMH -->
                     <div class="relative dropdown dropdown-container">
                         <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
-                            Tentang BSILHK
+                            Tentang P2SEMH
                             <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>
                         </button>
                         <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                <a href="{{ url('/profil') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profil BSILHK</a>
+                                <a href="{{ url('/profil') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profil P2SEMH</a>
                                 <a href="{{ url('/dasar-hukum') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Dasar Hukum</a>
                                 <a href="{{ url('/tugas-dan-fungsi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Tugas dan Fungsi</a>
                                 <a href="{{ url('/struktur-organisasi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Struktur Organisasi</a>
@@ -124,21 +132,22 @@
 
                     <!-- Dropdown Berita -->
                     <div class="relative dropdown dropdown-container">
-                        <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
-                            Berita
-                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                <a href="{{ url('/fokus-bsi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Fokus BSI</a>
-                                <a href="{{ url('/berita-bsi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita BSI</a>
-                                <a href="{{ url('/berita-standar') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita Standar</a>
-                                <a href="{{ url('/berita-klhk') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita KLHK</a>
-                            </div>
-                        </div>
-                    </div>
+    <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+        Berita
+        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+    </button>
+    <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            {{-- Berita Utama -> Berita P2SEMH (dari /fokus-bsi) --}}
+            <a href="{{ url('/fokus-bsi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita P2SEMH</a>
+            
+            {{-- Berita Kehutanan (dari /berita-bsi) --}}
+            <a href="{{ url('/berita-bsi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita Kehutanan</a>
+        </div>
+    </div>
+</div>
 
                     <!-- Dropdown Regulasi -->
                     <div class="relative dropdown dropdown-container">
@@ -268,13 +277,13 @@
             <!-- Mobile Dropdown Tentang BSILHK -->
             <div class="relative">
                 <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
-                    Tentang BSILHK
+                    Tentang P2SEMH
                     <svg class="mobile-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
                 <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
-                    <a href="{{ url('/profil') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Profil BSILHK</a>
+                    <a href="{{ url('/profil') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Profil P2SEMH</a>
                     <a href="{{ url('/dasar-hukum') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Dasar Hukum</a>
                     <a href="{{ url('/tugas-dan-fungsi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Tugas dan Fungsi</a>
                     <a href="{{ url('/struktur-organisasi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Struktur Organisasi</a>
@@ -283,19 +292,20 @@
 
             <!-- Mobile Dropdown Berita -->
             <div class="relative">
-                <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
-                    Berita
-                    <svg class="mobile-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
-                    <a href="{{ url('/fokus-bsi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Fokus BSI</a>
-                    <a href="{{ url('/berita-bsi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita BSI</a>
-                    <a href="{{ url('/berita-standar') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita Standar</a>
-                    <a href="{{ url('/berita-klhk') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita KLHK</a>
-                </div>
-            </div>
+    <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
+        Berita
+        <svg class="mobile-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+    </button>
+    <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
+        {{-- Berita Utama -> Berita P2SEMH (dari /fokus-bsi) --}}
+        <a href="{{ url('/fokus-bsi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita P2SEMH</a>
+
+        {{-- Berita Kehutanan (dari /berita-bsi) --}}
+        <a href="{{ url('/berita-bsi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita Kehutanan</a>
+    </div>
+</div>
 
             <!-- Mobile Dropdown Regulasi -->
             <div class="relative">

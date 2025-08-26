@@ -31,7 +31,7 @@
     </section>
 
     <section id="berita-fokus" class="my-16 container mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Berita Fokus BSI</h2>
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Berita P2SEMH</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @foreach($beritaFokus as $berita)
         {{-- Menambahkan class flexbox untuk alignment yang lebih baik --}}
@@ -54,59 +54,6 @@
             </div>
         </div>
         @endforeach
-    </div>
-</section>
-    
-   <section id="berita-standar" class="my-16 bg-gray-900 text-white py-16">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold mb-12 text-center">Berita Standar</h2>
-        
-        @if ($beritaStandar->isNotEmpty())
-            {{-- Berita Utama --}}
-            <div class="md:flex md:space-x-8 mb-12">
-                <div class="md:w-1/2">
-                    <img src="{{ asset('storage/' . $beritaStandar->first()->gambar) }}" alt="Berita Standar Gambar" class="w-full rounded-lg shadow-lg">
-                </div>
-                <div class="md:w-1/2 flex flex-col justify-center mt-8 md:mt-0">
-                    <h3 class="text-3xl font-bold mb-4">{{ $beritaStandar->first()->judul }}</h3>
-                    <p class="text-gray-300 mb-6">
-                        {{ \Illuminate\Support\Str::limit(strip_tags($beritaStandar->first()->isi), 200) }}
-                    </p>
-                    {{-- Tombol ini sudah benar --}}
-                    <a href="{{ route('news.show', $beritaStandar->first()->slug) }}" class="bg-green-600 text-white font-semibold py-3 px-8 rounded-full self-start hover:bg-green-700 transition duration-300">Baca Selengkapnya</a>
-                </div>
-            </div>
-
-            {{-- Slider untuk Berita Lainnya --}}
-            <div class="relative w-full overflow-hidden">
-                <div id="berita-standar-slider" class="flex transition-transform duration-500 ease-in-out">
-                    <div class="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
-                        @foreach($beritaStandar->skip(1) as $berita)
-                        {{-- Menambahkan class flexbox untuk alignment --}}
-                        <div class="bg-white text-gray-900 rounded-lg shadow-lg overflow-hidden flex flex-col">
-                            <img src="{{ asset('storage/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="w-full h-40 object-cover">
-                            {{-- Menambahkan class flexbox untuk alignment --}}
-                            <div class="p-4 flex flex-col flex-grow">
-                                <h4 class="font-semibold text-lg">{{ $berita->judul }}</h4>
-                                {{-- Menambahkan class flex-grow agar teks mengisi ruang --}}
-                                <p class="text-sm text-gray-600 line-clamp-3 mt-2 flex-grow">
-                                    {{ \Illuminate\Support\Str::limit(strip_tags($berita->isi), 100) }}
-                                </p>
-                                
-                                {{-- INI BAGIAN YANG DITAMBAHKAN --}}
-                                <a href="{{ route('news.show', $berita->slug) }}" class="text-green-600 font-semibold text-sm mt-4 self-start">
-                                    Baca Selengkapnya &rarr;
-                                </a>
-
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        @else
-            <p class="text-center text-gray-300">Tidak ada berita standar yang tersedia.</p>
-        @endif
     </div>
 </section>
 
@@ -148,49 +95,54 @@
     @endif
 </section>
 
-    <section id="profil-kepala-bsi" class="my-16 bg-gray-900 text-white py-16">
+    <section id="berita-kehutanan-slider" class="my-16 bg-gray-900 text-white py-16">
     <div class="container mx-auto px-6">
-        {{-- Bagian Profil Kepala (Tidak diubah) --}}
-        <div class="md:flex md:space-x-8 mb-16">
-            <div class="md:w-1/3">
-                <img src="https://placehold.co/400x500/10b981/ffffff?text=Foto+Kepala" alt="Foto Kepala BSILHK" class="w-full rounded-lg shadow-lg">
-            </div>
-            <div class="md:w-2/3 flex flex-col justify-center mt-8 md:mt-0">
-                <h3 class="text-3xl font-bold mb-4">Profil Kepala BSILHK</h3>
-                <p class="text-gray-300 mb-6">
-                    [Nama Kepala BSILHK] memiliki pengalaman bertahun-tahun dalam bidang lingkungan dan kehutanan. Dengan kepemimpinan yang visioner, ia mengarahkan BSILHK untuk menjadi garda terdepan dalam inovasi dan standarisasi.
-                </p>
-                <a href="#" class="bg-green-600 text-white font-semibold py-3 px-8 rounded-full self-start hover:bg-green-700 transition duration-300">Baca Selengkapnya</a>
-            </div>
-        </div>
-
-        {{-- PERBAIKAN UNTUK BAGIAN KABAR BSI --}}
-        <h2 class="text-3xl font-bold text-center mb-12">Kabar BSI</h2>
+        
+        <h2 class="text-3xl font-bold text-center mb-12">Berita Kehutanan</h2>
+        
         <div class="relative w-full overflow-hidden">
             <div id="kabar-bsi-slider" class="flex transition-transform duration-500 ease-in-out">
+
                 <div class="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
-                    @foreach($kabarBsi as $kabar)
-                    <div class="bg-white text-gray-900 rounded-lg shadow-lg overflow-hidden flex flex-col">
+                    @foreach($kabarBsi->take(3) as $kabar)
+                    <div class="bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden flex flex-col">
                         <img src="{{ asset('storage/' . $kabar->gambar) }}" alt="{{ $kabar->judul }}" class="w-full h-40 object-cover">
                         <div class="p-4 flex flex-col flex-grow">
                             <h4 class="font-semibold text-lg">{{ $kabar->judul }}</h4>
-                            <p class="text-sm text-gray-600 line-clamp-3 mt-2 flex-grow">
+                            <p class="text-sm text-gray-400 line-clamp-3 mt-2 flex-grow">
                                 {{ \Illuminate\Support\Str::limit(strip_tags($kabar->isi), 100) }}
                             </p>
-                            {{-- INI BAGIAN YANG DITAMBAHKAN --}}
-                            <a href="{{ route('news.show', $kabar->slug) }}" class="text-green-600 font-semibold text-sm mt-4 self-start">
+                            <a href="{{ route('news.show', $kabar->slug) }}" class="text-green-400 font-semibold text-sm mt-4 self-start">
                                 Baca Selengkapnya &rarr;
                             </a>
                         </div>
                     </div>
                     @endforeach
                 </div>
+
+                <div class="w-full flex-shrink-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
+                     @foreach($kabarBsi->skip(3)->take(3) as $kabar)
+                     <div class="bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+                        <img src="{{ asset('storage/' . $kabar->gambar) }}" alt="{{ $kabar->judul }}" class="w-full h-40 object-cover">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h4 class="font-semibold text-lg">{{ $kabar->judul }}</h4>
+                            <p class="text-sm text-gray-400 line-clamp-3 mt-2 flex-grow">
+                                {{ \Illuminate\Support\Str::limit(strip_tags($kabar->isi), 100) }}
+                            </p>
+                            <a href="{{ route('news.show', $kabar->slug) }}" class="text-green-400 font-semibold text-sm mt-4 self-start">
+                                Baca Selengkapnya &rarr;
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
             </div>
-            {{-- Tombol navigasi slider (tidak diubah) --}}
-            <button id="prev-kabar-bsi-slide" class="absolute top-1/2 left-4 transform -translate-y-1/2 text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75">
+
+             <button id="prev-kabar-bsi-slide" class="absolute top-1/2 left-0 md:left-4 transform -translate-y-1/2 text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75 z-10">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
             </button>
-            <button id="next-kabar-bsi-slide" class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75">
+            <button id="next-kabar-bsi-slide" class="absolute top-1/2 right-0 md:right-4 transform -translate-y-1/2 text-white p-2 rounded-full bg-black bg-opacity-50 hover:bg-opacity-75 z-10">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </button>
         </div>
@@ -260,34 +212,8 @@
 </section>
 
 {{-- PERBAIKAN UNTUK BAGIAN BERITA KLHK --}}
-<section id="berita-klhk" class="my-16 bg-gray-900 text-white py-16">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-12">Berita KLHK</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            @foreach ($beritaKlhk as $berita)
-            <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col">
-                <img src="{{ asset('storage/' . $berita->gambar) }}" alt="Berita KLHK" class="w-full h-40 object-cover">
-                <div class="p-4 flex flex-col flex-grow">
-                    <h4 class="font-semibold text-lg mb-2">{{ $berita->judul }}</h4>
-                    <p class="text-sm text-gray-300 line-clamp-3 flex-grow">{{ Str::limit(strip_tags($berita->isi), 100) }}</p>
-                     {{-- INI BAGIAN YANG DITAMBAHKAN --}}
-                    <a href="{{ route('news.show', $berita->slug) }}" class="text-green-500 font-semibold text-sm mt-4 self-start">
-                        Baca Selengkapnya &rarr;
-                    </a>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        <div class="text-center mb-16">
-            {{-- Mengarahkan tombol "Selengkapnya" ke halaman daftar berita KLHK --}}
-            <a href="{{ route('news.klhk') }}" class="text-green-600 font-medium hover:underline text-lg">Lihat Semua Berita KLHK</a>
-        </div>
-        <h2 class="text-3xl font-bold text-center mb-8">Berita Lainnya</h2>
-    </div>
-</section>
-
     <section id="layanan-publik" class="my-16 container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Layanan Publik</h2>
+        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Website Terkait</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             @for ($i = 1; $i <= 4; $i++)
                 <div class="p-6 rounded-lg shadow-lg bg-white hover:shadow-xl transition-shadow duration-300">
@@ -300,17 +226,11 @@
     </section>
 
     <section id="footer-menu" class="my-16">
-        <div id="ppid-menu" class="relative bg-cover bg-center py-24 mb-16" style="background-image: url('{{ asset('images/background indonesia.png') }}');">
-            <div class="absolute inset-0 bg-black opacity-60"></div>
-            <div class="container mx-auto px-6 relative z-10 text-white text-center">
-                <h2 class="text-4xl font-bold">PPID Menu</h2>
-                <p class="mt-4 text-lg">Informasi dan layanan PPID BSILHK.</p>
-            </div>
-        </div>
+        
 
         <div id="agenda-bsilhk" class="bg-gray-900 text-white py-16 mb-16">
     <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-12">Agenda BSILHK</h2>
+        <h2 class="text-3xl font-bold text-center mb-12">Agenda </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             
             @forelse($latestAgendas as $agenda)
@@ -338,16 +258,16 @@
 </div>
 
         <div id="partner" class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Partner</h2>
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Link Terkait</h2>
             <div class="text-center text-gray-600">
-                Daftar logo partner akan ditampilkan di sini.
+                Daftar link akan ditampilkan di sini.
             </div>
         </div>
     </section>
 
     <footer class="bg-gray-800 text-gray-300 py-8">
         <div class="container mx-auto text-center px-4">
-            &copy; {{ date('Y') }} BSILHK. Hak Cipta Dilindungi.
+            &copy; {{ date('Y') }} P2SEMH. Hak Cipta Dilindungi.
         </div>
     </footer>
 

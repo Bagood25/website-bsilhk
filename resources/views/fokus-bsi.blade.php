@@ -6,8 +6,8 @@
     <div class="py-16 px-4 text-center relative bg-cover bg-center" style="background-image: url('{{ asset('images/background hutan.jpg') }}');">
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div class="max-w-7xl mx-auto z-10 relative">
-        <h1 class="text-4xl font-extrabold text-white sm:text-5xl">Fokus BSI</h1>
-        <p class="mt-2 text-sm text-gray-300">Beranda &gt; Berita &gt; Fokus BSI</p>
+        <h1 class="text-4xl font-extrabold text-white sm:text-5xl">Berita P2SEMH</h1>
+        <p class="mt-2 text-sm text-gray-300">Beranda &gt; Berita &gt; Berita P2SEMH</p>
     </div>
 </div>
 

@@ -26,8 +26,8 @@ class PublicNewsController extends Controller
      */
     public function showBsiNews()
     {
-        // PERBAIKAN: Menggunakan whereIn untuk menggabungkan dua kategori
-        $news = News::whereIn('kategori', ['berita_bsi', 'berita_utama'])
+        // DIGANTI: Sekarang hanya mengambil berita dari kategori 'kabar_bsi'
+        $news = News::where('kategori', 'kabar_bsi')
                       ->latest()
                       ->get();
 

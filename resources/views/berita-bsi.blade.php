@@ -3,12 +3,16 @@
 @section('title', 'Berita BSI')
 
 @section('content')
-    <div class="bg-gray-900 py-16 px-4 text-center relative">
-        <div class="max-w-7xl mx-auto z-10 relative">
-            <h1 class="text-4xl font-extrabold text-white sm:text-5xl">Berita BSI</h1>
-            <p class="mt-2 text-sm text-gray-300">Beranda &gt; Berita &gt; Berita BSI</p>
-        </div>
+    {{-- Menggunakan inline style untuk background-image --}}
+<div class="py-16 px-4 text-center relative bg-cover bg-center" style="background-image: url('{{ asset('images/background hutan.jpg') }}');">
+    {{-- Lapisan overlay gelap --}}
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+
+    <div class="max-w-7xl mx-auto z-10 relative">
+        <h1 class="text-4xl font-extrabold text-white sm:text-5xl">Berita Kehutanan</h1>
+        <p class="mt-2 text-sm text-gray-300">Beranda &gt; Berita &gt; Berita Kehutanan</p>
     </div>
+</div>
 
     <main class="py-12 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
