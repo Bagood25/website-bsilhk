@@ -27,12 +27,10 @@ use App\Http\Controllers\Admin\VideoController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // --- Rute Berita ---
-Route::get('/fokus-bsi', [PublicNewsController::class, 'showFokusBsiNews'])->name('news.fokus');
-Route::get('/berita-bsi', [PublicNewsController::class, 'showBsiNews'])->name('news.bsi');
-Route::get('/berita-klhk', [PublicNewsController::class, 'showKlhNews'])->name('news.klhk');
-Route::get('/berita-standar', [PublicNewsController::class, 'showStandarNews'])->name('news.standar');
+// Rute untuk menampilkan berita publik
+Route::get('/berita-p2semh', [PublicNewsController::class, 'showFokusBsiNews'])->name('berita-p2semh');
+Route::get('/berita-kehutanan', [PublicNewsController::class, 'showBsiNews'])->name('berita-kehutanan');
 Route::get('/berita/{slug}', [PublicNewsController::class, 'showDetail'])->name('news.show');
-
 
 // Rute Publik Lainnya
 Route::get('/profil', fn() => view('profil'));
@@ -43,7 +41,6 @@ Route::get('/jdih-klhk', fn() => view('regulasi', ['pageTitle' => 'JDIH KLHK']))
 
 // 3. UBAH: Rute agenda dari statis menjadi dinamis
 Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda.index');
-
 Route::get('/dasar-hukum', fn() => view('dasar_hukum'));
 Route::get('/tugas-dan-fungsi', fn() => view('tugas_dan_fungsi'));
 Route::get('/struktur-organisasi', fn() => view('struktur_organisasi'));

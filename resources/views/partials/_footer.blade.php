@@ -20,26 +20,27 @@
                 </ul>
             </div>
 
+            {{-- === BAGIAN TENTANG DIUBAH === --}}
             <div>
-                <h3 class="text-xl font-bold mb-4 text-white">Tentang BSILHK</h3>
+                <h3 class="text-xl font-bold mb-4 text-white">Tentang P2SEMH</h3>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="{{ url('/profil') }}" class="hover:text-green-500 transition duration-300">Profil BSILHK</a></li>
+                    <li><a href="{{ url('/profil') }}" class="hover:text-green-500 transition duration-300">Profil P2SEMH</a></li>
                     <li><a href="{{ url('/dasar-hukum') }}" class="hover:text-green-500 transition duration-300">Dasar Hukum</a></li>
                     <li><a href="{{ url('/tugas-dan-fungsi') }}" class="hover:text-green-500 transition duration-300">Tugas dan Fungsi</a></li>
                     <li><a href="{{ url('/struktur-organisasi') }}" class="hover:text-green-500 transition duration-300">Struktur Organisasi</a></li>
                 </ul>
             </div>
 
+            {{-- === BAGIAN BERITA DIUBAH === --}}
             <div>
                 <h3 class="text-xl font-bold mb-4 text-white">Berita</h3>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="{{ route('news.fokus') }}" class="hover:text-green-500 transition duration-300">Fokus BSI</a></li>
-                    <li><a href="{{ route('news.bsi') }}" class="hover:text-green-500 transition duration-300">Kabar BSI</a></li>
-                    <li><a href="{{ route('news.standar') }}" class="hover:text-green-500 transition duration-300">Berita Standar</a></li>
-                    <li><a href="{{ route('news.klhk') }}" class="hover:text-green-500 transition duration-300">Berita KLHK</a></li>
+                    <li><a href="{{ url('/berita-p2semh') }}" class="hover:text-green-500 transition duration-300">Berita P2SEMH</a></li>
+                    <li><a href="{{ url('/berita-kehutanan') }}" class="hover:text-green-500 transition duration-300">Berita Kehutanan</a></li>
                 </ul>
             </div>
             
+            {{-- === BAGIAN REGULASI DIUBAH === --}}
             <div>
                 <h3 class="text-xl font-bold mb-4 text-white">Regulasi</h3>
                 <ul class="space-y-2 text-sm">
@@ -48,8 +49,8 @@
                     <li><a href="{{ route('regulasi.show', ['title' => 'peraturan-presiden']) }}" class="hover:text-green-500 transition duration-300">Peraturan Presiden</a></li>
                     <li><a href="{{ route('regulasi.show', ['title' => 'peraturan-menteri-lhk']) }}" class="hover:text-green-500 transition duration-300">Peraturan Menteri</a></li>
                     <li><a href="{{ route('regulasi.show', ['title' => 'peraturan-kepala-bsn']) }}" class="hover:text-green-500 transition duration-300">Peraturan Kepala BSN</a></li>
-                    <li><a href="{{ route('regulasi.show', ['title' => 'peraturan-kepala-bsilhk']) }}" class="hover:text-green-500 transition duration-300">Peraturan Kepala BSILHK</a></li>
-                    <li><a href="{{ route('regulasi.show', ['title' => 'sk-bsilhk']) }}" class="hover:text-green-500 transition duration-300">SK BSILHK</a></li>
+                    <li><a href="{{ route('regulasi.show', ['title' => 'peraturan-kepala-bsilhk']) }}" class="hover:text-green-500 transition duration-300">Peraturan Kepala P2SEMH</a></li>
+                    <li><a href="{{ route('regulasi.show', ['title' => 'sk-bsilhk']) }}" class="hover:text-green-500 transition duration-300">SK P2SEMH</a></li>
                     <li><a href="{{ route('jdih.klhk') }}" class="hover:text-green-500 transition duration-300">JDIH KLHK</a></li>
                 </ul>
             </div>
@@ -79,15 +80,17 @@
         </div>
 
         <div class="flex flex-col md:flex-row justify-between items-center pt-8 text-sm">
+            {{-- === BAGIAN COPYRIGHT DIUBAH === --}}
             <div class="text-gray-500 text-center md:text-left">
-                © 2024 Badan Standardisasi Instrumen Lingkungan Hidup dan Kehutanan, All Rights Reserved.
+                © 2024 Pusat Standardisasi Instrumen Pengujian dan Mutu Hasil Hutan, All Rights Reserved.
             </div>
         </div>
     </div>
 </footer>
 
+{{-- Bagian tombol Scroll to Top tidak diubah --}}
 <div class="fixed bottom-8 right-8 flex flex-col space-y-4 z-50">
-    <button id="scrollToTopBtn" class="bg-white text-gray-800 p-4 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300">
+    <button id="scrollToTopBtn" class="bg-white text-gray-800 p-4 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300" style="display: none;">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
     </button>
     <a href="#" class="bg-white text-gray-800 p-3 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 flex items-center justify-center">

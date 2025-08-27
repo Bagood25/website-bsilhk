@@ -140,11 +140,11 @@
     </button>
     <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-            {{-- Berita Utama -> Berita P2SEMH (dari /fokus-bsi) --}}
-            <a href="{{ url('/fokus-bsi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita P2SEMH</a>
+            {{-- DIUBAH: Menggunakan URL baru /berita-p2semh --}}
+            <a href="{{ url('/berita-p2semh') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita P2SEMH</a>
             
-            {{-- Berita Kehutanan (dari /berita-bsi) --}}
-            <a href="{{ url('/berita-bsi') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita Kehutanan</a>
+            {{-- DIUBAH: Menggunakan URL baru /berita-kehutanan --}}
+            <a href="{{ url('/berita-kehutanan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita Kehutanan</a>
         </div>
     </div>
 </div>
@@ -299,11 +299,11 @@
         </svg>
     </button>
     <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
-        {{-- Berita Utama -> Berita P2SEMH (dari /fokus-bsi) --}}
-        <a href="{{ url('/fokus-bsi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita P2SEMH</a>
+        {{-- DIUBAH: Menggunakan URL baru /berita-p2semh --}}
+        <a href="{{ url('/berita-p2semh') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita P2SEMH</a>
 
-        {{-- Berita Kehutanan (dari /berita-bsi) --}}
-        <a href="{{ url('/berita-bsi') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita Kehutanan</a>
+        {{-- DIUBAH: Menggunakan URL baru /berita-kehutanan --}}
+        <a href="{{ url('/berita-kehutanan') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita Kehutanan</a>
     </div>
 </div>
 

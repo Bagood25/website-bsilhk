@@ -10,46 +10,32 @@ class PublicNewsController extends Controller
     /**
      * Menampilkan berita dengan kategori 'berita_fokus' DAN 'berita_utama'.
      */
+    /**
+     * Menampilkan berita P2SEMH (sebelumnya Fokus BSI).
+     */
     public function showFokusBsiNews()
     {
-        // PERBAIKAN: Menggunakan whereIn untuk menggabungkan dua kategori
+        // Bagian ini tetap sama, hanya mengambil data
         $news = News::whereIn('kategori', ['berita_fokus', 'berita_utama'])
                       ->latest()
                       ->get();
 
-        return view('fokus-bsi', ['news' => $news]);
+        // GANTI DI SINI: Panggil file view dengan nama baru
+        return view('berita-p2semh', ['news' => $news]);
     }
 
-
     /**
-     * Menampilkan berita dengan kategori 'berita_bsi' DAN 'berita_utama'.
+     * Menampilkan Berita Kehutanan (sebelumnya Berita BSI).
      */
     public function showBsiNews()
     {
-        // DIGANTI: Sekarang hanya mengambil berita dari kategori 'kabar_bsi'
+        // Bagian ini juga tetap sama, hanya mengambil data
         $news = News::where('kategori', 'kabar_bsi')
                       ->latest()
                       ->get();
 
-        return view('berita-bsi', ['news' => $news]);
-    }
-
-    /**
-     * Menampilkan berita dengan kategori 'berita_klhk'. (Tidak diubah)
-     */
-    public function showKlhNews()
-    {
-        $news = News::where('kategori', 'berita_klhk')->latest()->get();
-        return view('berita-klhk', ['news' => $news]);
-    }
-
-    /**
-     * Menampilkan berita dengan kategori 'berita_standar'. (Tidak diubah)
-     */
-    public function showStandarNews()
-    {
-        $news = News::where('kategori', 'berita_standar')->latest()->get();
-        return view('berita-standar', ['news' => $news]);
+        // GANTI DI SINI: Panggil file view dengan nama baru
+        return view('berita-kehutanan', ['news' => $news]);
     }
 
     /**
