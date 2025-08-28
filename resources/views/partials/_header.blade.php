@@ -151,37 +151,19 @@
 
                     <!-- Dropdown Regulasi -->
                     <div class="relative dropdown dropdown-container">
-                        <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
-                            Regulasi
-                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                <!-- Contoh item regulasi dengan sub-dropdown -->
-                                <div class="relative dropdown-item group">
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex justify-between items-center" role="menuitem">
-                                        Peraturan Menteri
-                                        <svg class="ml-2 h-4 w-4 transform group-hover:rotate-90 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                                        </svg>
-                                    </a>
-                                    <div class="dropdown-menu absolute w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                        <div class="py-1">
-                                            <a href="{{ route('regulasi.show', ['title' => 'peraturan-menteri-lhk']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Peraturan Menteri LHK</a>
-                                            <a href="{{ route('regulasi.show', ['title' => 'peraturan-menteri-lain']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Peraturan Menteri Lain</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="{{ route('regulasi.show', ['title' => 'undang-undang']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Undang-Undang</a>
-                                <a href="{{ route('regulasi.show', ['title' => 'peraturan-pemerintah']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Peraturan Pemerintah</a>
-                                <a href="{{ route('regulasi.show', ['title' => 'peraturan-presiden']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Peraturan Presiden</a>
-                                <a href="{{ route('regulasi.show', ['title' => 'peraturan-daerah']) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Peraturan Daerah</a>
-                                <a href="{{ route('jdih.klhk') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">JDIH KLHK</a>
-                            </div>
-                        </div>
-                    </div>
+    <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+        Media dan Informasi
+        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+    </button>
+    <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            <a href="{{ url('/galeri-foto') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Galeri Foto</a>
+            <a href="{{ url('/galeri-video') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Galeri Video</a>
+        </div>
+    </div>
+</div>
 
                     <a href="{{ route('agenda.index') }}" class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Agenda</a>
 
@@ -308,34 +290,19 @@
 </div>
 
             <!-- Mobile Dropdown Regulasi -->
-            <div class="relative">
-                <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
-                    Regulasi
-                    <svg class="mobile-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
-                    <!-- Mobile Sub-Dropdown Peraturan Menteri -->
-                    <div class="relative">
-                        <button class="mobile-sub-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
-                            Peraturan Menteri
-                            <svg class="mobile-sub-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                        <div class="mobile-sub-dropdown-menu hidden pl-4 mt-1 space-y-1">
-                            <a href="{{ route('regulasi.show', ['title' => 'peraturan-menteri-lhk']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan Menteri LHK</a>
-                            <a href="{{ route('regulasi.show', ['title' => 'peraturan-menteri-lain']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan Menteri Lain</a>
-                        </div>
-                    </div>
-                    <a href="{{ route('regulasi.show', ['title' => 'undang-undang']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Undang-Undang</a>
-                    <a href="{{ route('regulasi.show', ['title' => 'peraturan-pemerintah']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan Pemerintah</a>
-                    <a href="{{ route('regulasi.show', ['title' => 'peraturan-presiden']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan Presiden</a>
-                    <a href="{{ route('regulasi.show', ['title' => 'peraturan-daerah']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan Daerah</a>
-                    <a href="{{ route('jdih.klhk') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">JDIH KLHK</a>
-                </div>
-            </div>
+<            <div class="relative">
+    <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
+        Media dan Informasi
+        <svg class="mobile-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
+    </button>
+    <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
+        <a href="{{ url('/galeri-foto') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Galeri Foto</a>
+        <a href="{{ url('/galeri-video') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Galeri Video</a>
+    </div>
+</div>
+            </>
 
             <a href="{{ route('agenda.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Agenda</a>
 

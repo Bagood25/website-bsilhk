@@ -11,8 +11,10 @@
         {{-- Konten Teks di Atas Overlay --}}
         <div class="relative z-10">
             <h1 class="text-4xl font-extrabold sm:text-5xl">Struktur Organisasi</h1>
+            {{-- PERUBAHAN DI SINI: Menambahkan breadcrumb "Tentang P2SEMH" --}}
             <p class="mt-2 text-lg text-gray-300">
                 <a href="{{ url('/') }}" class="hover:underline">Beranda</a> &gt; 
+                <a href="#" class="hover:underline">Tentang P2SEMH</a> &gt; 
                 <span class="font-medium">Struktur Organisasi</span>
             </p>
         </div>
@@ -21,12 +23,14 @@
     <main class="py-12 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+                {{-- PERUBAHAN DI SINI: Mengganti BSILHK menjadi P2SEMH --}}
                 <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">
-                    Bagan Struktur Organisasi BSILHK
+                    Bagan Struktur Organisasi P2SEMH
                 </h2>
                 
                 <div class="flex justify-center">
-                    <img src="{{ asset('images/struktur organisasi.png') }}" alt="Bagan Struktur Organisasi BSILHK" class="w-full h-auto rounded-md shadow-md">
+                    {{-- Pastikan nama file gambar sudah benar --}}
+                    <img src="{{ asset('images/struktur organisasi.png') }}" alt="Bagan Struktur Organisasi P2SEMH" class="w-full h-auto rounded-md shadow-md">
                 </div>
             </div>
         </div>

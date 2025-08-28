@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Fokus BSI')
+@section('title', 'Berita P2SEMH')
 
 @section('content')
     <div class="py-16 px-4 text-center relative bg-cover bg-center" style="background-image: url('{{ asset('images/background hutan.jpg') }}');">

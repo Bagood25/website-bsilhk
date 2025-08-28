@@ -3,10 +3,19 @@
 @section('title', 'Galeri Foto')
 
 @section('content')
-    <div class="bg-gray-900 py-16 px-4 text-center text-white">
-        <h1 class="text-4xl font-extrabold sm:text-5xl">Galeri Foto</h1>
-        <p class="mt-2 text-lg text-gray-300">Dokumentasi kegiatan dan momen penting BSILHK.</p>
+    {{-- PERUBAHAN UTAMA ADA DI BLOK INI --}}
+    <div class="relative py-16 px-4 text-center text-white bg-cover bg-center" style="background-image: url('{{ asset('images/background hutan.jpg') }}');">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10">
+            <h1 class="text-4xl font-extrabold sm:text-5xl">Galeri Foto</h1>
+            <p class="mt-2 text-lg text-gray-300">
+                <a href="{{ url('/') }}" class="hover:underline">Beranda</a> &gt; 
+                <a href="#" class="hover:underline">Media dan Informasi</a> &gt; 
+                <span class="font-medium">Galeri Foto</span>
+            </p>
+        </div>
     </div>
+    {{-- AKHIR DARI PERUBAHAN --}}
 
     <main class="py-12 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -12,13 +12,14 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\AgendaController; // 1. TAMBAHKAN: Panggil AgendaController publik
+use App\Http\Controllers\VideoController;
 
 // --- Controller untuk Halaman Admin ---
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\DownloadController as AdminDownloadController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController; // 2. TAMBAHKAN: Panggil AgendaController admin
-use App\Http\Controllers\Admin\VideoController;
+use App\Http\Controllers\Admin\VideoController as AdminVideoController;
 
 // =========================================================================
 // == RUTE PUBLIK
@@ -47,7 +48,7 @@ Route::get('/struktur-organisasi', fn() => view('struktur_organisasi'));
 Route::get('/download/{kategori}', [DownloadController::class, 'show'])->name('download.kategori');
 Route::get('/itto', fn() => view('itto'));
 Route::get('/galeri-foto', [GaleriController::class, 'index'])->name('gallery.index');
-Route::get('/galeri-video', fn() => view('galeri_video'));
+Route::get('/galeri-video', [VideoController::class, 'index'])->name('galeri.video');
 Route::get('/kontak', fn() => view('kontak'));
 Route::get('/faq', fn() => view('faq'));
 Route::get('/peta-situs', fn() => view('peta_situs'));
@@ -72,7 +73,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
 
     // 4. TAMBAHKAN: Rute resource untuk manajemen agenda di panel admin
     Route::resource('agenda', AdminAgendaController::class)->except(['show']);
-    Route::resource('videos', \App\Http\Controllers\Admin\VideoController::class)->except(['show']);
+    Route::resource('videos', AdminVideoController::class)->except(['show']);
 });
 
 

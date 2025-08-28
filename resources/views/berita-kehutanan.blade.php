@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Berita BSI')
+@section('title', 'Berita Kehutanan')
 
 @section('content')
     {{-- Menggunakan inline style untuk background-image --}}
