@@ -45,7 +45,7 @@ Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda.index');
 Route::get('/dasar-hukum', fn() => view('dasar_hukum'));
 Route::get('/tugas-dan-fungsi', fn() => view('tugas_dan_fungsi'));
 Route::get('/struktur-organisasi', fn() => view('struktur_organisasi'));
-Route::get('/download/{kategori}', [DownloadController::class, 'show'])->name('download.kategori');
+Route::get('/download/{kategori}', [DownloadController::class, 'index'])->name('download.kategori');
 Route::get('/itto', fn() => view('itto'));
 Route::get('/galeri-foto', [GaleriController::class, 'index'])->name('gallery.index');
 Route::get('/galeri-video', [VideoController::class, 'index'])->name('galeri.video');
@@ -69,7 +69,13 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout.get');
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('berita', AdminBeritaController::class)->except(['show'])->parameters(['berita' => 'berita']);
     Route::resource('photos', PhotoController::class)->except(['show', 'edit', 'update']);
-    Route::resource('downloads', AdminDownloadController::class);
+    // Rute untuk Download yang sudah dimodifikasi
+    Route::get('/downloads/{kategori}', [AdminDownloadController::class, 'index'])->name('downloads.index');
+    Route::get('/downloads/{kategori}/create', [AdminDownloadController::class, 'create'])->name('downloads.create');
+    Route::post('/downloads', [AdminDownloadController::class, 'store'])->name('downloads.store');
+    Route::get('/downloads/{download}/edit', [AdminDownloadController::class, 'edit'])->name('downloads.edit');
+    Route::put('/downloads/{download}', [AdminDownloadController::class, 'update'])->name('downloads.update');
+    Route::delete('/downloads/{download}', [AdminDownloadController::class, 'destroy'])->name('downloads.destroy');
 
     // 4. TAMBAHKAN: Rute resource untuk manajemen agenda di panel admin
     Route::resource('agenda', AdminAgendaController::class)->except(['show']);

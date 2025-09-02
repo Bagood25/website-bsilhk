@@ -176,11 +176,8 @@
         </svg>
     </button>
     <div class="absolute hidden group-hover:block mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 z-20">
-        {{-- Perubahan di 2 baris ini: 'download.show' menjadi 'download.kategori' --}}
-        <a href="{{ route('download.kategori', 'laporan-tahunan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Laporan Tahunan</a>
-        <a href="{{ route('download.kategori', 'rencana-kerja') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Rencana Kerja</a>
-        
-        <a href="https://bsilhk.menlhk.go.id/itto-gsk/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">ITTO</a>
+        <a href="{{ route('download.kategori', 'peraturan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Peraturan</a>
+        <a href="{{ route('download.kategori', 'agenda') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Agenda</a>
     </div>
 </div>
 
@@ -315,11 +312,8 @@
         </svg>
     </button>
     <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
-        {{-- Di sini perubahannya: 'title' menjadi 'kategori' --}}
-        <a href="{{ route('download.kategori', ['kategori' => 'laporan-tahunan']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Laporan Tahunan</a>
-        <a href="{{ route('download.kategori', ['kategori' => 'rencana-kerja']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Rencana Kerja</a>
-        
-        <a href="https://bsilhk.menlhk.go.id/itto-gsk/" target="_blank" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">ITTO-GSK</a>
+        <a href="{{ route('download.kategori', ['kategori' => 'peraturan']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan</a>
+        <a href="{{ route('download.kategori', ['kategori' => 'agenda']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Agenda</a>
     </div>
 </div>
         <div class="pt-4 pb-3 border-t border-gray-200">

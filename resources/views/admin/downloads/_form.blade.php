@@ -28,27 +28,34 @@
                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   placeholder="Jelaskan isi singkat dari dokumen ini...">{{ old('deskripsi', $download->deskripsi ?? '') }}</textarea>
     </div>
-    <div>
-        <label for="kategori" class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
-        <div class="relative">
-             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                <i class="fas fa-fw fa-tags text-gray-400"></i>
-            </div>
-            <select name="kategori" id="kategori" required
-                    class="block w-full appearance-none rounded-md border-gray-300 pl-10 pr-10 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                <option value="" disabled {{ old('kategori', $download->kategori ?? '') == '' ? 'selected' : '' }}>-- Pilih Kategori --</option>
-                <option value="laporan-tahunan" {{ old('kategori', $download->kategori ?? '') == 'laporan-tahunan' ? 'selected' : '' }}>
-                    Laporan Tahunan
-                </option>
-                <option value="rencana-kerja" {{ old('kategori', $download->kategori ?? '') == 'rencana-kerja' ? 'selected' : '' }}>
-                    Rencana Kerja
-                </option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
+    {{-- INI BLOK KODE BARU UNTUK KATEGORI --}}
+<div>
+    <label for="kategori" class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
+    
+    {{-- Input tersembunyi ini yang akan mengirimkan data kategori saat form disubmit --}}
+    <input type="hidden" name="kategori" value="{{ $kategori ?? $download->kategori }}">
+
+    <div class="relative">
+        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <i class="fas fa-fw fa-tags text-gray-400"></i>
+        </div>
+        
+        {{-- Dropdown ini sekarang dinonaktifkan, hanya untuk menunjukkan kategori --}}
+        <select id="kategori_disabled" class="block w-full appearance-none rounded-md border-gray-300 pl-10 pr-10 shadow-sm sm:text-sm bg-gray-100 cursor-not-allowed" disabled>
+            <option value="peraturan" {{ ($kategori ?? $download->kategori) == 'peraturan' ? 'selected' : '' }}>
+                Peraturan
+            </option>
+            <option value="agenda" {{ ($kategori ?? $download->kategori) == 'agenda' ? 'selected' : '' }}>
+                Agenda
+            </option>
+        </select>
+        
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
         </div>
     </div>
+    <p class="mt-1 text-xs text-gray-500">Kategori ditentukan dari halaman sebelumnya dan tidak dapat diubah.</p>
+</div>
 
     {{-- Input untuk File Upload --}}
     <div>
@@ -86,7 +93,8 @@
 
 {{-- Tombol Aksi --}}
 <div class="mt-8 flex justify-end pt-5 border-t border-gray-200">
-    <a href="{{ route('admin.downloads.index') }}" class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">Batal</a>
+    {{-- INI KODE BARU TOMBOL BATAL --}}
+<a href="{{ route('admin.downloads.index', ['kategori' => $kategori ?? $download->kategori]) }}" class="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">Batal</a>
     <button type="submit" class="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700">Simpan</button>
 </div>
 
