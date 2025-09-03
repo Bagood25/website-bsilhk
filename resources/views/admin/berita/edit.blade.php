@@ -18,7 +18,6 @@
         </div>
     @endif
 
-    {{-- Perubahan utama ada di baris ini --}}
     <form action="{{ route('admin.berita.update', $berita) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -28,10 +27,24 @@
             <input type="text" id="judul" name="judul" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('judul', $berita->judul) }}" required>
         </div>
 
+        {{-- ====================================================== --}}
+        {{-- == PERUBAHAN UTAMA ADA DI SINI == --}}
+        {{-- ====================================================== --}}
         <div class="mb-4">
             <label for="kategori" class="block text-gray-700 font-bold mb-2">Kategori:</label>
-            <input type="text" id="kategori" name="kategori" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ old('kategori', $berita->kategori) }}" required>
+            <select name="kategori" id="kategori" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <option value="" disabled>-- Pilih Kategori --</option>
+                <option value="berita-kehutanan" {{ old('kategori', $berita->kategori) == 'berita-kehutanan' ? 'selected' : '' }}>
+                    Berita Kehutanan
+                </option>
+                <option value="berita-p2semh" {{ old('kategori', $berita->kategori) == 'berita-p2semh' ? 'selected' : '' }}>
+                    Berita P2SEMH
+                </option>
+            </select>
         </div>
+        {{-- ====================================================== --}}
+        {{-- == AKHIR DARI PERUBAHAN == --}}
+        {{-- ====================================================== --}}
 
         <div class="mb-4">
             <label for="isi" class="block text-gray-700 font-bold mb-2">Isi Berita:</label>
@@ -44,7 +57,7 @@
             @if($berita->gambar)
                 <div class="mt-4">
                     <p class="text-sm text-gray-600">Gambar saat ini:</p>
-                    <img src="{{ asset('storage/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="w-32 h-32 object-cover rounded mt-2">
+                    <img src="{{ asset('storage/berita/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="w-32 h-32 object-cover rounded mt-2">
                 </div>
             @endif
         </div>
@@ -53,9 +66,7 @@
             <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 Update Berita
             </button>
-            <a href="{{ route('admin.berita.index') }}" class="inline-block align-baseline font-bold text-sm text-gray-600 hover:text-gray-800">
-                Batal
-            </a>
+            <a href="{{ route('admin.berita.index') }}" class="text-gray-600 hover:text-gray-800 font-semibold">Batal</a>
         </div>
     </form>
 </div>

@@ -28,10 +28,11 @@ use App\Http\Controllers\Admin\VideoController as AdminVideoController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // --- Rute Berita ---
-// Rute untuk menampilkan berita publik
 Route::get('/berita-p2semh', [PublicNewsController::class, 'showFokusBsiNews'])->name('berita-p2semh');
 Route::get('/berita-kehutanan', [PublicNewsController::class, 'showBsiNews'])->name('berita-kehutanan');
-Route::get('/berita/{slug}', [PublicNewsController::class, 'showDetail'])->name('news.show');
+
+// Mengubah 'news.show' menjadi 'news.detail' agar konsisten dengan perbaikan sebelumnya
+Route::get('/berita/detail/{berita:slug}', [PublicNewsController::class, 'showDetail'])->name('news.detail');
 
 // Rute Publik Lainnya
 Route::get('/profil', fn() => view('profil'));

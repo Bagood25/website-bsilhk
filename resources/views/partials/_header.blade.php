@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header BSILHK</title>
+    <title>Header P2SEMH</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -88,9 +88,9 @@
 </div>
 
 <nav class="bg-white shadow-md relative z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {{-- TAMBAHKAN class="items-center" di sini untuk mensejajarkan semua item --}}
-        <div class="flex justify-between items-center h-20"> 
+        <div class="flex justify-between items-center h-20">
             <div class="flex items-center">
                 {{-- HAPUS tag <a> yang membungkus logo --}}
                 <div class="flex-shrink-0 flex items-center">
@@ -106,10 +106,11 @@
             </div>
 
             <div class="hidden md:flex md:items-center md:ml-6">
+    <div class="flex items-center space-x-4">
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex md:items-center md:ml-6">
-                <div class="flex space-x-4">
+    <div class="flex items-center space-x-4">
                     <a href="{{ url('/') }}" class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium">Beranda</a>
 
                     <!-- Dropdown Tentang P2SEMH -->
@@ -131,7 +132,7 @@
                     </div>
 
                     <!-- Dropdown Berita -->
-                    <div class="relative dropdown dropdown-container">
+                   <div class="relative dropdown dropdown-container">
     <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
         Berita
         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -140,16 +141,16 @@
     </button>
     <div class="dropdown-menu absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
         <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-            {{-- DIUBAH: Menggunakan URL baru /berita-p2semh --}}
-            <a href="{{ url('/berita-p2semh') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita P2SEMH</a>
+            {{-- DIUBAH: Menggunakan nama rute yang benar --}}
+            <a href="{{ route('berita-p2semh') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita P2SEMH</a>
             
-            {{-- DIUBAH: Menggunakan URL baru /berita-kehutanan --}}
-            <a href="{{ url('/berita-kehutanan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita Kehutanan</a>
+            {{-- DIUBAH: Menggunakan nama rute yang benar --}}
+            <a href="{{ route('berita-kehutanan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Berita Kehutanan</a>
         </div>
     </div>
 </div>
 
-                    <!-- Dropdown Regulasi -->
+                    <!-- Dropdown Media dan Informasi -->
                     <div class="relative dropdown dropdown-container">
     <button class="text-gray-800 hover:text-orange-600 px-3 py-2 rounded-md text-sm font-medium flex items-center">
         Media dan Informasi
@@ -253,7 +254,7 @@
 
             <a href="{{ url('/') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">Beranda</a>
 
-            <!-- Mobile Dropdown Tentang BSILHK -->
+            <!-- Mobile Dropdown Tentang P2SEMH -->
             <div class="relative">
                 <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
                     Tentang P2SEMH
@@ -270,7 +271,7 @@
             </div>
 
             <!-- Mobile Dropdown Berita -->
-            <div class="relative">
+           <div class="relative">
     <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
         Berita
         <svg class="mobile-dropdown-icon ml-2 -mr-0.5 h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -278,15 +279,15 @@
         </svg>
     </button>
     <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
-        {{-- DIUBAH: Menggunakan URL baru /berita-p2semh --}}
-        <a href="{{ url('/berita-p2semh') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita P2SEMH</a>
+        {{-- DIUBAH: Menggunakan nama rute yang benar --}}
+        <a href="{{ route('berita-p2semh') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita P2SEMH</a>
 
-        {{-- DIUBAH: Menggunakan URL baru /berita-kehutanan --}}
-        <a href="{{ url('/berita-kehutanan') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita Kehutanan</a>
+        {{-- DIUBAH: Menggunakan nama rute yang benar --}}
+        <a href="{{ route('berita-kehutanan') }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Berita Kehutanan</a>
     </div>
 </div>
 
-            <!-- Mobile Dropdown Regulasi -->
+            <!-- Mobile Dropdown Media & Informasi -->
 <            <div class="relative">
     <button class="mobile-dropdown-toggle w-full text-left flex justify-between items-center px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50">
         Media dan Informasi

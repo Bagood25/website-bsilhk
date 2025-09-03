@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News; // Menggunakan model News yang sudah diperbaiki
+use App\Models\News; // Menggunakan model News yang benar
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str; // Import Str facade untuk membuat slug
 
 class AdminBeritaController extends Controller
 {
     public function index()
     {
-        return view('admin.berita.index', [
-            'beritas' => News::latest()->paginate(10)
-        ]);
+        $beritas = News::latest()->paginate(10);
+        return view('admin.berita.index', compact('beritas'));
     }
 
     public function create()
@@ -23,67 +21,77 @@ class AdminBeritaController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'judul' => 'required|max:255|unique:beritas',
-            'kategori' => 'required',
-            'gambar' => 'image|file|max:2048',
-            'isi' => 'required'
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'kategori' => 'required|string',
+            'isi' => 'required|string',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        if ($request->file('gambar')) {
-            $validatedData['gambar'] = $request->file('gambar')->store('post-images', 'public');
+        $data = $request->except(['_token', '_method']);
+        $data['user_id'] = auth()->id();
+        $data['slug'] = Str::slug($request->judul);
+        $data['kutipan'] = Str::limit(strip_tags($request->isi), 150);
+
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar');
+            $nama_gambar = time() . '_' . $gambar->getClientOriginalName();
+            $gambar->storeAs('public/berita', $nama_gambar);
+            
+            // ======================================================
+            // == PERUBAHAN PENTING 1: Tambahkan path 'berita/' ==
+            // ======================================================
+            $data['gambar'] = 'berita/' . $nama_gambar;
         }
 
-        $validatedData['user_id'] = auth()->id();
-        $validatedData['kutipan'] = Str::limit(strip_tags($request->isi), 150);
-        $validatedData['slug'] = Str::slug($request->judul, '-');
+        News::create($data);
 
-        News::create($validatedData);
-
-        return redirect()->route('admin.berita.index')->with('success', 'Berita baru berhasil ditambahkan!');
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil ditambahkan.');
     }
 
     public function edit(News $berita)
     {
-        return view('admin.berita.edit', [
-            'berita' => $berita
-        ]);
+        return view('admin.berita.edit', compact('berita'));
     }
 
     public function update(Request $request, News $berita)
     {
-        $rules = [
-            'judul' => 'required|max:255|unique:beritas,judul,' . $berita->id,
-            'kategori' => 'required',
-            'gambar' => 'image|file|max:2048',
-            'isi' => 'required'
-        ];
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'kategori' => 'required|string',
+            'isi' => 'required|string',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-        $validatedData = $request->validate($rules);
+        $data = $request->except(['_token', '_method']);
+        $data['slug'] = Str::slug($request->judul);
+        $data['kutipan'] = Str::limit(strip_tags($request->isi), 150);
 
-        if ($request->file('gambar')) {
-            if ($berita->gambar) {
-                Storage::disk('public')->delete($berita->gambar);
+        if ($request->hasFile('gambar')) {
+            if ($berita->gambar && file_exists(storage_path('app/public/' . $berita->gambar))) {
+                unlink(storage_path('app/public/' . $berita->gambar));
             }
-            $validatedData['gambar'] = $request->file('gambar')->store('post-images', 'public');
+            $gambar = $request->file('gambar');
+            $nama_gambar = time() . '_' . $gambar->getClientOriginalName();
+            $gambar->storeAs('public/berita', $nama_gambar);
+
+            // ======================================================
+            // == PERUBAHAN PENTING 2: Tambahkan path 'berita/' ==
+            // ======================================================
+            $data['gambar'] = 'berita/' . $nama_gambar;
         }
 
-        $validatedData['slug'] = Str::slug($request->judul, '-');
-        $validatedData['kutipan'] = Str::limit(strip_tags($request->isi), 150);
+        $berita->update($data);
 
-        $berita->update($validatedData);
-
-        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diubah!');
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui.');
     }
 
     public function destroy(News $berita)
     {
-        if ($berita->gambar) {
-            Storage::disk('public')->delete($berita->gambar);
+        if ($berita->gambar && file_exists(storage_path('app/public/' . $berita->gambar))) {
+            unlink(storage_path('app/public/' . $berita->gambar));
         }
-        
         $berita->delete();
-
-        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus!');
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus.');
     }
 }

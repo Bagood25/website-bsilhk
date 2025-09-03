@@ -8,42 +8,32 @@ use Illuminate\Http\Request;
 class PublicNewsController extends Controller
 {
     /**
-     * Menampilkan berita dengan kategori 'berita_fokus' DAN 'berita_utama'.
-     */
-    /**
-     * Menampilkan berita P2SEMH (sebelumnya Fokus BSI).
-     */
-    public function showFokusBsiNews()
-    {
-        // Bagian ini tetap sama, hanya mengambil data
-        $news = News::whereIn('kategori', ['berita_fokus', 'berita_utama'])
-                      ->latest()
-                      ->get();
-
-        // GANTI DI SINI: Panggil file view dengan nama baru
-        return view('berita-p2semh', ['news' => $news]);
-    }
-
-    /**
-     * Menampilkan Berita Kehutanan (sebelumnya Berita BSI).
+     * Menampilkan halaman "Berita Kehutanan".
      */
     public function showBsiNews()
     {
-        // Bagian ini juga tetap sama, hanya mengambil data
-        $news = News::where('kategori', 'kabar_bsi')
-                      ->latest()
-                      ->get();
-
-        // GANTI DI SINI: Panggil file view dengan nama baru
-        return view('berita-kehutanan', ['news' => $news]);
+        $beritas = News::where('kategori', 'berita-kehutanan')->latest()->paginate(9);
+        $title = 'Berita Kehutanan'; // <-- TAMBAHKAN INI
+        return view('berita-kehutanan', compact('beritas', 'title')); // <-- TAMBAHKAN 'title'
     }
 
     /**
-     * Menampilkan halaman detail dari satu berita berdasarkan slug-nya. (Tidak diubah)
+     * Menampilkan halaman "Berita P2SEMH".
      */
-    public function showDetail($slug)
+    public function showFokusBsiNews()
     {
-        $newsItem = News::where('slug', 'like', $slug)->firstOrFail();
-        return view('news-detail', ['item' => $newsItem]);
+        $beritas = News::where('kategori', 'berita-p2semh')->latest()->paginate(9);
+        $title = 'Berita P2SEMH'; // <-- TAMBAHKAN INI
+        return view('berita-p2semh', compact('beritas', 'title')); // <-- TAMBAHKAN 'title'
+    }
+
+    /**
+     * Menampilkan halaman detail untuk satu berita.
+     */
+    public function showDetail(News $berita)
+    {
+        // Judul halaman detail akan diambil dari judul berita itu sendiri
+        $title = $berita->judul; // <-- TAMBAHKAN INI
+        return view('news.show', compact('berita', 'title')); // <-- TAMBAHKAN 'title'
     }
 }

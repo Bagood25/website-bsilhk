@@ -1,62 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Tambah Berita</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 font-sans">
+@extends('layouts.admin')
 
-    <div class="container mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg max-w-2xl">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">Tambah Berita Baru</h1>
+@section('content')
+<div class="container mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg max-w-2xl">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Tambah Berita Baru</h1>
 
-        @if ($errors->any())
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
-                <strong class="font-bold">Oops!</strong>
-                <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
-                <ul class="mt-2 list-disc list-inside">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+    @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
+            <strong class="font-bold">Oops!</strong>
+            <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
+            <ul class="mt-2 list-disc list-inside">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-        <form action="{{ route('admin.berita.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="mb-4">
-                <label for="judul" class="block text-gray-700 font-bold mb-2">Judul:</label>
-                <input type="text" id="judul" name="judul" value="{{ old('judul') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-            <div class="mb-4">
-                <label for="slug" class="block text-gray-700 font-bold mb-2">Slug:</label>
-                <input type="text" id="slug" name="slug" value="{{ old('slug') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-            <div class="mb-4">
-                <label for="kategori" class="block text-gray-700 font-bold mb-2">Kategori:</label>
-                <select name="kategori" id="kategori" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="berita_utama" {{ old('kategori') == 'berita_utama' ? 'selected' : '' }}>Berita Utama</option>
-                    <option value="berita_fokus" {{ old('kategori') == 'berita_fokus' ? 'selected' : '' }}>Berita Fokus</option>
-                    <option value="berita_standar" {{ old('kategori') == 'berita_standar' ? 'selected' : '' }}>Berita Standar</option>
-                    <option value="kabar_bsi" {{ old('kategori') == 'kabar_bsi' ? 'selected' : '' }}>Kabar BSI</option>
-                    <option value="berita_klhk" {{ old('kategori') == 'berita_klhk' ? 'selected' : '' }}>Berita KLHK</option>
-                </select>
-            </div>
-            <div class="mb-4">
-                <label for="isi" class="block text-gray-700 font-bold mb-2">Isi Berita:</label>
-                <textarea id="isi" name="isi" rows="10" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ old('isi') }}</textarea>
-            </div>
-            <div class="mb-6">
-                <label for="gambar" class="block text-gray-700 font-bold mb-2">Gambar:</label>
-                <input type="file" id="gambar" name="gambar" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-            <div class="flex items-center justify-between">
-                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300">Simpan</button>
-                <a href="{{ route('admin.berita.index') }}" class="inline-block align-baseline font-bold text-sm text-gray-500 hover:text-gray-800">Kembali</a>
-            </div>
-        </form>
-    </div>
+    <form action="{{ route('admin.berita.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="mb-4">
+            <label for="judul" class="block text-gray-700 font-bold mb-2">Judul:</label>
+            <input type="text" id="judul" name="judul" value="{{ old('judul') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
 
-</body>
-</html>
+        {{-- ====================================================== --}}
+        {{-- == PERUBAHAN UTAMA ADA DI SINI == --}}
+        {{-- ====================================================== --}}
+        <div class="mb-4">
+            <label for="kategori" class="block text-gray-700 font-bold mb-2">Kategori:</label>
+            <select name="kategori" id="kategori" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <option value="" disabled selected>-- Pilih Kategori --</option>
+                <option value="berita-kehutanan" {{ old('kategori') == 'berita-kehutanan' ? 'selected' : '' }}>Berita Kehutanan</option>
+                <option value="berita-p2semh" {{ old('kategori') == 'berita-p2semh' ? 'selected' : '' }}>Berita P2SEMH</option>
+            </select>
+        </div>
+        {{-- ====================================================== --}}
+        {{-- == AKHIR DARI PERUBAHAN == --}}
+        {{-- ====================================================== --}}
+
+        <div class="mb-4">
+            <label for="isi" class="block text-gray-700 font-bold mb-2">Isi Berita:</label>
+            <textarea id="isi" name="isi" rows="10" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ old('isi') }}</textarea>
+        </div>
+        <div class="mb-6">
+            <label for="gambar" class="block text-gray-700 font-bold mb-2">Gambar:</label>
+            <input type="file" id="gambar" name="gambar" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="flex items-center justify-between">
+            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300">Simpan Berita</button>
+            <a href="{{ route('admin.berita.index') }}" class="text-gray-600 hover:text-gray-800 font-semibold">Batal</a>
+        </div>
+    </form>
+</div>
+@endsection
