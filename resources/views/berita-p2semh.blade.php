@@ -27,7 +27,7 @@
                 @foreach ($beritas as $berita)
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
                         <a href="{{ route('news.detail', $berita->slug) }}">
-                            <img class="h-56 w-full object-cover" src="{{ asset('storage/berita/' . $berita->gambar) }}" alt="{{ $berita->judul }}">
+                            <img src="{{ asset('storage/' . $berita->gambar) }}">
                         </a>
                         <div class="p-6 flex flex-col flex-grow">
                             <p class="text-sm text-gray-500 mb-2">{{ $berita->created_at->format('d F Y') }}</p>

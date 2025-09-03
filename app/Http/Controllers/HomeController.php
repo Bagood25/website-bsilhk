@@ -47,4 +47,9 @@ class HomeController extends Controller
             'latestVideos'
         ));
     }
+    public function p2semh()
+    {
+        $title = 'Tautan Terkait P2SEMH';
+        return view('p2semh', compact('title'));
+    }
 }

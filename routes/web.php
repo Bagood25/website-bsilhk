@@ -35,7 +35,9 @@ Route::get('/berita-kehutanan', [PublicNewsController::class, 'showBsiNews'])->n
 Route::get('/berita/detail/{berita:slug}', [PublicNewsController::class, 'showDetail'])->name('news.detail');
 
 // Rute Publik Lainnya
-Route::get('/profil', fn() => view('profil'));
+// Setelah diubah
+Route::get('/profil', fn() => view('profil'))->name('profil');
+Route::get('/p2semh', [HomeController::class, 'p2semh'])->name('p2semh');
 Route::get('/services', [PublicServiceController::class, 'index']);
 Route::get('/locations', [LocationController::class, 'index']);
 Route::get('/regulasi/{title}', fn($title) => view('regulasi', ['pageTitle' => ucwords(str_replace('-', ' ', $title))]))->name('regulasi.show');
@@ -81,6 +83,9 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     // 4. TAMBAHKAN: Rute resource untuk manajemen agenda di panel admin
     Route::resource('agenda', AdminAgendaController::class)->except(['show']);
     Route::resource('videos', AdminVideoController::class)->except(['show']);
+
+    // Rute untuk Halaman Tambah Admin
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['show']);
 });
 
 

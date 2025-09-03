@@ -11,7 +11,7 @@
                 @foreach($beritaUtama as $berita)
                 <div class="w-full flex-shrink-0">
                     <div class="relative bg-cover bg-center h-[500px] flex items-center justify-center" 
-                         style="background-image: url('{{ asset('storage/berita/' . $berita->gambar) }}');">
+                         style="background-image: url('{{ asset('storage/' . $berita->gambar) }}');">
                         <div class="absolute inset-0 bg-black opacity-50"></div>
                         <div class="relative text-center text-white px-4">
                             <h2 class="text-4xl font-bold mb-2">{{ $berita->judul }}</h2>
@@ -42,7 +42,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($beritaFokus as $berita)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
-                <img src="{{ asset('storage/berita/' . $berita->gambar) }}" alt="Gambar berita" class="w-full h-48 object-cover">
+                <img src="{{ asset('storage/' . $berita->gambar) }}" alt="Gambar berita" class="w-full h-48 object-cover">>
                 <div class="p-6 flex flex-col flex-grow">
                     <p class="text-sm text-gray-500 mb-2">{{ \Carbon\Carbon::parse($berita->created_at)->format('d F Y') }}</p>
                     <h3 class="text-xl font-semibold mb-2">{{ $berita->judul }}</h3>
@@ -111,7 +111,7 @@
                             @foreach($beritaStandar->take(3) as $berita)
                             <div class="bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden flex flex-col">
                                 <a href="{{ route('news.detail', $berita->slug) }}">
-                                    <img src="{{ asset('storage/berita/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="w-full h-40 object-cover">
+                                    <img src="{{ asset('storage/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="w-full h-40 object-cover">
                                 </a>
                                 <div class="p-4 flex flex-col flex-grow">
                                     <a href="{{ route('news.detail', $berita->slug) }}" class="hover:text-green-400">
@@ -134,7 +134,7 @@
                              @foreach($beritaStandar->skip(3)->take(3) as $berita)
                              <div class="bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden flex flex-col">
                                  <a href="{{ route('news.detail', $berita->slug) }}">
-                                     <img src="{{ asset('storage/berita/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="w-full h-40 object-cover">
+                                     <img src="{{ asset('storage/' . $berita->gambar) }}" alt="{{ $berita->judul }}" class="w-full h-40 object-cover">>
                                  </a>
                                  <div class="p-4 flex flex-col flex-grow">
                                      <a href="{{ route('news.detail', $berita->slug) }}" class="hover:text-green-400">

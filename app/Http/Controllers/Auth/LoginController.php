@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request; // Pastikan baris ini ada
 
 class LoginController extends Controller
 {
@@ -23,6 +23,13 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = RouteServiceProvider::HOME;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -33,19 +40,32 @@ class LoginController extends Controller
     }
 
     /**
-     * Mengarahkan pengguna setelah login berdasarkan perannya.
+     * Handle a login request to the application.
      *
-     * @return string
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function redirectTo()
+    // TAMBAHKAN FUNGSI DI BAWAH INI
+    protected function authenticated(Request $request, $user)
     {
-        // Periksa apakah pengguna yang login adalah admin (memiliki is_admin == true)
-        if (Auth::user()->is_admin) {
-            // Jika admin, arahkan ke dashboard berita admin
-            return '/admin/berita';
+        if ($user->is_admin) {
+            // Jika pengguna adalah admin, arahkan ke dashboard admin
+            return redirect()->route('admin.berita.index');
         }
 
-        // Jika bukan admin, arahkan ke halaman utama
-        return '/';
+        // Jika bukan admin, arahkan ke halaman home user
+        return redirect($this->redirectTo);
+    }
+    
+    /**
+     * The user has been logged out.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function loggedOut(Request $request)
+    {
+        return redirect()->route('login');
     }
 }

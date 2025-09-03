@@ -38,17 +38,17 @@
 
                     {{-- Menu Download --}}
                     <li>
-    <a href="{{ route('admin.downloads.index', ['kategori' => 'peraturan']) }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->is('admin/downloads/peraturan*') ? 'bg-gray-700' : '' }}">
-        <i class="fas fa-fw fa-gavel"></i>
-        <span>Kelola Peraturan</span>
-    </a>
-</li>
-<li>
-    <a href="{{ route('admin.downloads.index', ['kategori' => 'agenda']) }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->is('admin/downloads/agenda*') ? 'bg-gray-700' : '' }}">
-        <i class="fas fa-fw fa-calendar-alt"></i>
-        <span>Kelola Agenda</span>
-    </a>
-</li>
+                        <a href="{{ route('admin.downloads.index', ['kategori' => 'peraturan']) }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->is('admin/downloads/peraturan*') ? 'bg-gray-700' : '' }}">
+                            <i class="fas fa-fw fa-gavel"></i>
+                            <span>Kelola Peraturan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.downloads.index', ['kategori' => 'agenda']) }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->is('admin/downloads/agenda*') ? 'bg-gray-700' : '' }}">
+                            <i class="fas fa-fw fa-calendar-alt"></i>
+                            <span>Kelola Agenda</span>
+                        </a>
+                    </li>
 
                     <li>
                         <a href="{{ route('admin.agenda.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.agenda.*') ? 'bg-gray-700' : '' }}">
@@ -57,17 +57,20 @@
                         </a>
                     </li>
 
-                    {{-- =============================================== --}}
-                    {{-- ==      MENU VIDEO DITAMBAHKAN DI SINI       == --}}
-                    {{-- =============================================== --}}
                     <li>
                         <a href="{{ route('admin.videos.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.videos.*') ? 'bg-gray-700' : '' }}">
                             <i class="fas fa-fw fa-video"></i>
                             <span>Manajemen Video</span>
                         </a>
                     </li>
-                    {{-- =============================================== --}}
-
+                    
+                    {{-- Menu Manajemen Admin --}}
+                    <li>
+                        <a href="{{ route('admin.users.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.users.*') ? 'bg-gray-700' : '' }}">
+                            <i class="fas fa-fw fa-users-cog"></i>
+                            <span>Manajemen Admin</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 
