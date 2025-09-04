@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\AgendaController; // 1. TAMBAHKAN: Panggil AgendaController publik
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\SearchController;
 
 // --- Controller untuk Halaman Admin ---
 use App\Http\Controllers\AdminBeritaController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\DownloadController as AdminDownloadController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController; // 2. TAMBAHKAN: Panggil AgendaController admin
 use App\Http\Controllers\Admin\VideoController as AdminVideoController;
+use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
 
 // =========================================================================
 // == RUTE PUBLIK
@@ -58,7 +60,7 @@ Route::get('/peta-situs', fn() => view('peta_situs'));
 Route::get('/privacy-policy', fn() => view('privacy_policy'));
 Route::get('/terms-of-service', fn() => view('terms_of_service'));
 Route::get('/sitemap.xml', fn() => response()->file(public_path('sitemap.xml')));
-Route::get('/search', fn() => view('search'));
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 
 // --- Rute Autentikasi ---
@@ -86,6 +88,8 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
 
     // Rute untuk Halaman Tambah Admin
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['show']);
+
+    Route::resource('partners', AdminPartnerController::class);
 });
 
 

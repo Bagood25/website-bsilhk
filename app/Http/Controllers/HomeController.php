@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-// Gunakan model News yang benar
+// Gunakan semua model yang diperlukan
 use App\Models\News;
 use App\Models\Photo;
 use App\Models\Agenda;
 use App\Models\Video;
+use App\Models\Partner; // 1. TAMBAHKAN: Panggil model Partner
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,40 +17,42 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // ======================================================
-        // == PERBAIKAN UTAMA ADA DI SINI ==
-        // ======================================================
+        // ... (kode untuk $beritaUtama)
+        $beritaUtama = News::where('kategori', 'berita-p2semh')->latest()->take(5)->get();
 
-        // Mengambil 4 berita terbaru dari kategori 'berita-p2semh' untuk slider
-        $beritaUtama = News::where('kategori', 'berita-p2semh')->latest()->take(4)->get();
-
-        // Mengambil 3 berita terbaru dari kategori 'berita-p2semh' untuk grid "Berita P2SEMH"
-        $beritaFokus = News::where('kategori', 'berita-p2semh')->latest()->take(3)->get();
+        // Mengambil berita terbaru dari kategori 'berita-p2semh' untuk slider
+        $beritaFokus = News::where('kategori', 'berita-p2semh')->latest()->take(15)->get();
         
-        // Mengambil 6 berita terbaru dari kategori 'berita-kehutanan' untuk bagian "Berita Kehutanan"
-        // (Meskipun tidak ada di potongan kode Anda, ini untuk jaga-jaga jika ada di bagian bawah halaman)
+        // ... (sisa kode tidak berubah)
         $beritaStandar = News::where('kategori', 'berita-kehutanan')->latest()->take(6)->get();
-
-        // ======================================================
         
-        // Query lain tetap sama
+        // ... (Query lain tetap sama)
         $latestPhotos = Photo::latest()->take(12)->get();
         $latestAgendas = Agenda::latest()->take(3)->get();
         $latestVideos = Video::latest()->take(15)->get();
 
-        // Mengirim semua variabel yang dibutuhkan oleh view 'home.blade.php'
+        // 2. TAMBAHKAN: Ambil data semua partner
+        $partners = Partner::latest()->get();
+
         return view('home', compact(
             'beritaUtama',
             'beritaFokus',
             'beritaStandar',
             'latestPhotos',
             'latestAgendas',
-            'latestVideos'
+            'latestVideos',
+            'partners' // 3. TAMBAHKAN: Kirim data partner ke view
         ));
     }
+    
     public function p2semh()
     {
         $title = 'Tautan Terkait P2SEMH';
-        return view('p2semh', compact('title'));
+        
+        // 4. TAMBAHKAN: Ambil data semua partner untuk halaman p2semh
+        $partners = Partner::latest()->get();
+
+        // 5. TAMBAHKAN: Kirim data partner ke view p2semh
+        return view('p2semh', compact('title', 'partners'));
     }
 }

@@ -37,30 +37,41 @@
     </section>
 
     {{-- Grid Berita P2SEMH --}}
-    <section id="berita-fokus" class="my-16 container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Berita P2SEMH</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach($beritaFokus as $berita)
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
-                <img src="{{ asset('storage/' . $berita->gambar) }}" alt="Gambar berita" class="w-full h-48 object-cover">>
-                <div class="p-6 flex flex-col flex-grow">
-                    <p class="text-sm text-gray-500 mb-2">{{ \Carbon\Carbon::parse($berita->created_at)->format('d F Y') }}</p>
-                    <h3 class="text-xl font-semibold mb-2">{{ $berita->judul }}</h3>
-                    <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">
-                        {{ \Illuminate\Support\Str::limit(strip_tags($berita->isi), 150) }}
-                    </p>
-                    
-                    {{-- ====================================================== --}}
-                    {{-- == PERBAIKAN 2: Mengganti nama rute --}}
-                    {{-- ====================================================== --}}
-                    <a href="{{ route('news.detail', $berita->slug) }}" class="text-green-600 font-semibold text-sm mt-4 self-start">
-                        Baca Selengkapnya &rarr;
-                    </a>
+    <section id="berita-fokus" class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">Berita P2SEMH</h2>
+        <p class="text-gray-600 mb-8">Informasi terkini seputar P2SEMH.</p>
+
+        <div class="relative w-full overflow-hidden">
+            <button id="prev-fokus-slide" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 z-10">
+                <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            
+            <div id="berita-fokus-slider" class="flex transition-transform duration-500 ease-in-out">
+                @foreach($beritaFokus as $berita)
+                <div class="w-full md:w-1/3 flex-shrink-0 px-4">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full text-left">
+                        <img src="{{ asset('storage/' . $berita->gambar) }}" alt="Gambar berita" class="w-full h-48 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <p class="text-sm text-gray-500 mb-2">{{ $berita->created_at->format('d M Y') }}</p>
+                            <a href="{{ route('news.detail', $berita->slug) }}" class="hover:text-green-600">
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $berita->judul }}</h3>
+                            </a>
+                            <div class="mt-auto pt-4">
+                                <a href="{{ route('news.detail', $berita->slug) }}" class="text-green-600 hover:text-green-800 font-semibold text-sm">Baca Selengkapnya &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
+
+            <button id="next-fokus-slide" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 z-10">
+                <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
         </div>
-    </section>
+    </div>
+</section>
 
 <section id="galeri-foto" class="my-16 container mx-auto px-6">
     <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Galeri Foto</h2>
@@ -168,19 +179,6 @@
     <div class="absolute inset-0 bg-black opacity-60"></div>
     <div class="container mx-auto px-6 relative z-10 text-white">
         
-        {{-- Bagian Testimoni (Tidak diubah) --}}
-        <h2 class="text-3xl font-bold text-center mb-12">Testimoni</h2>
-        <div class="flex flex-col md:flex-row justify-center space-y-8 md:space-y-0 md:space-x-8 mb-16">
-            <div class="bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-lg max-w-lg">
-                <p class="italic text-lg mb-4">"BSILHK telah memberikan dampak nyata dalam mendukung standarisasi lingkungan. Layanan mereka sangat profesional dan membantu."</p>
-                <p class="font-semibold">- Nama Pengguna 1</p>
-            </div>
-            <div class="bg-gray-800 bg-opacity-70 p-6 rounded-lg shadow-lg max-w-lg">
-                <p class="italic text-lg mb-4">"Informasi yang disediakan di website sangat lengkap dan mudah diakses. Sangat membantu pekerjaan kami."</p>
-                <p class="font-semibold">- Nama Pengguna 2</p>
-            </div>
-        </div>
-
         <h2 class="text-3xl font-bold text-center mb-12 mt-16">Galeri Video</h2>
         
         @if($latestVideos->isNotEmpty())
@@ -259,47 +257,28 @@
 </div>
 
         {{-- KODE PENGGANTI DENGAN BINGKAI PERSEGI YANG LEBIH BESAR --}}
-<div id="partner" class="bg-gray-50 py-16">
+
     <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Link Terkait</h2>
-        
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Tautan Terkait</h2>
+
+        {{-- Menggunakan flexbox untuk menampilkan logo secara berjajar dan wrapping --}}
         <div class="flex flex-wrap justify-center items-center gap-8">
 
-            {{-- Logo 1: KemenLHK --}}
-            <a href="https://www.menlhk.go.id/" target="_blank" rel="noopener noreferrer" 
-               class="block bg-white rounded-lg shadow-sm border border-gray-200 
-                      hover:border-blue-300 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1
-                      flex items-center justify-center w-52 h-52 p-5">
-                <img src="{{ asset('images/logo-kemenhut.png') }}" alt="Kementerian LHK" class="max-h-full max-w-full object-contain">
-            </a>
-
-            {{-- Logo 2: BSN --}}
-            <a href="https://bsn.go.id/" target="_blank" rel="noopener noreferrer" 
-               class="block bg-white rounded-lg shadow-sm border border-gray-200 
-                      hover:border-blue-300 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1
-                      flex items-center justify-center w-52 h-52 p-5">
-                <img src="{{ asset('images/logo-bsn.png') }}" alt="BSN" class="max-h-full max-w-full object-contain">
-            </a>
-
-            {{-- Logo 3: ARKN --}}
-            <a href="https://arkn-fpd.org/" target="_blank" rel="noopener noreferrer" 
-               class="block bg-white rounded-lg shadow-sm border border-gray-200 
-                      hover:border-blue-300 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1
-                      flex items-center justify-center w-52 h-52 p-5">
-                <img src="{{ asset('images/logo-arkn.png') }}" alt="ARKN" class="max-h-full max-w-full object-contain">
-            </a>
-
-            {{-- Logo 4: TKMH --}}
-            <a href="https://p2hb.kehutanan.go.id/tkmh/" target="_blank" rel="noopener noreferrer" 
-               class="block bg-white rounded-lg shadow-sm border border-gray-200 
-                      hover:border-blue-300 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1
-                      flex items-center justify-center w-52 h-52 p-5">
-                <img src="{{ asset('images/logo-tkmh.png') }}" alt="TKMH" class="max-h-full max-w-full object-contain">
-            </a>
+            @forelse($partners as $partner)
+                <a href="{{ $partner->url }}" target="_blank" rel="noopener noreferrer" title="{{ $partner->name }}"
+                   class="block bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center w-64 h-64">
+                    {{-- Ukuran diubah menjadi w-64 h-64 (lebih besar) --}}
+                    <img src="{{ asset('storage/' . $partner->logo) }}" alt="{{ $partner->name }}" class="max-h-full max-w-full object-contain">
+                </a>
+            @empty
+                <p class="text-center text-gray-500">
+                    Belum ada tautan terkait yang ditambahkan.
+                </p>
+            @endforelse
 
         </div>
     </div>
-</div>
+
     </section>
 
     <footer class="bg-gray-800 text-gray-300 py-8">
@@ -309,67 +288,98 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const heroSlider = document.getElementById('hero-slider');
-            const prevHeroSlideButton = document.getElementById('prev-slide');
-            const nextHeroSlideButton = document.getElementById('next-slide');
+    document.addEventListener('DOMContentLoaded', function() {
+        // ======================================================
+        // == SCRIPT LAMA ANDA UNTUK HERO SLIDER (TIDAK DIUBAH) ==
+        // ======================================================
+        const heroSlider = document.getElementById('hero-slider');
+        const prevHeroSlideButton = document.getElementById('prev-slide');
+        const nextHeroSlideButton = document.getElementById('next-slide');
+        if (heroSlider && prevHeroSlideButton && nextHeroSlideButton) {
             let currentHeroIndex = 0;
             const heroSlides = heroSlider.children.length;
             function updateHeroSlider() {
                 heroSlider.style.transform = `translateX(-${currentHeroIndex * 100}%)`;
             }
-            if (prevHeroSlideButton && nextHeroSlideButton) {
-                prevHeroSlideButton.addEventListener('click', () => {
-                    currentHeroIndex = (currentHeroIndex - 1 + heroSlides) % heroSlides;
-                    updateHeroSlider();
-                });
-                nextHeroSlideButton.addEventListener('click', () => {
-                    currentHeroIndex = (currentHeroIndex + 1) % heroSlides;
-                    updateHeroSlider();
-                });
+            prevHeroSlideButton.addEventListener('click', () => {
+                currentHeroIndex = (currentHeroIndex - 1 + heroSlides) % heroSlides;
+                updateHeroSlider();
+            });
+            nextHeroSlideButton.addEventListener('click', () => {
+                currentHeroIndex = (currentHeroIndex + 1) % heroSlides;
+                updateHeroSlider();
+            });
+        }
+
+        // =================================================================
+        // == SCRIPT BARU UNTUK BERITA P2SEMH (DITAMBAHKAN DI SINI) ==
+        // =================================================================
+        const beritaFokusSlider = document.getElementById('berita-fokus-slider');
+        const prevFokusButton = document.getElementById('prev-fokus-slide');
+        const nextFokusButton = document.getElementById('next-fokus-slide');
+        if (beritaFokusSlider && prevFokusButton && nextFokusButton) {
+            let currentFokusIndex = 0;
+            // Kita ingin menampilkan 3 berita per slide, jadi total "halaman" slider adalah jumlah berita dibagi 3
+            const fokusSlidesCount = Math.ceil(beritaFokusSlider.children.length / 3); 
+            
+            function updateFokusSlider() {
+                // Setiap kali pindah, kita geser sejauh 100% (lebar kontainer)
+                beritaFokusSlider.style.transform = `translateX(-${currentFokusIndex * 100}%)`;
             }
 
-            const beritaStandarSlider = document.getElementById('berita-standar-slider');
-            const prevBeritaStandarSlideButton = document.getElementById('prev-berita-standar-slide');
-            const nextBeritaStandarSlideButton = document.getElementById('next-berita-standar-slide');
+            prevFokusButton.addEventListener('click', () => {
+                currentFokusIndex = (currentFokusIndex - 1 + fokusSlidesCount) % fokusSlidesCount;
+                updateFokusSlider();
+            });
+
+            nextFokusButton.addEventListener('click', () => {
+                currentFokusIndex = (currentFokusIndex + 1) % fokusSlidesCount;
+                updateFokusSlider();
+            });
+        }
+
+        // ======================================================
+        // == SCRIPT LAMA LAINNYA (TIDAK DIUBAH) ==
+        // ======================================================
+        const beritaStandarSlider = document.getElementById('berita-standar-slider');
+        const prevBeritaStandarSlideButton = document.getElementById('prev-berita-standar-slide');
+        const nextBeritaStandarSlideButton = document.getElementById('next-berita-standar-slide');
+        if (beritaStandarSlider && prevBeritaStandarSlideButton && nextBeritaStandarSlideButton) {
             let currentBeritaStandarIndex = 0;
-            const beritaStandarSlides = beritaStandarSlider ? beritaStandarSlider.children.length : 0;
+            const beritaStandarSlides = beritaStandarSlider.children.length;
             function updateBeritaStandarSlider() {
-                if (beritaStandarSlider) {
-                    beritaStandarSlider.style.transform = `translateX(-${currentBeritaStandarIndex * 100}%)`;
-                }
+                beritaStandarSlider.style.transform = `translateX(-${currentBeritaStandarIndex * 100}%)`;
             }
-            if (prevBeritaStandarSlideButton && nextBeritaStandarSlideButton) {
-                prevBeritaStandarSlideButton.addEventListener('click', () => {
-                    currentBeritaStandarIndex = (currentBeritaStandarIndex - 1 + beritaStandarSlides) % beritaStandarSlides;
-                    updateBeritaStandarSlider();
-                });
-                nextBeritaStandarSlideButton.addEventListener('click', () => {
-                    currentBeritaStandarIndex = (currentBeritaStandarIndex + 1) % beritaStandarSlides;
-                    updateBeritaStandarSlider();
-                });
-            }
-            
-            const kabarBsiSlider = document.getElementById('kabar-bsi-slider');
-            const prevKabarBsiSlideButton = document.getElementById('prev-kabar-bsi-slide');
-            const nextKabarBsiSlideButton = document.getElementById('next-kabar-bsi-slide');
+            prevBeritaStandarSlideButton.addEventListener('click', () => {
+                currentBeritaStandarIndex = (currentBeritaStandarIndex - 1 + beritaStandarSlides) % beritaStandarSlides;
+                updateBeritaStandarSlider();
+            });
+            nextBeritaStandarSlideButton.addEventListener('click', () => {
+                currentBeritaStandarIndex = (currentBeritaStandarIndex + 1) % beritaStandarSlides;
+                updateBeritaStandarSlider();
+            });
+        }
+        
+        const kabarBsiSlider = document.getElementById('kabar-bsi-slider');
+        const prevKabarBsiSlideButton = document.getElementById('prev-kabar-bsi-slide');
+        const nextKabarBsiSlideButton = document.getElementById('next-kabar-bsi-slide');
+        if (kabarBsiSlider && prevKabarBsiSlideButton && nextKabarBsiSlideButton) {
             let currentKabarBsiIndex = 0;
-            const kabarBsiSlides = kabarBsiSlider ? kabarBsiSlider.children.length : 0;
+            const kabarBsiSlides = kabarBsiSlider.children.length;
             function updateKabarBsiSlider() {
-                if (kabarBsiSlider) {
-                    kabarBsiSlider.style.transform = `translateX(-${currentKabarBsiIndex * 100}%)`;
-                }
+                kabarBsiSlider.style.transform = `translateX(-${currentKabarBsiIndex * 100}%)`;
             }
-            if (prevKabarBsiSlideButton && nextKabarBsiSlideButton) {
-                prevKabarBsiSlideButton.addEventListener('click', () => {
-                    currentKabarBsiIndex = (currentKabarBsiIndex - 1 + kabarBsiSlides) % kabarBsiSlides;
-                    updateKabarBsiSlider();
-                });
-                nextKabarBsiSlideButton.addEventListener('click', () => {
-                    currentKabarBsiIndex = (currentKabarBsiIndex + 1) % kabarBsiSlides;
-                    updateKabarBsiSlider();
-                });
-            }
-        });
-    </script>
+            prevKabarBsiSlideButton.addEventListener('click', () => {
+                currentKabarBsiIndex = (currentKabarBsiIndex - 1 + kabarBsiSlides) % kabarBsiSlides;
+                updateKabarBsiSlider();
+            });
+            nextKabarBsiSlideButton.addEventListener('click', () => {
+                currentKabarBsiIndex = (currentKabarBsiIndex + 1) % kabarBsiSlides;
+                updateKabarBsiSlider();
+            });
+        }
+    });
+
+    
+</script>
 @endsection

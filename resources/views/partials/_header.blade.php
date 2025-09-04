@@ -170,27 +170,30 @@
 
                     <!-- Dropdown untuk Download -->
                     <div class="relative group">
-    <button class="text-gray-700 hover:text-green-600 font-medium transition duration-300 flex items-center">
+    <button class="text-gray-700 hover:text-green-600 font-medium transition duration-300 flex items-center py-2">
         Download
         <svg class="w-4 h-4 ml-1 transform transition-transform duration-300 group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
         </svg>
     </button>
-    <div class="absolute hidden group-hover:block mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 z-20">
-        <a href="{{ route('download.kategori', 'peraturan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Peraturan</a>
-        <a href="{{ route('download.kategori', 'agenda') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Agenda</a>
+    {{-- Perubahan: 'mt-2' dihapus dan diganti 'pt-2' --}}
+    <div class="absolute hidden group-hover:block pt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20">
+        <div class="py-1">
+            <a href="{{ route('download.kategori', 'peraturan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Peraturan</a>
+            <a href="{{ route('download.kategori', 'agenda') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Agenda</a>
+        </div>
     </div>
 </div>
 
-                    <!-- Search Input (Optional) -->
-                    <div class="relative flex items-center">
-                        <input type="text" placeholder="Pencarian..." class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                    </div>
+                    <!-- Search Input  -->
+                    <form action="{{ route('search') }}" method="GET" class="relative flex items-center">
+    <input type="text" name="query" required placeholder="Pencarian..." class="block w-full pl-4 pr-10 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+    <button type="submit" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-gray-600" aria-label="Cari">
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+        </svg>
+    </button>
+</form>
 
                     <!-- Line P2SEMH Button -->
                     <a href="{{ route('p2semh') }}" class="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-orange-600 hover:bg-orange-700">
@@ -318,12 +321,19 @@
     </div>
 </div>
         <div class="pt-4 pb-3 border-t border-gray-200">
-            <div class="flex items-center px-5">
-                <!-- User Info (Optional) -->
-            </div>
+            
             <div class="mt-3 px-2 space-y-1">
                 <!-- Mobile Search Input -->
-                <input type="text" placeholder="Pencarian..." class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                <form action="{{ route('search') }}" method="GET" class="w-full">
+    <div class="relative">
+        <input type="text" name="query" required placeholder="Pencarian..." class="block w-full pl-4 pr-10 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+        <button type="submit" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-400 hover:text-gray-600" aria-label="Cari">
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+            </svg>
+        </button>
+    </div>
+</form>
                 <!-- Mobile Line P2SEMH Button -->
                 <a href="{{ route('p2semh') }}" class="block w-full text-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-orange-600 hover:bg-orange-700 mt-2">
     LINE P2SEMH

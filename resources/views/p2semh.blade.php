@@ -16,33 +16,24 @@
             </p>
         </div>
 
-        {{-- Konten Grid Logo (SUDAH DIPERBAIKI) --}}
-        {{-- 1. Dibuat jadi grid 2x2 --}}
-        {{-- 2. Ukuran logo diperbesar (h-40) --}}
-        {{-- 3. Efek abu-abu (grayscale) dihilangkan --}}
+        {{-- Konten Grid Logo (DIUBAH MENJADI DINAMIS) --}}
         <div class="max-w-4xl mx-auto">
             <div class="grid grid-cols-2 gap-8 md:gap-16 items-center">
                 
+                {{-- Perulangan untuk setiap partner dari database --}}
+                @forelse($partners as $partner)
                 <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images/logo-kemenhut.png') }}" alt="Logo Kemenhut" class="mx-auto h-40 object-contain transition-transform duration-300 hover:scale-110">
+                    <a href="{{ $partner->url }}" target="_blank" rel="noopener noreferrer" title="{{ $partner->name }}">
+                        <img src="{{ asset('storage/' . $partner->logo) }}" alt="{{ $partner->name }}" class="mx-auto h-40 object-contain transition-transform duration-300 hover:scale-110">
                     </a>
                 </div>
-                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                     <a href="#" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images/logo-bsn.png') }}" alt="Logo BSN" class="mx-auto h-40 object-contain transition-transform duration-300 hover:scale-110">
-                     </a>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                     <a href="#" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images/logo-arkn.png') }}" alt="Logo ARKN" class="mx-auto h-40 object-contain transition-transform duration-300 hover:scale-110">
-                     </a>
-                </div>
-                <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                     <a href="#" target="_blank" rel="noopener noreferrer">
-                        <img src="{{ asset('images/logo-tkmh.png') }}" alt="Logo TKMH" class="mx-auto h-40 object-contain transition-transform duration-300 hover:scale-110">
-                     </a>
-                </div>
+                @empty
+                {{-- Pesan ini akan muncul jika tidak ada data partner di database --}}
+                <p class="col-span-2 text-center text-gray-500 py-12">
+                    Belum ada tautan terkait yang ditambahkan.
+                </p>
+                @endforelse
+                
             </div>
         </div>
 

@@ -71,6 +71,19 @@
                             <span>Manajemen Admin</span>
                         </a>
                     </li>
+                    <li>
+    <a href="{{ route('admin.users.index') }}" class="flex items-center p-2 ...">
+        <i class="fas fa-users-cog w-6 h-6 text-gray-500"></i>
+        <span class="flex-1 ml-3 whitespace-nowrap">Manajemen Admin</span>
+    </a>
+</li>
+
+<li>
+    <a href="{{ route('admin.partners.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+        <i class="fas fa-handshake w-6 h-6 text-gray-500"></i>
+        <span class="flex-1 ml-3 whitespace-nowrap">Tautan Terkait</span>
+    </a>
+</li>
                 </ul>
             </nav>
 
