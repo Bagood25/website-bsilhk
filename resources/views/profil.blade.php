@@ -1,67 +1,44 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{-- DIUBAH: Judul halaman diperbarui --}}
-    <title>Profil P2SEMH</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
-</head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+@extends('layouts.app')
 
-    @include('partials._header')
+@section('title', 'Profil P2SEMH')
 
-    <div class="relative h-64 bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('{{ asset('images/background hutan.jpg') }}');">
+@section('content')
+<main>
+    <section class="relative text-white bg-cover bg-center" style="background-image: url('{{ asset('images/background hutan.jpg') }}');">
         <div class="absolute inset-0 bg-black opacity-50"></div>
-        
-        <div class="relative z-10 text-center p-4">
-            {{-- DIUBAH: Judul banner dan breadcrumb diperbarui --}}
-            <h1 class="text-4xl md:text-5xl font-bold tracking-tight">Profil P2SEMH</h1>
-            <p class="mt-2 text-sm md:text-base">
-                <a href="{{ url('/') }}" class="hover:underline">Beranda</a> &gt; 
-                <a href="#" class="hover:underline">Tentang P2SEMH</a> &gt; 
-                <span class="font-medium">Profil P2SEMH</span>
+        <div class="container mx-auto px-6 py-16 text-center relative z-10">
+            <h1 class="text-4xl font-bold text-white">Profil</h1>
+            <p class="mt-2 text-lg text-gray-300">
+                <a href="{{ url('/') }}" class="hover:text-white transition-colors duration-200">Beranda</a>
+                <span class="mx-2">></span>
+                <span>Profil</span>
             </p>
         </div>
-    </div>
+    </section>
 
-    <main class="flex-grow container mx-auto max-w-7xl px-4 py-12">
-        <div class="flex flex-col md:flex-row gap-8">
-            <div class="w-full md:w-1/3">
-                {{-- DIUBAH: Teks placeholder pada gambar diperbarui --}}
-                <img src="https://placehold.co/600x400/94a3b8/ffffff?text=Kantor+P2SEMH" alt="Gedung Kantor P2SEMH" class="w-full rounded-lg shadow-lg">
-                <h2 class="mt-6 text-2xl font-semibold text-gray-800">
-                    Standar Kuat, LHK Terlindung dan Ekonomi Tumbuh
-                </h2>
-            </div>
-            
-            <div class="w-full md:w-2/3 text-gray-700 leading-relaxed">
-                {{-- DIUBAH: Seluruh paragraf konten diperbarui --}}
-                <p>
-                    Pusat Standardisasi Instrumen Pengujian dan Mutu Hasil Hutan (P2SEMH) memiliki peran penting dalam ekosistem Kementerian Lingkungan Hidup dan Kehutanan. Lembaga ini bertanggung jawab untuk merumuskan, mengembangkan, dan menerapkan standar instrumen yang kredibel untuk pengujian dan penjaminan mutu hasil hutan.
-                </p>
-                <p class="mt-4">
-                    P2SEMH memiliki peran strategis dalam menyediakan standar dan instrumen yang kuat, kredibel, dan relevan untuk mendukung perlindungan lingkungan hidup serta pertumbuhan ekonomi berbasis kehutanan yang berkelanjutan. Kami berkomitmen untuk terus berinovasi dan berkolaborasi dengan berbagai pihak dalam mencapai tujuan tersebut.
-                </p>
-                <p class="mt-4">
-                    Visi kami adalah menjadi pusat unggulan dalam standardisasi instrumen pengujian dan mutu hasil hutan yang mendukung pembangunan berkelanjutan. Misi kami meliputi:
-                </p>
-                <ul class="list-disc list-inside mt-4 pl-4 space-y-2">
-                    <li>Menyediakan standar dan instrumen yang akurat dan relevan.</li>
-                    <li>Mendorong penerapan inovasi di bidang lingkungan hidup dan kehutanan.</li>
-                    <li>Membangun kemitraan strategis dengan pemangku kepentingan.</li>
-                </ul>
+    <section class="py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+                
+                <div class="lg:col-span-1 flex justify-center">
+                    <img src="{{ asset('images/logo-bsilhk.png') }}" alt="Logo BSILHK P2SEMH" class="w-64 h-auto object-contain rounded-lg">
+                </div>
+
+                <div class="lg:col-span-2">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Pusat Standardisasi Instrumen Pengujian dan Mutu Hasil Hutan (P2SEMH)</h2>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Selamat datang di profil resmi Pusat Standardisasi Instrumen Pengujian dan Mutu Hasil Hutan (P2SEMH), salah satu unit kerja strategis di bawah Balai Standardisasi Instrumen Lingkungan Hidup dan Kehutanan (BSILHK). Kami berdedikasi untuk memastikan bahwa setiap produk hasil hutan memenuhi standar kualitas tertinggi melalui pengembangan instrumen pengujian yang akurat dan terpercaya.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Berlokasi di Kawasan Hutan dengan Tujuan Khusus (KHDTK) Aek Nauli, kami berada di garis depan dalam inovasi standardisasi untuk mendukung pengelolaan hutan yang lestari dan berkelanjutan. Misi kami adalah untuk meningkatkan daya saing produk hasil hutan Indonesia di pasar global dengan menjamin mutu dan legalitasnya melalui metode pengujian yang terstandar dan diakui secara internasional.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Melalui website ini, kami berbagi informasi terkini, publikasi, serta layanan yang kami sediakan untuk para pemangku kepentingan di sektor kehutanan.
+                    </p>
+                </div>
+
             </div>
         </div>
-    </main>
-
-    @include('partials._footer')
-
-</body>
-</html>
+    </section>
+</main>
+@endsection
