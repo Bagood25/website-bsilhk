@@ -7,8 +7,9 @@ use App\Models\News;
 use App\Models\Photo;
 use App\Models\Agenda;
 use App\Models\Video;
-use App\Models\Partner; // 1. TAMBAHKAN: Panggil model Partner
+use App\Models\Partner;
 use Illuminate\Http\Request;
+use Carbon\CarbonPeriod;
 
 class HomeController extends Controller
 {
@@ -17,42 +18,55 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // ... (kode untuk $beritaUtama)
+        // ... (kode untuk berita tidak berubah)
         $beritaUtama = News::where('kategori', 'berita-p2semh')->latest()->take(5)->get();
-
-        // Mengambil berita terbaru dari kategori 'berita-p2semh' untuk slider
         $beritaFokus = News::where('kategori', 'berita-p2semh')->latest()->take(15)->get();
-        
-        // ... (sisa kode tidak berubah)
         $beritaStandar = News::where('kategori', 'berita-kehutanan')->latest()->take(6)->get();
         
-        // ... (Query lain tetap sama)
+        // ... (Query lain tidak berubah)
         $latestPhotos = Photo::latest()->take(12)->get();
-        $latestAgendas = Agenda::latest()->take(3)->get();
         $latestVideos = Video::latest()->take(15)->get();
-
-        // 2. TAMBAHKAN: Ambil data semua partner
         $partners = Partner::latest()->get();
+
+        // Mengambil 3 agenda TERDEKAT untuk ditampilkan dalam bentuk kartu
+        $latestAgendas = Agenda::where('tanggal_mulai', '>=', now())
+                               ->orderBy('tanggal_mulai', 'asc')
+                               ->take(3)
+                               ->get();
+
+        // ======================================================
+        // ==     TAMBAHAN BARU: Mengambil semua tanggal agenda  ==
+        // ==     untuk ditandai di kalender statis            ==
+        // ======================================================
+        $allAgendas = Agenda::all();
+        $eventDates = [];
+        foreach ($allAgendas as $agenda) {
+            // Membuat rentang tanggal dari tanggal_mulai hingga tanggal_selesai
+            $period = CarbonPeriod::create($agenda->tanggal_mulai, $agenda->tanggal_selesai ?? $agenda->tanggal_mulai);
+            foreach ($period as $date) {
+                $eventDates[] = $date->toDateString(); // Format 'YYYY-MM-DD'
+            }
+        }
+        // Menjadikan unik dan mengubah ke format JSON
+        $eventDatesJson = json_encode(array_values(array_unique($eventDates)));
+        // ======================================================
 
         return view('home', compact(
             'beritaUtama',
             'beritaFokus',
             'beritaStandar',
             'latestPhotos',
-            'latestAgendas',
             'latestVideos',
-            'partners' // 3. TAMBAHKAN: Kirim data partner ke view
+            'partners',
+            'latestAgendas',
+            'eventDatesJson' // Kirim data tanggal agenda ke view
         ));
     }
     
     public function p2semh()
     {
         $title = 'Tautan Terkait P2SEMH';
-        
-        // 4. TAMBAHKAN: Ambil data semua partner untuk halaman p2semh
         $partners = Partner::latest()->get();
-
-        // 5. TAMBAHKAN: Kirim data partner ke view p2semh
         return view('p2semh', compact('title', 'partners'));
     }
 }

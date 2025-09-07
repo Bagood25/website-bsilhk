@@ -11,7 +11,7 @@ class AgendaController extends Controller
 {
     public function index()
     {
-        $agendas = Agenda::latest()->paginate(10);
+        $agendas = Agenda::latest('tanggal_mulai')->paginate(10);
         return view('admin.agenda.index', compact('agendas'));
     }
 
@@ -22,10 +22,12 @@ class AgendaController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi disesuaikan dengan field baru
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'tanggal' => 'required|date',
+            'tanggal_mulai' => 'required|date',
+            'tanggal_selesai' => 'nullable|date|after_or_equal:tanggal_mulai',
             'lokasi' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
@@ -47,13 +49,19 @@ class AgendaController extends Controller
 
     public function update(Request $request, Agenda $agenda)
     {
+        // Validasi disesuaikan dengan field baru
         $validated = $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'tanggal' => 'required|date',
+            'tanggal_mulai' => 'required|date',
+            'tanggal_selesai' => 'nullable|date|after_or_equal:tanggal_mulai',
             'lokasi' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+        
+        // Jika tanggal selesai tidak diisi, set nilainya menjadi null
+        $validated['tanggal_selesai'] = $request->filled('tanggal_selesai') ? $request->tanggal_selesai : null;
+
 
         if ($request->hasFile('gambar')) {
             if ($agenda->gambar) {

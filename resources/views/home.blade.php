@@ -229,29 +229,59 @@
 
         <div id="agenda-bsilhk" class="bg-gray-900 text-white py-16 mb-16">
     <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-12">Agenda </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            
-            @forelse($latestAgendas as $agenda)
-                <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col">
-                    <img src="{{ $agenda->gambar ? asset('storage/' . $agenda->gambar) : 'https://placehold.co/600x400/10b981/ffffff?text=Agenda' }}" alt="Gambar {{ $agenda->judul }}" class="w-full h-48 object-cover">
-                    <div class="p-4 flex flex-col flex-grow text-left">
-                        <h4 class="font-semibold text-lg leading-tight">{{ $agenda->judul }}</h4>
-                        <p class="text-xs text-gray-400 mt-1">{{ \Carbon\Carbon::parse($agenda->tanggal)->translatedFormat('d F Y') }}</p>
-                        <p class="text-sm text-gray-300 mt-2 flex-grow line-clamp-2">{{ $agenda->deskripsi }}</p>
-                    </div>
-                </div>
-            @empty
-                <div class="col-span-full text-center py-10">
-                    <p class="text-gray-400">Belum ada agenda yang dijadwalkan.</p>
-                </div>
-            @endforelse
+        <h2 class="text-3xl font-bold text-center mb-12">Agenda</h2>
+        
+        {{-- Layout baru: 2 kolom (Kalender di kiri, daftar agenda di kanan) --}}
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-        </div>
-        <div class="text-center mt-12">
-            <a href="{{ route('agenda.index') }}" class="text-green-500 font-semibold hover:underline text-lg transition-colors duration-300">
-                Lihat Semua Agenda &rarr;
-            </a>
+            {{-- Kolom Kiri: Kalender Statis --}}
+            <div class="lg:col-span-1">
+                <div class="static-calendar">
+                    <div class="month">
+                        <h2 id="month-year"></h2>
+                    </div>
+                    <div class="weekdays">
+                        <div>Min</div>
+                        <div>Sen</div>
+                        <div>Sel</div>
+                        <div>Rab</div>
+                        <div>Kam</div>
+                        <div>Jum</div>
+                        <div>Sab</div>
+                    </div>
+                    <div class="days" id="calendar-days"></div>
+                </div>
+            </div>
+
+            {{-- Kolom Kanan: Daftar 3 Agenda Terdekat --}}
+            <div class="lg:col-span-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    @forelse($latestAgendas as $agenda)
+                        <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
+                            <img src="{{ $agenda->gambar ? asset('storage/' . $agenda->gambar) : 'https://placehold.co/600x400/10b981/ffffff?text=Agenda' }}" alt="Gambar {{ $agenda->judul }}" class="w-full h-48 object-cover">
+                            <div class="p-4 flex flex-col flex-grow text-left">
+                                <h4 class="font-semibold text-lg leading-tight">{{ $agenda->judul }}</h4>
+                                <p class="text-xs text-gray-400 mt-1">
+                                    {{ $agenda->tanggal_mulai->translatedFormat('d F Y') }}
+                                    @if($agenda->tanggal_selesai && !$agenda->tanggal_selesai->isSameDay($agenda->tanggal_mulai))
+                                        - {{ $agenda->tanggal_selesai->translatedFormat('d F Y') }}
+                                    @endif
+                                </p>
+                                <p class="text-sm text-gray-300 mt-2 flex-grow line-clamp-2">{{ $agenda->deskripsi }}</p>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="md:col-span-2 text-center py-10">
+                            <p class="text-gray-400">Belum ada agenda yang dijadwalkan.</p>
+                        </div>
+                    @endforelse
+                </div>
+                <div class="text-center mt-12">
+                    <a href="{{ route('agenda.index') }}" class="text-green-500 font-semibold hover:underline text-lg transition-colors duration-300">
+                        Lihat Kalender Agenda Lengkap &rarr;
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -281,6 +311,62 @@
 
     </section>
 
+    @push('styles')
+<style>
+    .static-calendar {
+        font-family: sans-serif;
+        border-radius: 0.5rem;
+        background-color: #374151; /* Warna abu-abu gelap */
+        color: #d1d5db; /* Warna teks abu-abu terang */
+        padding: 1.5rem;
+    }
+    .static-calendar .month {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.25rem;
+    }
+    .static-calendar .month h2 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #fff;
+    }
+    .static-calendar .weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        color: #9ca3af;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        text-align: center;
+    }
+    .static-calendar .days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.5rem;
+        text-align: center;
+    }
+    .static-calendar .days div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        aspect-ratio: 1 / 1; /* Membuat sel menjadi kotak */
+        border-radius: 9999px;
+    }
+    .static-calendar .days .today {
+        border: 2px solid #3B82F6;
+        color: #fff;
+    }
+    /* Style untuk tanggal yang memiliki agenda */
+    .static-calendar .days .has-event {
+        background-color: #10B981; /* Warna hijau */
+        color: white;
+        font-weight: bold;
+    }
+</style>
+@endpush
+
     <footer class="bg-gray-800 text-gray-300 py-8">
         <div class="container mx-auto text-center px-4">
             &copy; {{ date('Y') }} P2SEMH. Hak Cipta Dilindungi.
@@ -288,7 +374,7 @@
     </footer>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
+     document.addEventListener('DOMContentLoaded', function() {
         // ======================================================
         // == SCRIPT LAMA ANDA UNTUK HERO SLIDER (TIDAK DIUBAH) ==
         // ======================================================
@@ -312,18 +398,16 @@
         }
 
         // =================================================================
-        // == SCRIPT BARU UNTUK BERITA P2SEMH (DITAMBAHKAN DI SINI) ==
+        // == SCRIPT BARU UNTUK BERITA P2SEMH (TIDAK DIUBAH) ==
         // =================================================================
         const beritaFokusSlider = document.getElementById('berita-fokus-slider');
         const prevFokusButton = document.getElementById('prev-fokus-slide');
         const nextFokusButton = document.getElementById('next-fokus-slide');
         if (beritaFokusSlider && prevFokusButton && nextFokusButton) {
             let currentFokusIndex = 0;
-            // Kita ingin menampilkan 3 berita per slide, jadi total "halaman" slider adalah jumlah berita dibagi 3
             const fokusSlidesCount = Math.ceil(beritaFokusSlider.children.length / 3); 
             
             function updateFokusSlider() {
-                // Setiap kali pindah, kita geser sejauh 100% (lebar kontainer)
                 beritaFokusSlider.style.transform = `translateX(-${currentFokusIndex * 100}%)`;
             }
 
@@ -378,7 +462,61 @@
                 updateKabarBsiSlider();
             });
         }
+
+        // ===================================================================
+        // == SCRIPT BARU UNTUK KALENDER STATIS AGENDA (DITAMBAHKAN DI SINI) ==
+        // ===================================================================
+        if (document.getElementById('calendar-days')) {
+            renderStaticCalendar();
+        }
     });
+
+    // Fungsi render kalender diletakkan di luar agar bisa dipanggil
+    function renderStaticCalendar() {
+        // Ambil data tanggal dari controller
+        const eventDates = {!! $eventDatesJson ?? '[]' !!};
+
+        const monthYearElement = document.getElementById('month-year');
+        const calendarDaysElement = document.getElementById('calendar-days');
+        
+        const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const today = now.getDate();
+
+        monthYearElement.textContent = `${monthNames[month]} ${year}`;
+
+        const firstDayOfMonth = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        calendarDaysElement.innerHTML = ''; 
+
+        for (let i = 0; i < firstDayOfMonth; i++) {
+            calendarDaysElement.innerHTML += `<div></div>`;
+        }
+
+        for (let i = 1; i <= daysInMonth; i++) {
+            let dayCell = document.createElement('div');
+            dayCell.textContent = i;
+            
+            // Tandai hari ini
+            if (i === today && year === new Date().getFullYear() && month === new Date().getMonth()) {
+                dayCell.classList.add('today');
+            }
+
+            // Buat string tanggal YYYY-MM-DD
+            const currentDateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+            
+            // Tandai jika tanggal ini ada di daftar agenda
+            if (eventDates.includes(currentDateString)) {
+                dayCell.classList.add('has-event');
+            }
+            
+            calendarDaysElement.appendChild(dayCell);
+        }
+    }
 
     
 </script>

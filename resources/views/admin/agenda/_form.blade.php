@@ -21,14 +21,23 @@
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
     <div>
-        <label for="tanggal" class="block text-gray-700 font-bold mb-2">Tanggal</label>
-        <input type="date" id="tanggal" name="tanggal" value="{{ old('tanggal', isset($agenda) ? \Carbon\Carbon::parse($agenda->tanggal)->format('Y-m-d') : '') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        {{-- Diubah menjadi tanggal_mulai --}}
+        <label for="tanggal_mulai" class="block text-gray-700 font-bold mb-2">Tanggal Mulai</label>
+        <input type="date" id="tanggal_mulai" name="tanggal_mulai" value="{{ old('tanggal_mulai', isset($agenda) ? \Carbon\Carbon::parse($agenda->tanggal_mulai)->format('Y-m-d') : '') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
     </div>
-    <div>
-        <label for="lokasi" class="block text-gray-700 font-bold mb-2">Lokasi</label>
-        <input type="text" id="lokasi" name="lokasi" value="{{ old('lokasi', $agenda->lokasi ?? '') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+     <div>
+        {{-- Input baru untuk tanggal_selesai --}}
+        <label for="tanggal_selesai" class="block text-gray-700 font-bold mb-2">Tanggal Selesai (Opsional)</label>
+        <input type="date" id="tanggal_selesai" name="tanggal_selesai" value="{{ old('tanggal_selesai', isset($agenda) && $agenda->tanggal_selesai ? \Carbon\Carbon::parse($agenda->tanggal_selesai)->format('Y-m-d') : '') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <p class="text-xs text-gray-600 mt-1">Kosongkan jika acara hanya satu hari.</p>
     </div>
 </div>
+
+<div class="mb-4">
+    <label for="lokasi" class="block text-gray-700 font-bold mb-2">Lokasi</label>
+    <input type="text" id="lokasi" name="lokasi" value="{{ old('lokasi', $agenda->lokasi ?? '') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+</div>
+
 
 <div class="mb-6">
     <label for="gambar" class="block text-gray-700 font-bold mb-2">Gambar (Opsional)</label>

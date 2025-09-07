@@ -13,6 +13,12 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
     </style>
+
+    {{-- ====================================================== --}}
+    {{-- == TEMPAT UNTUK MEMUAT STYLE TAMBAHAN DARI HALAMAN LAIN == --}}
+    {{-- ====================================================== --}}
+    @stack('styles')
+
 </head>
 <body>
     @include('partials._header')
@@ -32,7 +38,7 @@
     </script>
 
     {{-- ====================================================== --}}
-    {{-- ==        KODE LENGKAP JAVASCRIPT UNTUK SLIDER        == --}}
+    {{-- ==         KODE LENGKAP JAVASCRIPT UNTUK SLIDER      == --}}
     {{-- ====================================================== --}}
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
@@ -74,6 +80,11 @@
 
         });
     </script>
+    
     {{-- ====================================================== --}}
+    {{-- == TEMPAT UNTUK MEMUAT SCRIPT TAMBAHAN DARI HALAMAN LAIN == --}}
+    {{-- ====================================================== --}}
+    @stack('scripts')
+
 </body>
 </html>
