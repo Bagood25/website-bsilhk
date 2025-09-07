@@ -227,64 +227,64 @@
     <section id="footer-menu" class="my-16">
         
 
-        <div id="agenda-bsilhk" class="bg-gray-900 text-white py-16 mb-16">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl font-bold text-center mb-12">Agenda</h2>
-        
-        {{-- Layout baru: 2 kolom (Kalender di kiri, daftar agenda di kanan) --}}
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <section id="agenda-bsilhk" class="bg-gray-900 text-white py-16 mb-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Agenda</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-            {{-- Kolom Kiri: Kalender Statis --}}
-            <div class="lg:col-span-1">
-                <div class="static-calendar">
-                    <div class="month">
-                        <h2 id="month-year"></h2>
+                <div class="lg:col-span-1">
+                    <div class="static-calendar">
+                        <div class="month">
+                            <h2 id="month-year"></h2>
+                        </div>
+                        <div class="weekdays">
+                            <div>Min</div>
+                            <div>Sen</div>
+                            <div>Sel</div>
+                            <div>Rab</div>
+                            <div>Kam</div>
+                            <div>Jum</div>
+                            <div>Sab</div>
+                        </div>
+                        <div class="days" id="calendar-days"></div>
                     </div>
-                    <div class="weekdays">
-                        <div>Min</div>
-                        <div>Sen</div>
-                        <div>Sel</div>
-                        <div>Rab</div>
-                        <div>Kam</div>
-                        <div>Jum</div>
-                        <div>Sab</div>
-                    </div>
-                    <div class="days" id="calendar-days"></div>
                 </div>
-            </div>
 
-            {{-- Kolom Kanan: Daftar 3 Agenda Terdekat --}}
-            <div class="lg:col-span-2">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    @forelse($latestAgendas as $agenda)
-                        <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col h-full">
-                            <img src="{{ $agenda->gambar ? asset('storage/' . $agenda->gambar) : 'https://placehold.co/600x400/10b981/ffffff?text=Agenda' }}" alt="Gambar {{ $agenda->judul }}" class="w-full h-48 object-cover">
-                            <div class="p-4 flex flex-col flex-grow text-left">
-                                <h4 class="font-semibold text-lg leading-tight">{{ $agenda->judul }}</h4>
-                                <p class="text-xs text-gray-400 mt-1">
-                                    {{ $agenda->tanggal_mulai->translatedFormat('d F Y') }}
-                                    @if($agenda->tanggal_selesai && !$agenda->tanggal_selesai->isSameDay($agenda->tanggal_mulai))
-                                        - {{ $agenda->tanggal_selesai->translatedFormat('d F Y') }}
-                                    @endif
-                                </p>
-                                <p class="text-sm text-gray-300 mt-2 flex-grow line-clamp-2">{{ $agenda->deskripsi }}</p>
-                            </div>
+                <div class="lg:col-span-2">
+                    <h3 class="text-2xl font-bold text-white mb-6">Agenda Mendatang</h3>
+                    <div class="space-y-6">
+                        @forelse ($latestAgendas as $agenda)
+                        <div class="bg-gray-800 p-5 rounded-lg shadow-md border-l-4 border-green-500 hover:shadow-lg transition-shadow duration-200">
+                            <p class="text-sm text-gray-400 mb-1 font-semibold">
+                                {{ $agenda->tanggal_mulai->isoFormat('D MMMM YYYY') }}
+                                @if($agenda->tanggal_selesai && $agenda->tanggal_selesai->ne($agenda->tanggal_mulai))
+                                    - {{ $agenda->tanggal_selesai->isoFormat('D MMMM YYYY') }}
+                                @endif
+                            </p>
+                            <h4 class="font-bold text-white">{{ $agenda->judul }}</h4>
+                            @if($agenda->lokasi)
+                            <p class="text-xs text-gray-300 mt-1 flex items-center">
+                                <svg class="inline-block w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                {{ $agenda->lokasi }}
+                            </p>
+                            @endif
                         </div>
-                    @empty
-                        <div class="md:col-span-2 text-center py-10">
-                            <p class="text-gray-400">Belum ada agenda yang dijadwalkan.</p>
+                        @empty
+                        <div class="bg-gray-800 p-5 rounded-lg text-center text-gray-400">
+                            <p>Tidak ada agenda mendatang.</p>
                         </div>
-                    @endforelse
+                        @endforelse
+                    </div>
+                     <div class="mt-8">
+                        {{ $latestAgendas->links() }}
+                    </div>
                 </div>
-                <div class="text-center mt-12">
-                    <a href="{{ route('agenda.index') }}" class="text-green-500 font-semibold hover:underline text-lg transition-colors duration-300">
-                        Lihat Kalender Agenda Lengkap &rarr;
-                    </a>
-                </div>
+
             </div>
         </div>
-    </div>
-</div>
+    </section>
+
 
         {{-- KODE PENGGANTI DENGAN BINGKAI PERSEGI YANG LEBIH BESAR --}}
 

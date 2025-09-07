@@ -29,10 +29,9 @@ class HomeController extends Controller
         $partners = Partner::latest()->get();
 
         // Mengambil 3 agenda TERDEKAT untuk ditampilkan dalam bentuk kartu
-        $latestAgendas = Agenda::where('tanggal_mulai', '>=', now())
+       $latestAgendas = Agenda::where('tanggal_mulai', '>=', now())
                                ->orderBy('tanggal_mulai', 'asc')
-                               ->take(3)
-                               ->get();
+                               ->paginate(5);
 
         // ======================================================
         // ==     TAMBAHAN BARU: Mengambil semua tanggal agenda  ==
@@ -40,7 +39,7 @@ class HomeController extends Controller
         // ======================================================
         $allAgendas = Agenda::all();
         $eventDates = [];
-        foreach ($allAgendas as $agenda) {
+        foreach ($allAgendas  as $agenda) {
             // Membuat rentang tanggal dari tanggal_mulai hingga tanggal_selesai
             $period = CarbonPeriod::create($agenda->tanggal_mulai, $agenda->tanggal_selesai ?? $agenda->tanggal_mulai);
             foreach ($period as $date) {
