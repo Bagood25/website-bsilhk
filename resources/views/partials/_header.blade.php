@@ -180,7 +180,6 @@
     <div class="absolute hidden group-hover:block pt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-20">
         <div class="py-1">
             <a href="{{ route('download.kategori', 'peraturan') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Peraturan</a>
-            <a href="{{ route('download.kategori', 'agenda') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Agenda</a>
         </div>
     </div>
 </div>
@@ -317,8 +316,7 @@
     </button>
     <div class="mobile-dropdown-menu hidden pl-4 mt-1 space-y-1">
         <a href="{{ route('download.kategori', ['kategori' => 'peraturan']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Peraturan</a>
-        <a href="{{ route('download.kategori', ['kategori' => 'agenda']) }}" class="block px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">Agenda</a>
-    </div>
+       
 </div>
         <div class="pt-4 pb-3 border-t border-gray-200">
             

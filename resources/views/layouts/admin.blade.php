@@ -43,13 +43,7 @@
                             <span>Kelola Peraturan</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.downloads.index', ['kategori' => 'agenda']) }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->is('admin/downloads/agenda*') ? 'bg-gray-700' : '' }}">
-                            <i class="fas fa-fw fa-calendar-alt"></i>
-                            <span>Kelola Agenda</span>
-                        </a>
-                    </li>
-
+                   
                     <li>
                         <a href="{{ route('admin.agenda.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.agenda.*') ? 'bg-gray-700' : '' }}">
                             <i class="fas fa-fw fa-calendar-alt"></i>

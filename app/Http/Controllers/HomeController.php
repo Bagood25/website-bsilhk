@@ -28,15 +28,16 @@ class HomeController extends Controller
         $latestVideos = Video::latest()->take(15)->get();
         $partners = Partner::latest()->get();
 
-        // Mengambil 3 agenda TERDEKAT untuk ditampilkan dalam bentuk kartu
-       $latestAgendas = Agenda::where('tanggal_mulai', '>=', now())
+        // ======================================================
+        // ==         PERBAIKAN LOGIKA PENGAMBILAN AGENDA        ==
+        // ======================================================
+        // Mengambil semua agenda yang belum selesai (termasuk yang sedang berlangsung)
+        $latestAgendas = Agenda::where('tanggal_selesai', '>=', now()->today())
                                ->orderBy('tanggal_mulai', 'asc')
-                               ->paginate(5);
+                               ->get();
+        // ======================================================
 
-        // ======================================================
-        // ==     TAMBAHAN BARU: Mengambil semua tanggal agenda  ==
-        // ==     untuk ditandai di kalender statis            ==
-        // ======================================================
+        // Mengambil semua tanggal agenda untuk ditandai di kalender statis
         $allAgendas = Agenda::all();
         $eventDates = [];
         foreach ($allAgendas  as $agenda) {
@@ -48,7 +49,6 @@ class HomeController extends Controller
         }
         // Menjadikan unik dan mengubah ke format JSON
         $eventDatesJson = json_encode(array_values(array_unique($eventDates)));
-        // ======================================================
 
         return view('home', compact(
             'beritaUtama',

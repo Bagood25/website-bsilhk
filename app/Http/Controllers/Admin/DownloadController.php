@@ -12,22 +12,27 @@ class DownloadController extends Controller
     /**
      * Menampilkan daftar unduhan berdasarkan kategori.
      */
-    public function index($kategori)
-{
-    // INI KODE YANG SUDAH DIPERBAIKI
-    $downloads = Download::where('kategori', $kategori)->latest()->paginate(10);
-    
-    $title = ucwords(str_replace('-', ' ', $kategori));
-    return view('admin.downloads.index', compact('downloads', 'title', 'kategori'));
-}
+    public function index($kategori = 'peraturan') // Jadikan 'peraturan' sebagai default
+    {
+        // Pastikan hanya kategori 'peraturan' yang diakses
+        if ($kategori !== 'peraturan') {
+            abort(404);
+        }
 
+        $downloads = Download::where('kategori', $kategori)->latest()->paginate(10);
+        
+        $title = 'Peraturan'; // Set judul secara statis
+        return view('admin.downloads.index', compact('downloads', 'title', 'kategori'));
+    }
 
     /**
      * Menampilkan formulir untuk membuat unduhan baru.
      */
-    public function create($kategori)
+    public function create($kategori = 'peraturan')
     {
-        // Kita teruskan variabel kategori ke view
+        if ($kategori !== 'peraturan') {
+            abort(404);
+        }
         return view('admin.downloads.create', compact('kategori'));
     }
 
@@ -39,7 +44,10 @@ class DownloadController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'kategori' => 'required|string|max:100',
+            // =======================================================
+            // ==       UBAH ATURAN VALIDASI INI                    ==
+            // =======================================================
+            'kategori' => 'required|in:peraturan',
             'file' => 'required|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,zip|max:10240',
         ]);
 
@@ -53,8 +61,7 @@ class DownloadController extends Controller
             'nama_file' => $fileName,
         ]);
 
-        // Arahkan kembali ke halaman index kategori yang sesuai
-        return redirect()->route('admin.downloads.index', $request->kategori)->with('success', 'Data unduhan berhasil ditambahkan.');
+        return redirect()->route('admin.downloads.index', 'peraturan')->with('success', 'Data unduhan berhasil ditambahkan.');
     }
 
     /**
@@ -62,7 +69,6 @@ class DownloadController extends Controller
      */
     public function edit(Download $download)
     {
-        // Di sini kita tidak perlu $kategori karena sudah ada di $download
         return view('admin.downloads.edit', compact('download'));
     }
 
@@ -74,13 +80,18 @@ class DownloadController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
-            'kategori' => 'required|string|max:100',
+            // =======================================================
+            // ==       UBAH ATURAN VALIDASI INI                    ==
+            // =======================================================
+            'kategori' => 'required|in:peraturan',
             'file' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,xls,xlsx,zip|max:10240',
         ]);
 
         $fileName = $download->nama_file;
         if ($request->hasFile('file')) {
-            Storage::delete('public/downloads/' . $download->nama_file);
+            if ($download->nama_file) {
+                Storage::delete('public/downloads/' . $download->nama_file);
+            }
             $filePath = $request->file('file')->store('public/downloads');
             $fileName = basename($filePath);
         }
@@ -92,8 +103,7 @@ class DownloadController extends Controller
             'nama_file' => $fileName,
         ]);
 
-        // Arahkan kembali ke halaman index kategori yang sesuai
-        return redirect()->route('admin.downloads.index', $download->kategori)->with('success', 'Data unduhan berhasil diperbarui.');
+        return redirect()->route('admin.downloads.index', 'peraturan')->with('success', 'Data unduhan berhasil diperbarui.');
     }
 
     /**
@@ -101,11 +111,11 @@ class DownloadController extends Controller
      */
     public function destroy(Download $download)
     {
-        $kategori = $download->kategori; // Simpan kategori sebelum dihapus
-        Storage::delete('public/downloads/' . $download->nama_file);
+        if ($download->nama_file) {
+            Storage::delete('public/downloads/' . $download->nama_file);
+        }
         $download->delete();
         
-        // Arahkan kembali ke halaman index kategori yang sesuai
-        return redirect()->route('admin.downloads.index', $kategori)->with('success', 'Data unduhan berhasil dihapus.');
+        return redirect()->route('admin.downloads.index', 'peraturan')->with('success', 'Data unduhan berhasil dihapus.');
     }
 }

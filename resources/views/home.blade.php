@@ -228,62 +228,71 @@
         
 
         <section id="agenda-bsilhk" class="bg-gray-900 text-white py-16 mb-16">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-12">Agenda</h2>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">Agenda</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-                <div class="lg:col-span-1">
-                    <div class="static-calendar">
-                        <div class="month">
-                            <h2 id="month-year"></h2>
-                        </div>
-                        <div class="weekdays">
-                            <div>Min</div>
-                            <div>Sen</div>
-                            <div>Sel</div>
-                            <div>Rab</div>
-                            <div>Kam</div>
-                            <div>Jum</div>
-                            <div>Sab</div>
-                        </div>
-                        <div class="days" id="calendar-days"></div>
+            <div class="lg:col-span-1">
+                <div class="static-calendar">
+                    <div class="month">
+                        <h2 id="month-year"></h2>
                     </div>
+                    <div class="weekdays">
+                        <div>Min</div>
+                        <div>Sen</div>
+                        <div>Sel</div>
+                        <div>Rab</div>
+                        <div>Kam</div>
+                        <div>Jum</div>
+                        <div>Sab</div>
+                    </div>
+                    <div class="days" id="calendar-days"></div>
                 </div>
+            </div>
 
-                <div class="lg:col-span-2">
-                    <h3 class="text-2xl font-bold text-white mb-6">Agenda Mendatang</h3>
-                    <div class="space-y-6">
-                        @forelse ($latestAgendas as $agenda)
-                        <div class="bg-gray-800 p-5 rounded-lg shadow-md border-l-4 border-green-500 hover:shadow-lg transition-shadow duration-200">
-                            <p class="text-sm text-gray-400 mb-1 font-semibold">
-                                {{ $agenda->tanggal_mulai->isoFormat('D MMMM YYYY') }}
-                                @if($agenda->tanggal_selesai && $agenda->tanggal_selesai->ne($agenda->tanggal_mulai))
-                                    - {{ $agenda->tanggal_selesai->isoFormat('D MMMM YYYY') }}
-                                @endif
-                            </p>
-                            <h4 class="font-bold text-white">{{ $agenda->judul }}</h4>
-                            @if($agenda->lokasi)
-                            <p class="text-xs text-gray-300 mt-1 flex items-center">
-                                <svg class="inline-block w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                                {{ $agenda->lokasi }}
-                            </p>
+            <div class="lg:col-span-2">
+                <h3 class="text-2xl font-bold text-white mb-6">Agenda Mendatang</h3>
+                <div class="space-y-6">
+                    @forelse ($latestAgendas as $agenda)
+                    <div class="bg-gray-800 p-5 rounded-lg shadow-md border-l-4 border-green-500 hover:shadow-lg transition-shadow duration-200">
+                        <p class="text-sm text-gray-400 mb-1 font-semibold">
+                            {{ $agenda->tanggal_mulai->isoFormat('D MMMM YYYY') }}
+                            @if($agenda->tanggal_selesai && $agenda->tanggal_selesai->ne($agenda->tanggal_mulai))
+                                - {{ $agenda->tanggal_selesai->isoFormat('D MMMM YYYY') }}
                             @endif
-                        </div>
-                        @empty
-                        <div class="bg-gray-800 p-5 rounded-lg text-center text-gray-400">
-                            <p>Tidak ada agenda mendatang.</p>
-                        </div>
-                        @endforelse
+                        </p>
+                        <h4 class="font-bold text-white">{{ $agenda->judul }}</h4>
+                        @if($agenda->lokasi)
+                        <p class="text-xs text-gray-300 mt-1 flex items-center">
+                            <svg class="inline-block w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                            {{ $agenda->lokasi }}
+                        </p>
+                        @endif
                     </div>
-                     <div class="mt-8">
-                        {{ $latestAgendas->links() }}
+                    @empty
+                    <div class="bg-gray-800 p-5 rounded-lg text-center text-gray-400">
+                        <p>Tidak ada agenda mendatang.</p>
                     </div>
+                    @endforelse
                 </div>
+
+                {{-- ======================================================= --}}
+                {{-- == BAGIAN YANG DITAMBAHKAN ADA DI BAWAH INI           == --}}
+                {{-- ======================================================= --}}
+                <div class="mt-8 text-right">
+                    <a href="{{ route('agenda.index') }}" class="text-green-400 hover:text-green-300 font-semibold transition-colors duration-200 inline-flex items-center">
+                        Lihat Semua Agenda
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+                {{-- ======================================================= --}}
 
             </div>
+
         </div>
-    </section>
+    </div>
+</section>
 
 
         {{-- KODE PENGGANTI DENGAN BINGKAI PERSEGI YANG LEBIH BESAR --}}

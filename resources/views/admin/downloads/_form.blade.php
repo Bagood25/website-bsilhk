@@ -45,9 +45,6 @@
             <option value="peraturan" {{ ($kategori ?? $download->kategori) == 'peraturan' ? 'selected' : '' }}>
                 Peraturan
             </option>
-            <option value="agenda" {{ ($kategori ?? $download->kategori) == 'agenda' ? 'selected' : '' }}>
-                Agenda
-            </option>
         </select>
         
         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
