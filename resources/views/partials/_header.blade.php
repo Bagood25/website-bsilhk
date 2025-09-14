@@ -47,9 +47,9 @@
 <div class="bg-gray-100 text-gray-700 py-2 text-sm hidden md:block border-b border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         <div class="flex space-x-6">
-            <a href="mailto:bsilhk@menlhk.go.id" class="flex items-center hover:text-orange-600 transition-colors duration-200">
+            <a href="mailto:p2semh.kehutanan@gmail.com" class="flex items-center hover:text-orange-600 transition-colors duration-200">
                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                bsilhk@menlhk.go.id
+                p2semh.kehutanan@gmail.com
             </a>
             <a href="tel:(021) 57903068" class="flex items-center hover:text-orange-600 transition-colors duration-200">
                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/20000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 1.48a1 1 0 01-.188 1.096l-1.547 1.547a1 1 0 00-.214 1.258l2.258 2.258a1 1 0 001.258-.214l1.547-1.547a1 1 0 011.096-.188l1.48.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
@@ -61,15 +61,15 @@
 </a>
         </div>
         <div class="flex items-center space-x-4">
-            <a href="https://www.facebook.com/pusfaster" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
+            {{-- <a href="https://www.facebook.com/pusfaster" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
                 <img src="{{ asset('images/facebook.png') }}" alt="Facebook" class="h-5 w-5">
-            </a>
-            <a href="https://www.instagram.com/pusfaster/" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
+            </a> --}}
+            <a href="https://www.instagram.com/p2semh.kemenhut?utm_source=ig_web_button_share_sheet&igsh=MWdrNDFqazE0NXk=" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
                 <img src="{{ asset('images/instagram.png') }}" alt="Instagram" class="h-5 w-5">
             </a>
-            <a href="www.youtube.com/@BadanStandardisasiInstrumenLHK/" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
+            {{-- <a href="www.youtube.com/@BadanStandardisasiInstrumenLHK/" target="_blank" class="hover:text-orange-600 transition-colors duration-200">
                 <img src="{{ asset('images/youtube.png') }}" alt="YouTube" class="h-5 w-5">
-            </a>
+            </a> --}}
             <!-- Language Selector (contoh sederhana) -->
             <div class="relative group">
                 <button class="flex items-center text-gray-700 hover:text-orange-600 focus:outline-none">
@@ -228,9 +228,9 @@
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <!-- Mobile Top Navbar Content -->
             <div class="flex flex-col space-y-2 py-2 border-b border-gray-200">
-                <a href="mailto:bsilhk@menlhk.go.id" class="flex items-center text-gray-700 hover:text-orange-600 text-sm font-medium">
+                <a href="mailto:p2semh.kehutanan@gmail.com" class="flex items-center text-gray-700 hover:text-orange-600 text-sm font-medium">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                    bsilhk@menlhk.go.id
+                    p2semh.kehutanan@gmail.com
                 </a>
                 <a href="tel:(021) 57903068" class="flex items-center text-gray-700 hover:text-orange-600 text-sm font-medium">
                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 1.48a1 1 0 01-.188 1.096l-1.547 1.547a1 1 0 00-.214 1.258l2.258 2.258a1 1 0 001.258-.214l1.547-1.547a1 1 0 011.096-.188l1.48.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
@@ -241,15 +241,15 @@
                     Ged. Manggala Wanabakti Blok VII Lantai 10, Jl. Jenderal Gatot Subroto, Jakarta 10270
                 </span>
                 <div class="flex space-x-4 mt-2">
-                    <a href="https://www.facebook.com/pusfaster" target="_blank" class="text-gray-700 hover:text-orange-600">
+                    {{-- <a href="https://www.facebook.com/pusfaster" target="_blank" class="text-gray-700 hover:text-orange-600">
                         <img src="{{ asset('images/facebook.png') }}" alt="Facebook" class="h-5 w-5">
-                    </a>
-                    <a href="https://www.instagram.com/pusfaster/" target="_blank" class="text-gray-700 hover:text-orange-600">
+                    </a> --}}
+                    <a href="https://www.instagram.com/p2semh.kemenhut?utm_source=ig_web_button_share_sheet&igsh=MWdrNDFqazE0NXk=" target="_blank" class="text-gray-700 hover:text-orange-600">
                         <img src="{{ asset('images/instagram.png') }}" alt="Instagram" class="h-5 w-5">
                     </a>
-                    <a href="www.youtube.com/@BadanStandardisasiInstrumenLHK/   " target="_blank" class="text-gray-700 hover:text-orange-600">
+                    {{-- <a href="www.youtube.com/@BadanStandardisasiInstrumenLHK/   " target="_blank" class="text-gray-700 hover:text-orange-600">
                         <img src="{{ asset('images/youtube.png') }}" alt="YouTube" class="h-5 w-5">
-                    </a>
+                    </a> --}}
                 </div>
             </div>
             <!-- End Mobile Top Navbar Content -->

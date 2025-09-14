@@ -17,8 +17,8 @@
                             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                         </svg>
-                        <a href="mailto:bsilhk@menlhk.go.id" class="hover:text-green-500">
-                            bsilhk@menlhk.go.id
+                        <a href="mailto:p2semh.kehutanan@gmail.com" class="hover:text-green-500">
+                            p2semh.kehutanan@gmail.com
                         </a>
                     </li>
                 </ul>
@@ -61,20 +61,17 @@
                     <a href="{{ route('download.kategori', 'peraturan') }}" class="w-full block text-center bg-orange-500 text-white font-semibold py-3 px-6 rounded-md hover:bg-orange-600 transition-colors duration-300 shadow-lg">
                         Peraturan
                     </a>
-                    <a href="{{ route('download.kategori', 'agenda') }}" class="w-full block text-center bg-orange-500 text-white font-semibold py-3 px-6 rounded-md hover:bg-orange-600 transition-colors duration-300 shadow-lg">
-                        Agenda
-                    </a>
                 </div>
                 <div class="flex space-x-4 mt-6 justify-center md:justify-start">
-                    <a href="https://www.facebook.com/pusfaster" target="_blank" class="hover:opacity-75">
+                    {{-- <a href="https://www.facebook.com/pusfaster" target="_blank" class="hover:opacity-75">
                         <img src="{{ asset('images/facebook.png') }}" alt="Facebook" class="h-8 w-8">
-                    </a>
-                    <a href="https://www.instagram.com/pusfaster/" target="_blank" class="hover:opacity-75">
+                    </a> --}}
+                    <a href="https://www.instagram.com/p2semh.kemenhut?utm_source=ig_web_button_share_sheet&igsh=MWdrNDFqazE0NXk=" target="_blank" class="hover:opacity-75">
                         <img src="{{ asset('images/instagram.png') }}" alt="Instagram" class="h-8 w-8">
                     </a>
-                    <a href="https://www.youtube.com/@PusfasterBSILHK" target="_blank" class="hover:opacity-75">
+                    {{-- <a href="https://www.youtube.com/@PusfasterBSILHK" target="_blank" class="hover:opacity-75">
                         <img src="{{ asset('images/youtube.png') }}" alt="YouTube" class="h-8 w-8">
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </div>
