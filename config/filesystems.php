@@ -56,6 +56,16 @@ return [
             'throw' => false,
         ],
 
+        // ==========================================================
+        // == TAMBAHKAN BLOK KODE INI UNTUK GOOGLE DRIVE
+        // ==========================================================
+        'google' => [
+            'driver' => 'google',
+            'credentials' => storage_path('app/google_credentials.json'), // Path ke file kredensial Anda
+            'folderId' => env('GOOGLE_DRIVE_FOLDER_ID'),
+        ],
+        // ==========================================================
+
     ],
 
     /*

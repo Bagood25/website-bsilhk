@@ -38,12 +38,12 @@
 
                     {{-- Menu Download --}}
                     <li>
-                        <a href="{{ route('admin.downloads.index', ['kategori' => 'peraturan']) }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->is('admin/downloads/peraturan*') ? 'bg-gray-700' : '' }}">
+                        <a href="{{ route('admin.downloads.index', ['kategori' => 'peraturan']) }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->is('admin/downloads*') ? 'bg-gray-700' : '' }}">
                             <i class="fas fa-fw fa-gavel"></i>
-                            <span>Kelola Peraturan</span>
+                            <span>Kelola Unduhan</span>
                         </a>
                     </li>
-                   
+                    
                     <li>
                         <a href="{{ route('admin.agenda.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.agenda.*') ? 'bg-gray-700' : '' }}">
                             <i class="fas fa-fw fa-calendar-alt"></i>
@@ -65,25 +65,30 @@
                             <span>Manajemen Admin</span>
                         </a>
                     </li>
-                    <li>
-    <a href="{{ route('admin.users.index') }}" class="flex items-center p-2 ...">
-        <i class="fas fa-users-cog w-6 h-6 text-gray-500"></i>
-        <span class="flex-1 ml-3 whitespace-nowrap">Manajemen Admin</span>
-    </a>
-</li>
 
-<li>
-    <a href="{{ route('admin.partners.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-        <i class="fas fa-handshake w-6 h-6 text-gray-500"></i>
-        <span class="flex-1 ml-3 whitespace-nowrap">Tautan Terkait</span>
-    </a>
-</li>
+                    <li>
+                        <a href="{{ route('admin.partners.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.partners.*') ? 'bg-gray-700' : '' }}">
+                            <i class="fas fa-fw fa-handshake"></i>
+                            <span>Tautan Terkait</span>
+                        </a>
+                    </li>
+                    
+                    {{-- ========================================================== --}}
+                    {{-- == MENU ANALISIS DATA DITAMBAHKAN DI SINI (SUDAH DIRAPIKAN) == --}}
+                    {{-- ========================================================== --}}
+                    <li>
+                        <a href="{{ route('admin.analysis.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.analysis.*') ? 'bg-gray-700' : '' }}">
+                            <i class="fas fa-fw fa-chart-bar"></i>
+                            <span>Analisis Data</span>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
 
             <div class="p-4 border-t border-gray-700">
                 <div class="flex items-center mb-4">
-                    <img class="w-10 h-10 rounded-full mr-3" src="https://placehold.co/100x100" alt="Avatar">
+                    <img class="w-10 h-10 rounded-full mr-3" src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=4A5568&color=FFF" alt="Avatar">
                     <div>
                         <p class="font-semibold">{{ Auth::user()->name }}</p>
                         <p class="text-xs text-gray-400">Administrator</p>

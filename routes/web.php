@@ -11,7 +11,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GaleriController;
-use App\Http\Controllers\AgendaController; // 1. TAMBAHKAN: Panggil AgendaController publik
+use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\SearchController;
 
@@ -19,9 +19,10 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AdminBeritaController;
 use App\Http\Controllers\Admin\PhotoController;
 use App\Http\Controllers\Admin\DownloadController as AdminDownloadController;
-use App\Http\Controllers\Admin\AgendaController as AdminAgendaController; // 2. TAMBAHKAN: Panggil AgendaController admin
+use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
 use App\Http\Controllers\Admin\VideoController as AdminVideoController;
 use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
+use App\Http\Controllers\Admin\AnalysisController; // Controller analisis sudah dipanggil
 
 // =========================================================================
 // == RUTE PUBLIK
@@ -32,12 +33,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // --- Rute Berita ---
 Route::get('/berita-p2semh', [PublicNewsController::class, 'showFokusBsiNews'])->name('berita-p2semh');
 Route::get('/berita-kehutanan', [PublicNewsController::class, 'showBsiNews'])->name('berita-kehutanan');
-
-// Mengubah 'news.show' menjadi 'news.detail' agar konsisten dengan perbaikan sebelumnya
 Route::get('/berita/detail/{berita:slug}', [PublicNewsController::class, 'showDetail'])->name('news.detail');
 
 // Rute Publik Lainnya
-// Setelah diubah
 Route::get('/profil', fn() => view('profil'))->name('profil');
 Route::get('/p2semh', [HomeController::class, 'p2semh'])->name('p2semh');
 Route::get('/services', [PublicServiceController::class, 'index']);
@@ -45,7 +43,6 @@ Route::get('/locations', [LocationController::class, 'index']);
 Route::get('/regulasi/{title}', fn($title) => view('regulasi', ['pageTitle' => ucwords(str_replace('-', ' ', $title))]))->name('regulasi.show');
 Route::get('/jdih-klhk', fn() => view('regulasi', ['pageTitle' => 'JDIH KLHK']))->name('jdih.klhk');
 
-// 3. UBAH: Rute agenda dari statis menjadi dinamis
 Route::get('/agenda', [AgendaController::class, 'index'])->name('agenda.index');
 Route::get('/dasar-hukum', fn() => view('dasar_hukum'));
 Route::get('/tugas-dan-fungsi', fn() => view('tugas_dan_fungsi'));
@@ -57,8 +54,8 @@ Route::get('/galeri-video', [VideoController::class, 'index'])->name('galeri.vid
 Route::get('/kontak', fn() => view('kontak'));
 Route::get('/faq', fn() => view('faq'));
 Route::get('/peta-situs', fn() => view('peta_situs'));
-Route::get('/privacy-policy', fn() => view('privacy_policy'));
-Route::get('/terms-of-service', fn() => view('terms_of_service'));
+// Route::get('/privacy-policy', fn() => view('privacy_policy'));
+// Route::get('/terms-of-service', fn() => view('terms_of_service'));
 Route::get('/sitemap.xml', fn() => response()->file(public_path('sitemap.xml')));
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
@@ -74,6 +71,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout.get');
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('berita', AdminBeritaController::class)->except(['show'])->parameters(['berita' => 'berita']);
     Route::resource('photos', PhotoController::class)->except(['show', 'edit', 'update']);
+    
     // Rute untuk Download yang sudah dimodifikasi
     Route::get('/downloads/{kategori}', [AdminDownloadController::class, 'index'])->name('downloads.index');
     Route::get('/downloads/{kategori}/create', [AdminDownloadController::class, 'create'])->name('downloads.create');
@@ -82,7 +80,6 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::put('/downloads/{download}', [AdminDownloadController::class, 'update'])->name('downloads.update');
     Route::delete('/downloads/{download}', [AdminDownloadController::class, 'destroy'])->name('downloads.destroy');
 
-    // 4. TAMBAHKAN: Rute resource untuk manajemen agenda di panel admin
     Route::resource('agenda', AdminAgendaController::class)->except(['show']);
     Route::resource('videos', AdminVideoController::class)->except(['show']);
 
@@ -90,8 +87,15 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['show']);
 
     Route::resource('partners', AdminPartnerController::class);
-});
 
+    // --- RUTE ANALISIS (Sudah dipindahkan ke dalam grup admin) ---
+    Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis.index');
+    Route::post('/analysis', [AnalysisController::class, 'store'])->name('analysis.store');
+    Route::get('/analysis/{analysis}', [AnalysisController::class, 'show'])->name('analysis.show');
+
+// Route baru untuk mengambil gambar dari Google Drive
+    Route::get('/analysis/{analysis}/image/{type}', [AnalysisController::class, 'getImage'])->name('analysis.image');
+});
 
 // --- Rute Pengguna Login ---
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('user.home');
@@ -102,6 +106,6 @@ Route::fallback(function() {
     return view('errors.404');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Baris Auth::routes() dan Route::get('/home', ...) di bawah ini bisa jadi duplikat dan bisa dihapus jika sudah ada di atas.
+// Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
