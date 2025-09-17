@@ -73,9 +73,9 @@
                         </a>
                     </li>
                     
-                    {{-- ========================================================== --}}
-                    {{-- == MENU ANALISIS DATA DITAMBAHKAN DI SINI (SUDAH DIRAPIKAN) == --}}
-                    {{-- ========================================================== --}}
+                    {{-- =================================== --}}
+                    {{-- == MENU ANALISIS DATA SUDAH BENAR == --}}
+                    {{-- =================================== --}}
                     <li>
                         <a href="{{ route('admin.analysis.index') }}" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-700 transition duration-200 {{ request()->routeIs('admin.analysis.*') ? 'bg-gray-700' : '' }}">
                             <i class="fas fa-fw fa-chart-bar"></i>
@@ -88,7 +88,16 @@
 
             <div class="p-4 border-t border-gray-700">
                 <div class="flex items-center mb-4">
-                    <img class="w-10 h-10 rounded-full mr-3" src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=4A5568&color=FFF" alt="Avatar">
+                    <div class="w-10 h-10 rounded-full mr-3 bg-gray-600 flex items-center justify-center font-bold">
+                        {{-- Mengambil inisial dari nama user --}}
+                        @php
+                            $nameParts = explode(' ', Auth::user()->name);
+                            $initials = count($nameParts) > 1 
+                                ? strtoupper(substr($nameParts[0], 0, 1) . substr(end($nameParts), 0, 1))
+                                : strtoupper(substr($nameParts[0], 0, 2));
+                        @endphp
+                        {{ $initials }}
+                    </div>
                     <div>
                         <p class="font-semibold">{{ Auth::user()->name }}</p>
                         <p class="text-xs text-gray-400">Administrator</p>
@@ -107,7 +116,7 @@
         </div>
 
         {{-- Main Content --}}
-        <main class="flex-1 overflow-y-auto">
+        <main class="flex-1 overflow-y-auto p-6">
             @yield('content')
         </main>
     </div>

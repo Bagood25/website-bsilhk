@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Download') {{-- Ganti title agar lebih sesuai --}}
+@section('title', 'Download Dokumen Peraturan')
 
 @section('content')
     {{-- Hero Section / Banner --}}
@@ -10,7 +10,7 @@
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight">Download</h1>
             <p class="mt-2 text-sm md:text-base">
                 <a href="/" class="hover:underline">Beranda</a> &gt; 
-                <span>Download</span>
+                <span>Download Peraturan</span>
             </p>
         </div>
     </div>
@@ -21,13 +21,11 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-            {{-- =============================================== --}}
-            {{-- ==  UBAH '$downloads' MENJADI '$peraturans'  == --}}
-            {{-- =============================================== --}}
+            {{-- Perulangan data dari database --}}
             @forelse ($peraturans as $item)
                 @php
-                    // Logika sederhana untuk menentukan ikon berdasarkan ekstensi file
-                    $extension = pathinfo($item->file, PATHINFO_EXTENSION);
+                    // Logika untuk ikon berdasarkan ekstensi file
+                    $extension = pathinfo($item->nama_file, PATHINFO_EXTENSION);
                     $iconClass = 'fa-file-alt'; // Ikon default
                     if (in_array($extension, ['pdf'])) $iconClass = 'fa-file-pdf text-red-500';
                     if (in_array($extension, ['doc', 'docx'])) $iconClass = 'fa-file-word text-blue-500';
@@ -42,7 +40,8 @@
                         <div class="flex items-start mb-4">
                             <i class="fas {{ $iconClass }} text-4xl mr-4 mt-1"></i>
                             <div>
-                                <h3 class="text-lg font-semibold text-gray-900 leading-tight">{{ $item->nama }}</h3>
+                                {{-- PERBAIKAN 1: Menggunakan $item->judul --}}
+                                <h3 class="text-lg font-semibold text-gray-900 leading-tight">{{ $item->judul }}</h3>
                             </div>
                         </div>
 
@@ -52,7 +51,8 @@
                         </p>
 
                         {{-- Tombol Download --}}
-                        <a href="{{ asset('storage/' . $item->file) }}" 
+                        {{-- PERBAIKAN 2: Menggunakan path dan nama file yang benar --}}
+                        <a href="{{ asset('storage/downloads/' . $item->nama_file) }}" 
                            class="mt-auto w-full inline-block text-center bg-green-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-700 transition duration-300" 
                            download>
                             <i class="fas fa-download mr-2"></i> Unduh Dokumen
@@ -61,7 +61,7 @@
                 </div>
             @empty
                 {{-- Pesan jika tidak ada file --}}
-                <div class="col-span-full text-center py-16 bg-white rounded-lg shadow-md">x    
+                <div class="col-span-full text-center py-16 bg-white rounded-lg shadow-md">
                     <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
                     <h3 class="text-xl font-medium text-gray-800">Dokumen Tidak Ditemukan</h3>
                     <p class="mt-2 text-gray-500">Saat ini belum ada dokumen yang tersedia dalam kategori ini.</p>

@@ -22,7 +22,7 @@ use App\Http\Controllers\Admin\DownloadController as AdminDownloadController;
 use App\Http\Controllers\Admin\AgendaController as AdminAgendaController;
 use App\Http\Controllers\Admin\VideoController as AdminVideoController;
 use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
-use App\Http\Controllers\Admin\AnalysisController; // Controller analisis sudah dipanggil
+use App\Http\Controllers\Admin\AnalysisController;
 
 // =========================================================================
 // == RUTE PUBLIK
@@ -54,8 +54,6 @@ Route::get('/galeri-video', [VideoController::class, 'index'])->name('galeri.vid
 Route::get('/kontak', fn() => view('kontak'));
 Route::get('/faq', fn() => view('faq'));
 Route::get('/peta-situs', fn() => view('peta_situs'));
-// Route::get('/privacy-policy', fn() => view('privacy_policy'));
-// Route::get('/terms-of-service', fn() => view('terms_of_service'));
 Route::get('/sitemap.xml', fn() => response()->file(public_path('sitemap.xml')));
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 
@@ -72,7 +70,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::resource('berita', AdminBeritaController::class)->except(['show'])->parameters(['berita' => 'berita']);
     Route::resource('photos', PhotoController::class)->except(['show', 'edit', 'update']);
     
-    // Rute untuk Download yang sudah dimodifikasi
+    // Rute untuk Download
     Route::get('/downloads/{kategori}', [AdminDownloadController::class, 'index'])->name('downloads.index');
     Route::get('/downloads/{kategori}/create', [AdminDownloadController::class, 'create'])->name('downloads.create');
     Route::post('/downloads', [AdminDownloadController::class, 'store'])->name('downloads.store');
@@ -82,19 +80,12 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
 
     Route::resource('agenda', AdminAgendaController::class)->except(['show']);
     Route::resource('videos', AdminVideoController::class)->except(['show']);
-
-    // Rute untuk Halaman Tambah Admin
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class)->except(['show']);
-
     Route::resource('partners', AdminPartnerController::class);
 
-    // --- RUTE ANALISIS (Sudah dipindahkan ke dalam grup admin) ---
+    // --- RUTE ANALISIS (Versi Sederhana) ---
     Route::get('/analysis', [AnalysisController::class, 'index'])->name('analysis.index');
     Route::post('/analysis', [AnalysisController::class, 'store'])->name('analysis.store');
-    Route::get('/analysis/{analysis}', [AnalysisController::class, 'show'])->name('analysis.show');
-
-// Route baru untuk mengambil gambar dari Google Drive
-    Route::get('/analysis/{analysis}/image/{type}', [AnalysisController::class, 'getImage'])->name('analysis.image');
 });
 
 // --- Rute Pengguna Login ---
@@ -105,7 +96,3 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::fallback(function() {
     return view('errors.404');
 });
-
-// Baris Auth::routes() dan Route::get('/home', ...) di bawah ini bisa jadi duplikat dan bisa dihapus jika sudah ada di atas.
-// Auth::routes();
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

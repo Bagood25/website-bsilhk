@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 
 class DownloadController extends Controller
 {
-    public function index()
+    // UBAH FUNGSI INDEX MENJADI SEPERTI INI
+    public function index($kategori)
     {
-        $peraturans = Download::where('kategori', 'peraturan')->latest()->paginate(10);
+        // Ambil data berdasarkan kategori dari URL
+        $peraturans = Download::where('kategori', $kategori)->latest()->paginate(10);
+        
+        // Kirim data ke view
         return view('download', compact('peraturans'));
     }
 }
