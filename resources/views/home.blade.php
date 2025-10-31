@@ -305,9 +305,11 @@
 
             @forelse($partners as $partner)
                 <a href="{{ $partner->url }}" target="_blank" rel="noopener noreferrer" title="{{ $partner->name }}"
-                   class="block bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center w-64 h-64">
-                    {{-- Ukuran diubah menjadi w-64 h-64 (lebih besar) --}}
-                    <img src="{{ asset('storage/' . $partner->logo) }}" alt="{{ $partner->name }}" class="max-h-full max-w-full object-contain">
+                   class="block bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 w-64">
+                    <div class="flex items-center justify-center h-40">
+                        <img src="{{ asset('storage/' . $partner->logo) }}" alt="{{ $partner->name }}" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <p class="text-center text-gray-700 font-semibold mt-4">{{ $partner->name }}</p>
                 </a>
             @empty
                 <p class="text-center text-gray-500">

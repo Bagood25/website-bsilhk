@@ -25,9 +25,9 @@
                 </div>
 
                 <div class="lg:col-span-2">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Pusat Standardisasi Instrumen Pengujian dan Mutu Hasil Hutan (P2SEMH)</h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Pusat Pengembangan Sosial Ekonomi Masyarakat Hutan (P2SEMH)</h2>
                     <p class="text-gray-600 leading-relaxed mb-4">
-                        Selamat datang di profil resmi Pusat Standardisasi Instrumen Pengujian dan Mutu Hasil Hutan (P2SEMH), salah satu unit kerja strategis di bawah Balai Standardisasi Instrumen Lingkungan Hidup dan Kehutanan (BSILHK). Kami berdedikasi untuk memastikan bahwa setiap produk hasil hutan memenuhi standar kualitas tertinggi melalui pengembangan instrumen pengujian yang akurat dan terpercaya.
+                        Selamat datang di profil resmi Pusat Pengembangan Sosial Ekonomi Masyarakat Hutan (P2SEMH), salah satu unit kerja strategis di bawah Balai Standardisasi Instrumen Lingkungan Hidup dan Kehutanan (BSILHK). Kami berdedikasi untuk memastikan bahwa setiap produk hasil hutan memenuhi standar kualitas tertinggi melalui pengembangan instrumen pengujian yang akurat dan terpercaya.
                     </p>
                     <p class="text-gray-600 leading-relaxed mb-4">
                         Berlokasi di Kawasan Hutan dengan Tujuan Khusus (KHDTK) Aek Nauli, kami berada di garis depan dalam inovasi standardisasi untuk mendukung pengelolaan hutan yang lestari dan berkelanjutan. Misi kami adalah untuk meningkatkan daya saing produk hasil hutan Indonesia di pasar global dengan menjamin mutu dan legalitasnya melalui metode pengujian yang terstandar dan diakui secara internasional.

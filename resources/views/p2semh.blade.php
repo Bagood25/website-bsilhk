@@ -25,6 +25,7 @@
                 <div class="p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                     <a href="{{ $partner->url }}" target="_blank" rel="noopener noreferrer" title="{{ $partner->name }}">
                         <img src="{{ asset('storage/' . $partner->logo) }}" alt="{{ $partner->name }}" class="mx-auto h-40 object-contain transition-transform duration-300 hover:scale-110">
+                        <p class="text-center text-gray-700 font-semibold mt-4">{{ $partner->name }}</p>
                     </a>
                 </div>
                 @empty
